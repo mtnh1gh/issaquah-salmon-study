@@ -1,0 +1,36 @@
+# Issaquah Creek Salmon Return Study
+# Python 3.10+
+
+# Core data
+pandas==2.2.2
+numpy==1.26.4
+
+# Data fetching
+requests==2.32.3
+dataretrieval==1.0.11        # USGS NWIS water data API
+
+# Statistics
+scipy==1.13.1
+statsmodels==0.14.2
+pymannkendall==1.4.3         # Mann-Kendall trend test
+
+# Machine learning
+scikit-learn==1.5.1
+xgboost==2.1.1
+
+# Visualization
+matplotlib==3.9.1
+seaborn==0.13.2
+plotly==5.22.0               # Interactive charts (optional)
+
+# Geospatial (for watershed map)
+geopandas==1.0.1
+folium==0.17.0
+
+# Notebook environment
+jupyterlab==4.2.4
+ipykernel==6.29.5
+
+# Utilities
+python-dotenv==1.0.1
+tqdm==4.66.4
