@@ -9,9 +9,9 @@
 Each fall, Chinook and Coho salmon return from the Pacific Ocean to spawn in Issaquah Creek — swimming through downtown Issaquah past shopping centers, neighborhoods, and the I-90 corridor. In 2025, **4,955 Chinook** and **5,200+ Coho** returned to this creek. But are those numbers going up or down over time — and why?
 
 This project uses Python data science tools to:
-1. **Quantify** 40 years of Issaquah Creek salmon return trends alongside environmental stressors
+1. **Quantify** 10 years of Issaquah Creek salmon return trends alongside environmental stressors
 2. **Explain** which factors (urban development, snowpack loss, water temperature, ocean conditions) most impact returns
-3. **Predict** future salmon populations under different climate and land-use scenarios through 2040
+3. **Predict** future salmon populations under different climate and land-use scenarios through 2030
 
 The results are shared as an open dataset and an awareness report for City of Issaquah, City of Sammamish, and King County decision-makers.
 
@@ -59,7 +59,7 @@ issaquah-salmon-study/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/issaquah-salmon-study.git
+git clone https://github.com/mtnh1gh/issaquah-salmon-study.git
 cd issaquah-salmon-study
 
 # 2. Create virtual environment
