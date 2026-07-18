@@ -80,10 +80,10 @@ jupyter lab
 
 ## 📊 Key Findings *(updated as project completes)*
 
-- [ ] 40-year trend analysis for Chinook and Coho returns
+- [ ] 10-year trend analysis for Chinook and Coho returns
 - [ ] Top stressor variables ranked by impact on Issaquah Creek returns
 - [ ] XGBoost model performance (R², MAE, RMSE)
-- [ ] 2040 projections under three scenarios
+- [ ] 2030 projections under three scenarios
 
 ---
 
