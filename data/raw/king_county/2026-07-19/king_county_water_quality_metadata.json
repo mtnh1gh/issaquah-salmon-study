@@ -1,0 +1,1943 @@
+{
+  "id" : "vwmt-pvjw",
+  "name" : "Water Quality",
+  "assetType" : "dataset",
+  "attribution" : "King County Water and Land Resources Division",
+  "attributionLink" : "https://data.kingcounty.gov/dataset/WLRD-Sites/wbhs-bbzf",
+  "averageRating" : 0,
+  "category" : "Environment & Waste Management",
+  "createdAt" : 1563840816,
+  "description" : "Prior to downloading data, please download the <b> <a href=\"https://data.kingcounty.gov/api/views/vwmt-pvjw/files/74efd236-ffa8-4dee-aac1-0188e110dd1c?download=true&filename=DataReadMeFile_WQ.docx\">README</a></b> file.\n\nThis dataset contains water quality samples collected  from Puget Sound, lakes, and streams in the region which can be filtered by \"Site Type\" and \"Area\".\n\nTo see where water quality samples are collected, see the <b><a href=\"https://data.kingcounty.gov/dataset/WLRD-Sites/wbhs-bbzf\">WLRD Water Quality Collection Sites</a></b> dataset.",
+  "diciBackend" : false,
+  "displayType" : "table",
+  "downloadCount" : 11304,
+  "hideFromCatalog" : false,
+  "hideFromDataJson" : false,
+  "locked" : false,
+  "newBackend" : true,
+  "numberOfComments" : 0,
+  "oid" : 36147478,
+  "provenance" : "official",
+  "publicationAppendEnabled" : false,
+  "publicationDate" : 1609952403,
+  "publicationGroup" : 16380816,
+  "publicationStage" : "published",
+  "rowsUpdatedAt" : 1784335013,
+  "rowsUpdatedBy" : "jvmm-ax7h",
+  "tableId" : 17916900,
+  "totalTimesRated" : 0,
+  "viewCount" : 10112,
+  "viewLastModified" : 1749601252,
+  "viewType" : "tabular",
+  "approvals" : [ {
+    "reviewedAt" : 1575928143,
+    "reviewedAutomatically" : true,
+    "state" : "approved",
+    "submissionId" : 3098037,
+    "submissionObject" : "public_audience_request",
+    "submissionOutcome" : "change_audience",
+    "submittedAt" : 1575928143,
+    "targetAudience" : "public",
+    "workflowId" : 1496,
+    "submissionDetails" : {
+      "permissionType" : "READ"
+    },
+    "submissionOutcomeApplication" : {
+      "endedAt" : 1575928143,
+      "failureCount" : 0,
+      "startedAt" : 1575928143,
+      "status" : "success"
+    },
+    "submitter" : {
+      "id" : "2qvt-7vg2",
+      "displayName" : "DeGasperi, Curtis"
+    }
+  } ],
+  "clientContext" : {
+    "clientContextVariables" : [ ],
+    "inheritedVariables" : { }
+  },
+  "columns" : [ {
+    "id" : 517827238,
+    "name" : "Sample ID",
+    "dataTypeName" : "text",
+    "description" : "Unique identifier to link samples collected from the same bottle",
+    "fieldName" : "sampleid",
+    "position" : 1,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619344,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "99999",
+      "null" : "0",
+      "top" : [ {
+        "item" : "59401",
+        "count" : "23"
+      }, {
+        "item" : "59170",
+        "count" : "23"
+      }, {
+        "item" : "59249",
+        "count" : "23"
+      }, {
+        "item" : "59392",
+        "count" : "23"
+      }, {
+        "item" : "59260",
+        "count" : "23"
+      }, {
+        "item" : "59171",
+        "count" : "23"
+      }, {
+        "item" : "59192",
+        "count" : "23"
+      }, {
+        "item" : "59240",
+        "count" : "23"
+      }, {
+        "item" : "59342",
+        "count" : "23"
+      }, {
+        "item" : "59353",
+        "count" : "23"
+      }, {
+        "item" : "59420",
+        "count" : "23"
+      }, {
+        "item" : "59431",
+        "count" : "23"
+      }, {
+        "item" : "59233",
+        "count" : "23"
+      }, {
+        "item" : "59194",
+        "count" : "23"
+      }, {
+        "item" : "173374",
+        "count" : "22"
+      }, {
+        "item" : "173299",
+        "count" : "22"
+      }, {
+        "item" : "173510",
+        "count" : "22"
+      }, {
+        "item" : "173173",
+        "count" : "22"
+      }, {
+        "item" : "173093",
+        "count" : "22"
+      }, {
+        "item" : "173269",
+        "count" : "22"
+      } ],
+      "smallest" : "1000",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827239,
+    "name" : "Grab ID",
+    "dataTypeName" : "text",
+    "description" : "Unique identifier to link samples collected at the same time but run for different program components (e.g., phytoplankton and water quality data collected together)",
+    "fieldName" : "grabid",
+    "position" : 2,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619342,
+    "cachedContents" : {
+      "non_null" : "1577739",
+      "largest" : "99999",
+      "null" : "477013",
+      "top" : [ {
+        "item" : "187343",
+        "count" : "59"
+      }, {
+        "item" : "113484",
+        "count" : "44"
+      }, {
+        "item" : "58173",
+        "count" : "42"
+      }, {
+        "item" : "58470",
+        "count" : "40"
+      }, {
+        "item" : "58499",
+        "count" : "40"
+      }, {
+        "item" : "59163",
+        "count" : "40"
+      }, {
+        "item" : "13441",
+        "count" : "38"
+      }, {
+        "item" : "113196",
+        "count" : "38"
+      }, {
+        "item" : "13545",
+        "count" : "38"
+      }, {
+        "item" : "97492",
+        "count" : "37"
+      }, {
+        "item" : "96635",
+        "count" : "37"
+      }, {
+        "item" : "12213",
+        "count" : "37"
+      }, {
+        "item" : "12747",
+        "count" : "37"
+      }, {
+        "item" : "12435",
+        "count" : "37"
+      }, {
+        "item" : "12137",
+        "count" : "37"
+      }, {
+        "item" : "12489",
+        "count" : "37"
+      }, {
+        "item" : "12175",
+        "count" : "37"
+      }, {
+        "item" : "205994",
+        "count" : "36"
+      }, {
+        "item" : "206004",
+        "count" : "36"
+      }, {
+        "item" : "120245",
+        "count" : "36"
+      } ],
+      "smallest" : "1000",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827240,
+    "name" : "Profile ID",
+    "dataTypeName" : "text",
+    "description" : "Unique identifier to link samples collected on the same day, at the same place, but at different depths",
+    "fieldName" : "profileid",
+    "position" : 3,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619322,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "9999",
+      "null" : "0",
+      "top" : [ {
+        "item" : "82109",
+        "count" : "544"
+      }, {
+        "item" : "69039",
+        "count" : "399"
+      }, {
+        "item" : "81025",
+        "count" : "391"
+      }, {
+        "item" : "42082",
+        "count" : "376"
+      }, {
+        "item" : "88875",
+        "count" : "370"
+      }, {
+        "item" : "41431",
+        "count" : "363"
+      }, {
+        "item" : "82734",
+        "count" : "363"
+      }, {
+        "item" : "85654",
+        "count" : "363"
+      }, {
+        "item" : "59254",
+        "count" : "363"
+      }, {
+        "item" : "88105",
+        "count" : "363"
+      }, {
+        "item" : "84027",
+        "count" : "357"
+      }, {
+        "item" : "41432",
+        "count" : "357"
+      }, {
+        "item" : "68916",
+        "count" : "356"
+      }, {
+        "item" : "69924",
+        "count" : "356"
+      }, {
+        "item" : "84735",
+        "count" : "356"
+      }, {
+        "item" : "89762",
+        "count" : "356"
+      }, {
+        "item" : "87257",
+        "count" : "356"
+      }, {
+        "item" : "86410",
+        "count" : "356"
+      }, {
+        "item" : "90382",
+        "count" : "356"
+      }, {
+        "item" : "84191",
+        "count" : "355"
+      } ],
+      "smallest" : "1",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827241,
+    "name" : "Sample Number",
+    "dataTypeName" : "text",
+    "description" : "Unique identifier applied by the laboratory for samples collected from the same bottle",
+    "fieldName" : "sample_number",
+    "position" : 4,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619325,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "L9972-2",
+      "null" : "0",
+      "top" : [ {
+        "item" : "L23545-1",
+        "count" : "23"
+      }, {
+        "item" : "L24433-1",
+        "count" : "23"
+      }, {
+        "item" : "L25501-1",
+        "count" : "23"
+      }, {
+        "item" : "L23867-1",
+        "count" : "23"
+      }, {
+        "item" : "L23545-2",
+        "count" : "23"
+      }, {
+        "item" : "L24433-2",
+        "count" : "23"
+      }, {
+        "item" : "L24837-2",
+        "count" : "23"
+      }, {
+        "item" : "L24837-1",
+        "count" : "23"
+      }, {
+        "item" : "L25501-2",
+        "count" : "23"
+      }, {
+        "item" : "L23867-2",
+        "count" : "23"
+      }, {
+        "item" : "L25116-2",
+        "count" : "23"
+      }, {
+        "item" : "L24177-1",
+        "count" : "23"
+      }, {
+        "item" : "L24177-2",
+        "count" : "23"
+      }, {
+        "item" : "L25116-1",
+        "count" : "23"
+      }, {
+        "item" : "L24383-16",
+        "count" : "22"
+      }, {
+        "item" : "L24059-16",
+        "count" : "22"
+      }, {
+        "item" : "L25016-54",
+        "count" : "22"
+      }, {
+        "item" : "L23831-39",
+        "count" : "22"
+      }, {
+        "item" : "L23868-6",
+        "count" : "22"
+      }, {
+        "item" : "L24785-16",
+        "count" : "22"
+      } ],
+      "smallest" : "1063",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827244,
+    "name" : "Collect DateTime",
+    "dataTypeName" : "calendar_date",
+    "description" : "Combined date and time sample was collected",
+    "fieldName" : "collect_datetime",
+    "position" : 7,
+    "renderTypeName" : "calendar_date",
+    "tableColumnId" : 87676246,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "2026-06-11T11:21:00.000",
+      "null" : "0",
+      "top" : [ {
+        "item" : "1992-10-20T00:00:00.000",
+        "count" : "675"
+      }, {
+        "item" : "2001-05-22T00:00:00.000",
+        "count" : "637"
+      }, {
+        "item" : "2002-08-27T00:00:00.000",
+        "count" : "581"
+      }, {
+        "item" : "2002-10-21T00:00:00.000",
+        "count" : "581"
+      }, {
+        "item" : "2002-05-28T00:00:00.000",
+        "count" : "581"
+      }, {
+        "item" : "2002-02-20T00:00:00.000",
+        "count" : "581"
+      }, {
+        "item" : "2002-04-22T00:00:00.000",
+        "count" : "581"
+      }, {
+        "item" : "2001-10-23T00:00:00.000",
+        "count" : "580"
+      }, {
+        "item" : "2002-01-29T00:00:00.000",
+        "count" : "580"
+      }, {
+        "item" : "2001-11-19T00:00:00.000",
+        "count" : "580"
+      }, {
+        "item" : "2002-09-23T00:00:00.000",
+        "count" : "580"
+      }, {
+        "item" : "2001-09-24T00:00:00.000",
+        "count" : "579"
+      }, {
+        "item" : "2002-07-22T00:00:00.000",
+        "count" : "565"
+      }, {
+        "item" : "2003-05-27T00:00:00.000",
+        "count" : "539"
+      }, {
+        "item" : "2003-02-24T00:00:00.000",
+        "count" : "530"
+      }, {
+        "item" : "2004-09-27T00:00:00.000",
+        "count" : "530"
+      }, {
+        "item" : "2004-12-21T00:00:00.000",
+        "count" : "530"
+      }, {
+        "item" : "2004-06-28T00:00:00.000",
+        "count" : "530"
+      }, {
+        "item" : "2004-07-27T00:00:00.000",
+        "count" : "530"
+      }, {
+        "item" : "2004-08-23T00:00:00.000",
+        "count" : "529"
+      } ],
+      "smallest" : "1965-10-21T00:00:00.000",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : {
+      "view" : "date_time"
+    }
+  }, {
+    "id" : 517827245,
+    "name" : "Depth (m)",
+    "dataTypeName" : "number",
+    "description" : "Depth sample was collected (meters)",
+    "fieldName" : "depth",
+    "position" : 8,
+    "renderTypeName" : "number",
+    "tableColumnId" : 87230332,
+    "cachedContents" : {
+      "non_null" : "1577736",
+      "largest" : "252",
+      "null" : "477016",
+      "top" : [ {
+        "item" : "1",
+        "count" : "377558"
+      }, {
+        "item" : "5",
+        "count" : "70375"
+      }, {
+        "item" : "15",
+        "count" : "63640"
+      }, {
+        "item" : "25",
+        "count" : "59557"
+      }, {
+        "item" : "10",
+        "count" : "52698"
+      }, {
+        "item" : "1.1",
+        "count" : "36152"
+      }, {
+        "item" : "35",
+        "count" : "33723"
+      }, {
+        "item" : "20",
+        "count" : "29865"
+      }, {
+        "item" : "3",
+        "count" : "27593"
+      }, {
+        "item" : "9",
+        "count" : "25314"
+      }, {
+        "item" : "7",
+        "count" : "24532"
+      }, {
+        "item" : "8",
+        "count" : "23075"
+      }, {
+        "item" : "55",
+        "count" : "21976"
+      }, {
+        "item" : "15.1",
+        "count" : "20193"
+      }, {
+        "item" : "14",
+        "count" : "18929"
+      }, {
+        "item" : "11",
+        "count" : "17447"
+      }, {
+        "item" : "13",
+        "count" : "17215"
+      }, {
+        "item" : "25.1",
+        "count" : "17049"
+      }, {
+        "item" : "1.2",
+        "count" : "15610"
+      }, {
+        "item" : "4",
+        "count" : "15110"
+      } ],
+      "smallest" : "0",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : {
+      "precisionStyle" : "financial",
+      "noCommas" : "true",
+      "precision" : "2"
+    }
+  }, {
+    "id" : 517827246,
+    "name" : "Site Type",
+    "dataTypeName" : "text",
+    "description" : "General description of where sample was collected (e.g., marine beach, large lake, stream)",
+    "fieldName" : "site_type",
+    "position" : 9,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619326,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "Swimming Beaches",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Large Lakes",
+        "count" : "963516"
+      }, {
+        "item" : "Streams and Rivers",
+        "count" : "517165"
+      }, {
+        "item" : "Marine Offshore",
+        "count" : "510833"
+      }, {
+        "item" : "Marine Intertidal",
+        "count" : "61001"
+      }, {
+        "item" : "Freshwater - Uncategorized",
+        "count" : "2031"
+      }, {
+        "item" : "Swimming Beaches",
+        "count" : "206"
+      } ],
+      "smallest" : "Freshwater - Uncategorized",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827247,
+    "name" : "Area",
+    "dataTypeName" : "text",
+    "description" : "Description of general area sample was collected. For freshwater samples this may include WRIA down to specific creeks)",
+    "fieldName" : "area",
+    "position" : 10,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619327,
+    "cachedContents" : {
+      "non_null" : "2052721",
+      "largest" : "Zackuse",
+      "null" : "2031",
+      "top" : [ {
+        "item" : "Central Puget Sound",
+        "count" : "556252"
+      }, {
+        "item" : "Lake Washington",
+        "count" : "521870"
+      }, {
+        "item" : "Lake Sammamish",
+        "count" : "284377"
+      }, {
+        "item" : "Lake Union/Ship Canal",
+        "count" : "157269"
+      }, {
+        "item" : "Green",
+        "count" : "44928"
+      }, {
+        "item" : "Issaquah",
+        "count" : "24127"
+      }, {
+        "item" : "Bear",
+        "count" : "22472"
+      }, {
+        "item" : "Duwamish",
+        "count" : "19986"
+      }, {
+        "item" : "Sammamish",
+        "count" : "18418"
+      }, {
+        "item" : "Pipers",
+        "count" : "17926"
+      }, {
+        "item" : "Juanita",
+        "count" : "15838"
+      }, {
+        "item" : "Cedar",
+        "count" : "15769"
+      }, {
+        "item" : "Whidbey",
+        "count" : "15582"
+      }, {
+        "item" : "North",
+        "count" : "13965"
+      }, {
+        "item" : "Evans",
+        "count" : "13918"
+      }, {
+        "item" : "Little Bear",
+        "count" : "13717"
+      }, {
+        "item" : "Swamp",
+        "count" : "13635"
+      }, {
+        "item" : "Mercer Slough",
+        "count" : "13479"
+      }, {
+        "item" : "Crisp",
+        "count" : "12717"
+      }, {
+        "item" : "Newaukum",
+        "count" : "11156"
+      } ],
+      "smallest" : "Ames Creek",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827248,
+    "name" : "Locator",
+    "dataTypeName" : "text",
+    "description" : "Coordinate information will be available in another list",
+    "fieldName" : "locator",
+    "position" : 11,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619328,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "X630",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0852",
+        "count" : "157835"
+      }, {
+        "item" : "0612",
+        "count" : "132789"
+      }, {
+        "item" : "0826",
+        "count" : "105492"
+      }, {
+        "item" : "0831",
+        "count" : "83813"
+      }, {
+        "item" : "0611",
+        "count" : "78854"
+      }, {
+        "item" : "A522",
+        "count" : "77935"
+      }, {
+        "item" : "KSBP01",
+        "count" : "55731"
+      }, {
+        "item" : "LSEP01",
+        "count" : "52307"
+      }, {
+        "item" : "LSNT01",
+        "count" : "51079"
+      }, {
+        "item" : "NSEX01",
+        "count" : "44966"
+      }, {
+        "item" : "LTED04",
+        "count" : "41692"
+      }, {
+        "item" : "KSSK02",
+        "count" : "38248"
+      }, {
+        "item" : "JSUR01",
+        "count" : "37714"
+      }, {
+        "item" : "CK200P",
+        "count" : "34668"
+      }, {
+        "item" : "0890",
+        "count" : "34366"
+      }, {
+        "item" : "LSKQ06",
+        "count" : "30361"
+      }, {
+        "item" : "MSJN02",
+        "count" : "29511"
+      }, {
+        "item" : "0540",
+        "count" : "27646"
+      }, {
+        "item" : "0840",
+        "count" : "25985"
+      }, {
+        "item" : "0512",
+        "count" : "24711"
+      } ],
+      "smallest" : "0305",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827249,
+    "name" : "Site",
+    "dataTypeName" : "text",
+    "description" : "Description of sample collection location",
+    "fieldName" : "site",
+    "position" : 12,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619329,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "Zackuse Creek",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Lake Washington Madison Park",
+        "count" : "157835"
+      }, {
+        "item" : "Lake Sammamish mid-lake central",
+        "count" : "132789"
+      }, {
+        "item" : "Lake Washington off Sand Point",
+        "count" : "105492"
+      }, {
+        "item" : "Lake Washington mid-lake south",
+        "count" : "83813"
+      }, {
+        "item" : "Lake Union near west shore",
+        "count" : "79792"
+      }, {
+        "item" : "Lake Sammamish mid-lake north",
+        "count" : "78854"
+      }, {
+        "item" : "Jefferson Head",
+        "count" : "55731"
+      }, {
+        "item" : "South Plant Outfall",
+        "count" : "52307"
+      }, {
+        "item" : "Point Williams",
+        "count" : "51079"
+      }, {
+        "item" : "East Passage",
+        "count" : "44966"
+      }, {
+        "item" : "South Central Elliott Bay",
+        "count" : "41692"
+      }, {
+        "item" : "Point Wells",
+        "count" : "41502"
+      }, {
+        "item" : "Carkeek Outfall",
+        "count" : "39019"
+      }, {
+        "item" : "West Point Outfall",
+        "count" : "38248"
+      }, {
+        "item" : "Lake Washington south of I-90",
+        "count" : "34366"
+      }, {
+        "item" : "Alki Outfall",
+        "count" : "30361"
+      }, {
+        "item" : "Vashon Outfall",
+        "count" : "29511"
+      }, {
+        "item" : "Ship Canal near Montlake Bridge",
+        "count" : "27646"
+      }, {
+        "item" : "Lake Washington east of Mercer Island",
+        "count" : "25985"
+      }, {
+        "item" : "Ship Canal above locks",
+        "count" : "24711"
+      } ],
+      "smallest" : "Alki Beach",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827250,
+    "name" : "Parameter",
+    "dataTypeName" : "text",
+    "description" : "What was analyzed, typically multiple parameters per sample",
+    "fieldName" : "parameter",
+    "position" : 13,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619330,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "Volatile Suspended Solids",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Temperature",
+        "count" : "190076"
+      }, {
+        "item" : "Dissolved Oxygen, Field",
+        "count" : "154483"
+      }, {
+        "item" : "pH, Field",
+        "count" : "135646"
+      }, {
+        "item" : "Conductivity, Field",
+        "count" : "119885"
+      }, {
+        "item" : "Nitrite + Nitrate Nitrogen",
+        "count" : "111391"
+      }, {
+        "item" : "Ammonia Nitrogen",
+        "count" : "111278"
+      }, {
+        "item" : "Dissolved Oxygen Saturation, Field",
+        "count" : "98770"
+      }, {
+        "item" : "Orthophosphate Phosphorus",
+        "count" : "98751"
+      }, {
+        "item" : "Chlorophyll, Field",
+        "count" : "97463"
+      }, {
+        "item" : "Total Phosphorus",
+        "count" : "85232"
+      }, {
+        "item" : "Total Suspended Solids",
+        "count" : "83968"
+      }, {
+        "item" : "Fecal Coliform",
+        "count" : "70470"
+      }, {
+        "item" : "Total Nitrogen",
+        "count" : "62200"
+      }, {
+        "item" : "Turbidity",
+        "count" : "55725"
+      }, {
+        "item" : "Silica",
+        "count" : "42864"
+      }, {
+        "item" : "Chlorophyll a",
+        "count" : "41477"
+      }, {
+        "item" : "Pheophytin a",
+        "count" : "41167"
+      }, {
+        "item" : "Enterococcus",
+        "count" : "40041"
+      }, {
+        "item" : "Total Alkalinity",
+        "count" : "38202"
+      }, {
+        "item" : "BGA PC, Field",
+        "count" : "37410"
+      } ],
+      "smallest" : "Ammonia Nitrogen",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827251,
+    "name" : "Value",
+    "dataTypeName" : "number",
+    "description" : "Result",
+    "fieldName" : "value",
+    "position" : 14,
+    "renderTypeName" : "number",
+    "tableColumnId" : 87231984,
+    "cachedContents" : {
+      "non_null" : "1872307",
+      "largest" : "1000000",
+      "null" : "182445",
+      "top" : [ {
+        "item" : "0",
+        "count" : "18991"
+      }, {
+        "item" : "1",
+        "count" : "16493"
+      }, {
+        "item" : "2",
+        "count" : "10378"
+      }, {
+        "item" : "7.5",
+        "count" : "9247"
+      }, {
+        "item" : "7.4",
+        "count" : "8587"
+      }, {
+        "item" : "7.6",
+        "count" : "8517"
+      }, {
+        "item" : "7",
+        "count" : "8106"
+      }, {
+        "item" : "1.1",
+        "count" : "8050"
+      }, {
+        "item" : "7.3",
+        "count" : "8039"
+      }, {
+        "item" : "7.7",
+        "count" : "7748"
+      }, {
+        "item" : "1.2",
+        "count" : "7701"
+      }, {
+        "item" : "8",
+        "count" : "7548"
+      }, {
+        "item" : "7.2",
+        "count" : "7405"
+      }, {
+        "item" : "3",
+        "count" : "7332"
+      }, {
+        "item" : "1.3",
+        "count" : "7113"
+      }, {
+        "item" : "10",
+        "count" : "7111"
+      }, {
+        "item" : "7.8",
+        "count" : "7059"
+      }, {
+        "item" : "101",
+        "count" : "6997"
+      }, {
+        "item" : "1.4",
+        "count" : "6911"
+      }, {
+        "item" : "4",
+        "count" : "6899"
+      } ],
+      "smallest" : "-8.92",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : {
+      "noCommas" : "true"
+    }
+  }, {
+    "id" : 517827252,
+    "name" : "Units",
+    "dataTypeName" : "text",
+    "description" : "Units associated with the value (see DataReadMeFile_WQ for definitions)",
+    "fieldName" : "units",
+    "position" : 15,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619331,
+    "cachedContents" : {
+      "non_null" : "2053948",
+      "largest" : "umol/sm2",
+      "null" : "804",
+      "top" : [ {
+        "item" : "mg/L",
+        "count" : "787804"
+      }, {
+        "item" : "ug/L",
+        "count" : "206219"
+      }, {
+        "item" : "deg C",
+        "count" : "190075"
+      }, {
+        "item" : "pH",
+        "count" : "148997"
+      }, {
+        "item" : "umhos/cm",
+        "count" : "142920"
+      }, {
+        "item" : "CFU/100ml",
+        "count" : "108295"
+      }, {
+        "item" : "%",
+        "count" : "98770"
+      }, {
+        "item" : "NTU",
+        "count" : "66611"
+      }, {
+        "item" : "umol/sm2",
+        "count" : "61407"
+      }, {
+        "item" : "none",
+        "count" : "46872"
+      }, {
+        "item" : "PSS",
+        "count" : "45757"
+      }, {
+        "item" : "mg CaCO3/L",
+        "count" : "39367"
+      }, {
+        "item" : "kg/m3",
+        "count" : "30744"
+      }, {
+        "item" : "% light",
+        "count" : "27226"
+      }, {
+        "item" : "m",
+        "count" : "19591"
+      }, {
+        "item" : "ORG/100ml",
+        "count" : "14927"
+      }, {
+        "item" : "mg/m3",
+        "count" : "11298"
+      }, {
+        "item" : "ORG/100g",
+        "count" : "5230"
+      }, {
+        "item" : "ppt",
+        "count" : "897"
+      }, {
+        "item" : "MPN/100ml",
+        "count" : "581"
+      } ],
+      "smallest" : "%",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827253,
+    "name" : "QualityId",
+    "dataTypeName" : "number",
+    "description" : "Code indicating overall quality of the data (see DataReadMeFile_WQ for definitions)",
+    "fieldName" : "qualityid",
+    "position" : 16,
+    "renderTypeName" : "number",
+    "tableColumnId" : 87230334,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "9",
+      "null" : "0",
+      "top" : [ {
+        "item" : "2",
+        "count" : "1057194"
+      }, {
+        "item" : "1",
+        "count" : "970115"
+      }, {
+        "item" : "6",
+        "count" : "13494"
+      }, {
+        "item" : "3",
+        "count" : "6725"
+      }, {
+        "item" : "4",
+        "count" : "3802"
+      }, {
+        "item" : "9",
+        "count" : "2956"
+      }, {
+        "item" : "0",
+        "count" : "434"
+      }, {
+        "item" : "5",
+        "count" : "32"
+      } ],
+      "smallest" : "0",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827254,
+    "name" : "Lab Qualifier",
+    "dataTypeName" : "text",
+    "description" : "Qualifier applied by laboratory analysts (see DataReadMeFile_WQ for definitions)",
+    "fieldName" : "lab_qualifier",
+    "position" : 17,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619332,
+    "cachedContents" : {
+      "non_null" : "293584",
+      "largest" : "X",
+      "null" : "1761168",
+      "top" : [ {
+        "item" : "<MDL",
+        "count" : "140200"
+      }, {
+        "item" : "<RDL",
+        "count" : "128137"
+      }, {
+        "item" : "E",
+        "count" : "9877"
+      }, {
+        "item" : "H",
+        "count" : "5070"
+      }, {
+        "item" : "R",
+        "count" : "2423"
+      }, {
+        "item" : "J",
+        "count" : "1327"
+      }, {
+        "item" : "C",
+        "count" : "869"
+      }, {
+        "item" : "SH",
+        "count" : "669"
+      }, {
+        "item" : "B",
+        "count" : "659"
+      }, {
+        "item" : "<MDL,H",
+        "count" : "561"
+      }, {
+        "item" : "<RDL,H",
+        "count" : "487"
+      }, {
+        "item" : "<MDL,J",
+        "count" : "376"
+      }, {
+        "item" : "<RDL,JL",
+        "count" : "343"
+      }, {
+        "item" : ">#",
+        "count" : "329"
+      }, {
+        "item" : "<MDL,JG",
+        "count" : "308"
+      }, {
+        "item" : "<RDL,SH",
+        "count" : "306"
+      }, {
+        "item" : "JG",
+        "count" : "263"
+      }, {
+        "item" : "JL",
+        "count" : "201"
+      }, {
+        "item" : "<RDL,J",
+        "count" : "171"
+      }, {
+        "item" : "H,SH",
+        "count" : "147"
+      } ],
+      "smallest" : ">#",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827255,
+    "name" : "MDL",
+    "dataTypeName" : "number",
+    "description" : "Method detection limit (see DataReadMeFile_WQ for more details)",
+    "fieldName" : "mdl",
+    "position" : 18,
+    "renderTypeName" : "number",
+    "tableColumnId" : 87231985,
+    "cachedContents" : {
+      "non_null" : "1144101",
+      "largest" : "100",
+      "null" : "910651",
+      "top" : [ {
+        "item" : "0.5",
+        "count" : "448669"
+      }, {
+        "item" : "0.05",
+        "count" : "126128"
+      }, {
+        "item" : "0.01",
+        "count" : "123202"
+      }, {
+        "item" : "0.005",
+        "count" : "110993"
+      }, {
+        "item" : "0.002",
+        "count" : "80572"
+      }, {
+        "item" : "1",
+        "count" : "55642"
+      }, {
+        "item" : "0.02",
+        "count" : "38452"
+      }, {
+        "item" : "0.06",
+        "count" : "30595"
+      }, {
+        "item" : "0.2",
+        "count" : "28507"
+      }, {
+        "item" : "0.0005",
+        "count" : "23185"
+      }, {
+        "item" : "0.1",
+        "count" : "17060"
+      }, {
+        "item" : "2",
+        "count" : "16141"
+      }, {
+        "item" : "5",
+        "count" : "13627"
+      }, {
+        "item" : "0.51",
+        "count" : "3840"
+      }, {
+        "item" : "0.15",
+        "count" : "3024"
+      }, {
+        "item" : "0.3",
+        "count" : "2910"
+      }, {
+        "item" : "0.53",
+        "count" : "2815"
+      }, {
+        "item" : "1.1",
+        "count" : "1785"
+      }, {
+        "item" : "0.52",
+        "count" : "1371"
+      }, {
+        "item" : "1.3",
+        "count" : "884"
+      } ],
+      "smallest" : "0",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827256,
+    "name" : "RDL",
+    "dataTypeName" : "number",
+    "description" : "Reporting detection limit (see DataReadMeFile_WQ for more details)",
+    "fieldName" : "rdl",
+    "position" : 19,
+    "renderTypeName" : "number",
+    "tableColumnId" : 87231986,
+    "cachedContents" : {
+      "non_null" : "1128794",
+      "largest" : "100",
+      "null" : "925958",
+      "top" : [ {
+        "item" : "1",
+        "count" : "319229"
+      }, {
+        "item" : "0.01",
+        "count" : "154533"
+      }, {
+        "item" : "10",
+        "count" : "142767"
+      }, {
+        "item" : "0.1",
+        "count" : "110025"
+      }, {
+        "item" : "0.04",
+        "count" : "95882"
+      }, {
+        "item" : "0.02",
+        "count" : "59872"
+      }, {
+        "item" : "0.005",
+        "count" : "34874"
+      }, {
+        "item" : "0.12",
+        "count" : "30597"
+      }, {
+        "item" : "2",
+        "count" : "29003"
+      }, {
+        "item" : "0.2",
+        "count" : "26770"
+      }, {
+        "item" : "0.002",
+        "count" : "22748"
+      }, {
+        "item" : "5",
+        "count" : "22185"
+      }, {
+        "item" : "0.5",
+        "count" : "18449"
+      }, {
+        "item" : "3",
+        "count" : "14076"
+      }, {
+        "item" : "0.05",
+        "count" : "7126"
+      }, {
+        "item" : "0.3",
+        "count" : "2810"
+      }, {
+        "item" : "0.6",
+        "count" : "2802"
+      }, {
+        "item" : "0.4",
+        "count" : "2122"
+      }, {
+        "item" : "4",
+        "count" : "1748"
+      }, {
+        "item" : "20",
+        "count" : "1473"
+      } ],
+      "smallest" : "0",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827257,
+    "name" : "Text Value",
+    "dataTypeName" : "text",
+    "description" : "Text entered by laboratory analysts, specific to the parameter",
+    "fieldName" : "textvalue",
+    "position" : 20,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619339,
+    "cachedContents" : {
+      "non_null" : "242094",
+      "largest" : "YSI ROD failed endcheck.",
+      "null" : "1812658",
+      "top" : [ {
+        "item" : "N",
+        "count" : "15448"
+      }, {
+        "item" : "N||King County Nstream Database/B53311",
+        "count" : "3456"
+      }, {
+        "item" : "11042,",
+        "count" : "2850"
+      }, {
+        "item" : "S",
+        "count" : "2045"
+      }, {
+        "item" : "60201, 90151, 10041",
+        "count" : "1721"
+      }, {
+        "item" : "60301, 90151, 10041, 18100",
+        "count" : "1542"
+      }, {
+        "item" : "10041, 60201, 90151",
+        "count" : "1528"
+      }, {
+        "item" : "60201, 90151, 10041, 18100",
+        "count" : "1037"
+      }, {
+        "item" : "Data discrepancy or anomaly: see DAF",
+        "count" : "976"
+      }, {
+        "item" : "7.3||King County Nstream Database/B53311",
+        "count" : "926"
+      }, {
+        "item" : "7.4||King County Nstream Database/B53311",
+        "count" : "890"
+      }, {
+        "item" : "10041, 60201, 90152",
+        "count" : "854"
+      }, {
+        "item" : ".001||King County Lakes Database/B53301",
+        "count" : "829"
+      }, {
+        "item" : "7.5||King County Nstream Database/B53311",
+        "count" : "805"
+      }, {
+        "item" : "7.6||King County Nstream Database/B53311",
+        "count" : "771"
+      }, {
+        "item" : "NO DATA",
+        "count" : "771"
+      }, {
+        "item" : "7.2||King County Nstream Database/B53311",
+        "count" : "757"
+      }, {
+        "item" : "10041,60201",
+        "count" : "730"
+      }, {
+        "item" : ".005||King County Lakes Database/B53301",
+        "count" : "713"
+      }, {
+        "item" : "60301, 90151, 10012, 18100",
+        "count" : "691"
+      } ],
+      "smallest" : ".0000E+00||TBACTS Database King County IBM/B53409",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827258,
+    "name" : "Sample Info",
+    "dataTypeName" : "text",
+    "description" : "Text entered by laboratory analysts, specific to the sample",
+    "fieldName" : "sampleinfo",
+    "position" : 21,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619338,
+    "cachedContents" : {
+      "non_null" : "15749",
+      "largest" : "Woody debris",
+      "null" : "2039003",
+      "top" : [ {
+        "item" : "N/A",
+        "count" : "2384"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO",
+        "count" : "140"
+      }, {
+        "item" : "nothing to note",
+        "count" : "129"
+      }, {
+        "item" : "water clarity CLEAR; breaking waves NO; algae in water NO",
+        "count" : "96"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO, algae in water NO, algae wrack odor NO, algae condition N/A, algae color N/A",
+        "count" : "84"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO, algae in water NO, algae wrack odor NO, algae condition FRESH, algae color GREEN",
+        "count" : "75"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO, algae in water YES, algae wrack odor NO, algae condition FRESH, algae color GREEN",
+        "count" : "74"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO, algae in water NO, algae wrack odor NO, algae wrack condition N/A, algae wrack color N/A",
+        "count" : "65"
+      }, {
+        "item" : "Water clarity MURKY, breaking waves YES, algae in water YES, algae wrack odor NO, algae condition FRESH, algae color GREEN",
+        "count" : "64"
+      }, {
+        "item" : "1 filter used",
+        "count" : "60"
+      }, {
+        "item" : "1 membrane filter used",
+        "count" : "58"
+      }, {
+        "item" : "water clarity clear; breaking waves no; algae in water no; algae wrack odor no; algae condition fresh; algae color green",
+        "count" : "51"
+      }, {
+        "item" : "Water clarity MURKY, breaking waves NO, algae in water YES, algae wrack odor NO, algae condition FRESH, algae color GREEN",
+        "count" : "50"
+      }, {
+        "item" : "2 filters",
+        "count" : "49"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO, algae in water NO, algae wrack odor NO, algae condition DECAYED, algae color BROWN",
+        "count" : "44"
+      }, {
+        "item" : "Water clarity CLEAR, breaking waves NO, algae in water NO, algae wrack odor N/A, algae condition N/A, algae color N/A",
+        "count" : "43"
+      }, {
+        "item" : "None",
+        "count" : "43"
+      }, {
+        "item" : "CLEAR",
+        "count" : "43"
+      }, {
+        "item" : "2 filters used",
+        "count" : "42"
+      }, {
+        "item" : "High tide",
+        "count" : "38"
+      } ],
+      "smallest" : "100+ birds, calm",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827259,
+    "name" : "Steward Note",
+    "dataTypeName" : "text",
+    "description" : "Text entered by secondary data reviewers",
+    "fieldName" : "stewardnote",
+    "position" : 22,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619337,
+    "cachedContents" : {
+      "non_null" : "3386",
+      "largest" : "Y-Valve plugged.  Questionable DO and CHLA.",
+      "null" : "2051366",
+      "top" : [ {
+        "item" : "CRA",
+        "count" : "441"
+      }, {
+        "item" : "Depth values are questionable.",
+        "count" : "229"
+      }, {
+        "item" : "SDR",
+        "count" : "199"
+      }, {
+        "item" : "Suspect method detection limit of 10, use with caution",
+        "count" : "162"
+      }, {
+        "item" : "Lab Qualifier \"JG\" added after portal upload due to contaminated acetone.",
+        "count" : "142"
+      }, {
+        "item" : "Suspect method detection limit of 20 , use with caution",
+        "count" : "132"
+      }, {
+        "item" : "Suspect method detection limit of 20, use with caution",
+        "count" : "125"
+      }, {
+        "item" : "Depth measurements questionable",
+        "count" : "119"
+      }, {
+        "item" : "See DAF and TA; marked as good; impact on data quality should be insignificant",
+        "count" : "114"
+      }, {
+        "item" : "Unusual depth values.",
+        "count" : "106"
+      }, {
+        "item" : "exceeded hold time by 2 days, but data reviewed and deemed acceptable",
+        "count" : "104"
+      }, {
+        "item" : "See qualifier and text value",
+        "count" : "79"
+      }, {
+        "item" : "depth missing",
+        "count" : "66"
+      }, {
+        "item" : "Result well outside historical norm and lower than previous or following measurements.",
+        "count" : "61"
+      }, {
+        "item" : "Should have been R-flagged",
+        "count" : "60"
+      }, {
+        "item" : "CMD",
+        "count" : "44"
+      }, {
+        "item" : "See qualifier and DAF; sample preparation was outside of stated criterion of SOP",
+        "count" : "40"
+      }, {
+        "item" : "CHB",
+        "count" : "33"
+      }, {
+        "item" : "CLB",
+        "count" : "32"
+      }, {
+        "item" : "Implausible profile data",
+        "count" : "32"
+      } ],
+      "smallest" : "1390 not a plausible conductance value. Assuming that origninal value missing decimal place.",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827260,
+    "name" : "Replicates",
+    "dataTypeName" : "text",
+    "description" : "Indicates if there are replicate samples",
+    "fieldName" : "replicates",
+    "position" : 23,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619333,
+    "cachedContents" : {
+      "non_null" : "5030",
+      "largest" : "93794",
+      "null" : "2049722",
+      "top" : [ {
+        "item" : "63623",
+        "count" : "16"
+      }, {
+        "item" : "63327",
+        "count" : "16"
+      }, {
+        "item" : "63574",
+        "count" : "16"
+      }, {
+        "item" : "63860",
+        "count" : "16"
+      }, {
+        "item" : "63374",
+        "count" : "16"
+      }, {
+        "item" : "63040",
+        "count" : "16"
+      }, {
+        "item" : "63250",
+        "count" : "16"
+      }, {
+        "item" : "63460",
+        "count" : "16"
+      }, {
+        "item" : "63728",
+        "count" : "16"
+      }, {
+        "item" : "63814",
+        "count" : "16"
+      }, {
+        "item" : "63088",
+        "count" : "16"
+      }, {
+        "item" : "62712",
+        "count" : "16"
+      }, {
+        "item" : "62847",
+        "count" : "16"
+      }, {
+        "item" : "62965",
+        "count" : "16"
+      }, {
+        "item" : "63130",
+        "count" : "16"
+      }, {
+        "item" : "63173",
+        "count" : "16"
+      }, {
+        "item" : "62795",
+        "count" : "15"
+      }, {
+        "item" : "131389",
+        "count" : "14"
+      }, {
+        "item" : "4894",
+        "count" : "14"
+      }, {
+        "item" : "3970",
+        "count" : "14"
+      } ],
+      "smallest" : "122840",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827261,
+    "name" : "Replicate Of",
+    "dataTypeName" : "text",
+    "description" : "Indicates the sample number of the replicate",
+    "fieldName" : "replicateof",
+    "position" : 24,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619336,
+    "cachedContents" : {
+      "non_null" : "4928",
+      "largest" : "93796",
+      "null" : "2049824",
+      "top" : [ {
+        "item" : "62718",
+        "count" : "16"
+      }, {
+        "item" : "62854",
+        "count" : "16"
+      }, {
+        "item" : "63047",
+        "count" : "16"
+      }, {
+        "item" : "63174",
+        "count" : "16"
+      }, {
+        "item" : "63734",
+        "count" : "16"
+      }, {
+        "item" : "63629",
+        "count" : "16"
+      }, {
+        "item" : "63820",
+        "count" : "16"
+      }, {
+        "item" : "63866",
+        "count" : "16"
+      }, {
+        "item" : "63089",
+        "count" : "16"
+      }, {
+        "item" : "63131",
+        "count" : "16"
+      }, {
+        "item" : "63376",
+        "count" : "16"
+      }, {
+        "item" : "63329",
+        "count" : "16"
+      }, {
+        "item" : "63465",
+        "count" : "16"
+      }, {
+        "item" : "63579",
+        "count" : "16"
+      }, {
+        "item" : "62972",
+        "count" : "16"
+      }, {
+        "item" : "63252",
+        "count" : "16"
+      }, {
+        "item" : "62802",
+        "count" : "15"
+      }, {
+        "item" : "131390",
+        "count" : "14"
+      }, {
+        "item" : "5762",
+        "count" : "14"
+      }, {
+        "item" : "131361",
+        "count" : "14"
+      } ],
+      "smallest" : "122841",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827262,
+    "name" : "Method",
+    "dataTypeName" : "text",
+    "description" : "Method used for analysis",
+    "fieldName" : "method",
+    "position" : 25,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619335,
+    "cachedContents" : {
+      "non_null" : "1863089",
+      "largest" : "YSI (02-01-009-D)",
+      "null" : "191663",
+      "top" : [ {
+        "item" : "KCEL SOP# 245",
+        "count" : "307091"
+      }, {
+        "item" : "CTD",
+        "count" : "189574"
+      }, {
+        "item" : "NONE",
+        "count" : "158500"
+      }, {
+        "item" : "Hydrolab (02-01-005-002)",
+        "count" : "115127"
+      }, {
+        "item" : "HYDROLAB",
+        "count" : "114306"
+      }, {
+        "item" : "SM4500-NO3-F",
+        "count" : "73025"
+      }, {
+        "item" : "KEROUEL & AMINOT 1997",
+        "count" : "57567"
+      }, {
+        "item" : "SM2540-D",
+        "count" : "56996"
+      }, {
+        "item" : "SM4500-P-F",
+        "count" : "43566"
+      }, {
+        "item" : "HYDROLAB (SOP 205V4)",
+        "count" : "35445"
+      }, {
+        "item" : "WHITLEDGE 1981",
+        "count" : "32788"
+      }, {
+        "item" : "SM4500-P-B,F",
+        "count" : "28433"
+      }, {
+        "item" : "SM4500-N-C",
+        "count" : "28189"
+      }, {
+        "item" : "SM4500-P-F S",
+        "count" : "27197"
+      }, {
+        "item" : "CTD (02-02-011-001)",
+        "count" : "26987"
+      }, {
+        "item" : "SM-9222 D ed.17",
+        "count" : "26118"
+      }, {
+        "item" : "SM2320-B",
+        "count" : "23785"
+      }, {
+        "item" : "SM2130-B",
+        "count" : "22966"
+      }, {
+        "item" : "SM-9230 C ed.17",
+        "count" : "18959"
+      }, {
+        "item" : "L",
+        "count" : "17890"
+      } ],
+      "smallest" : ">",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  }, {
+    "id" : 517827263,
+    "name" : "Date Analyzed",
+    "dataTypeName" : "calendar_date",
+    "description" : "Date the sample was analyzed for a particular parameter",
+    "fieldName" : "dateanalyzed",
+    "position" : 26,
+    "renderTypeName" : "calendar_date",
+    "tableColumnId" : 87230333,
+    "cachedContents" : {
+      "non_null" : "1275626",
+      "largest" : "2026-06-30T00:00:00.000",
+      "null" : "779126",
+      "top" : [ {
+        "item" : "2020-12-14T00:00:00.000",
+        "count" : "1399"
+      }, {
+        "item" : "2024-01-08T00:00:00.000",
+        "count" : "1390"
+      }, {
+        "item" : "2021-06-14T00:00:00.000",
+        "count" : "1331"
+      }, {
+        "item" : "2022-04-14T00:00:00.000",
+        "count" : "1282"
+      }, {
+        "item" : "2019-01-07T00:00:00.000",
+        "count" : "1256"
+      }, {
+        "item" : "2026-04-15T00:00:00.000",
+        "count" : "1236"
+      }, {
+        "item" : "2018-08-15T00:00:00.000",
+        "count" : "1209"
+      }, {
+        "item" : "2018-05-17T00:00:00.000",
+        "count" : "1149"
+      }, {
+        "item" : "2020-09-29T00:00:00.000",
+        "count" : "1145"
+      }, {
+        "item" : "2024-12-11T00:00:00.000",
+        "count" : "1133"
+      }, {
+        "item" : "2021-10-26T00:00:00.000",
+        "count" : "1116"
+      }, {
+        "item" : "2021-11-08T00:00:00.000",
+        "count" : "1112"
+      }, {
+        "item" : "2022-11-07T00:00:00.000",
+        "count" : "1082"
+      }, {
+        "item" : "2020-11-09T00:00:00.000",
+        "count" : "1081"
+      }, {
+        "item" : "2025-11-12T00:00:00.000",
+        "count" : "1075"
+      }, {
+        "item" : "2024-10-15T00:00:00.000",
+        "count" : "1073"
+      }, {
+        "item" : "2021-09-27T00:00:00.000",
+        "count" : "1065"
+      }, {
+        "item" : "2026-03-10T00:00:00.000",
+        "count" : "1065"
+      }, {
+        "item" : "2025-12-09T00:00:00.000",
+        "count" : "1058"
+      }, {
+        "item" : "2024-11-12T00:00:00.000",
+        "count" : "1052"
+      } ],
+      "smallest" : "1995-01-21T00:00:00.000",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : {
+      "view" : "date"
+    }
+  }, {
+    "id" : 517827264,
+    "name" : "Data Source",
+    "dataTypeName" : "text",
+    "description" : "Who the data were analyzed by",
+    "fieldName" : "datasource",
+    "position" : 27,
+    "renderTypeName" : "text",
+    "tableColumnId" : 84619334,
+    "cachedContents" : {
+      "non_null" : "2054752",
+      "largest" : "KCEL",
+      "null" : "0",
+      "top" : [ {
+        "item" : "KCEL",
+        "count" : "2054752"
+      } ],
+      "smallest" : "KCEL",
+      "count" : "2054752",
+      "cardinality" : "2054752"
+    },
+    "format" : { }
+  } ],
+  "grants" : [ {
+    "inherited" : false,
+    "type" : "viewer",
+    "flags" : [ "public" ]
+  } ],
+  "metadata" : {
+    "attachments" : [ {
+      "filename" : "DataReadMeFile_WQ.docx",
+      "assetId" : "74efd236-ffa8-4dee-aac1-0188e110dd1c",
+      "name" : "DataReadMeFile_WQ.docx"
+    } ],
+    "rowLabel" : "A single parameter in an individual sample",
+    "availableDisplayTypes" : [ "table", "fatrow", "page" ]
+  },
+  "owner" : {
+    "id" : "jvmm-ax7h",
+    "displayName" : "GregD",
+    "screenName" : "GregD",
+    "type" : "interactive",
+    "flags" : [ "acceptedEula", "mayBeStoriesCoOwner" ]
+  },
+  "query" : { },
+  "rights" : [ "read" ],
+  "tableAuthor" : {
+    "id" : "jvmm-ax7h",
+    "displayName" : "GregD",
+    "screenName" : "GregD",
+    "type" : "interactive",
+    "flags" : [ "acceptedEula", "mayBeStoriesCoOwner" ]
+  },
+  "tags" : [ "water quality", "water", "puget sound", "lakes", "streams", "marine", "fresh water" ],
+  "flags" : [ "default", "ownerMayBeContacted", "restorable", "restorePossibleForType" ]
+}

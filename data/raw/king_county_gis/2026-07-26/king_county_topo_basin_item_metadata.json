@@ -1,0 +1,82 @@
+{
+  "id": "236d44bf9ea54a869ab7d904ec0ae90f",
+  "owner": "KingCounty",
+  "ownerId": "c0928223f497a930b82977fd1a02f55e",
+  "orgId": "Ej0PsM5Aw677QF1W",
+  "created": 1753911178000,
+  "modified": 1776381006000,
+  "guid": null,
+  "name": "TOPO_BASIN_KC_AREA_344",
+  "title": "Basin boundaries derived from terrain data - King County only",
+  "type": "Feature Service",
+  "typeKeywords": [
+    "ArcGIS Server",
+    "Data",
+    "Feature Access",
+    "Feature Service",
+    "Metadata",
+    "Service",
+    "Singlelayer",
+    "Hosted Service",
+    "View Service"
+  ],
+  "description": "For more information about this layer please see the <a href='https://www5.kingcounty.gov/sdc?Layer=TOPO_BASIN_KC_AREA' rel='nofollow ugc'>GIS Data Catalog<\/a>.<br /><br />A delineation drainage areas that span in scale from large portions of a river basin, down to tributaries that drain to a large body receiving waters (e.g., Lake Washington). There is not a consistent method applied (for example stream order) to define scale of a basin to be identified. In general, these basins characterize large tributaries and rivers in Puget sound region. A basin is comprised of multiple catchments.",
+  "tags": [
+    "hydro",
+    "hydrology",
+    "none",
+    "Pacific NW",
+    "Washington state",
+    "King County",
+    "WA",
+    "TOPO_BASIN_KC_AREA (344)",
+    "_AREA"
+  ],
+  "snippet": "Drainage areas derived from terrain data in Puget Sound region.",
+  "thumbnail": "thumbnail/FL_TH_AREA_hydro.png",
+  "documentation": null,
+  "extent": [
+    [
+      -122.54205758522392,
+      47.07364903884631
+    ],
+    [
+      -121.06318762196348,
+      47.78840745279893
+    ]
+  ],
+  "categories": [
+    "/Categories/GIS Data Warehouse: Library/Hydrography (Data Warehouse)",
+    "/Categories/GIS Data Warehouse: Agency/WLR (Data Warehouse)"
+  ],
+  "spatialReference": "2926",
+  "accessInformation": "King County",
+  "classification": null,
+  "licenseInfo": "King County data are made available with the understanding that they shall be used exclusively by the obtainer or their authorized agents. Digital products may not be reproduced or redistributed in any form or by any means without the express written authorization of King County.",
+  "culture": "",
+  "properties": null,
+  "advancedSettings": null,
+  "url": "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/TOPO_BASIN_KC_AREA_344/FeatureServer",
+  "proxyFilter": null,
+  "access": "public",
+  "size": 0,
+  "subInfo": 0,
+  "appCategories": [],
+  "industries": [],
+  "languages": [],
+  "largeThumbnail": null,
+  "banner": null,
+  "screenshots": [],
+  "listed": false,
+  "commentsEnabled": true,
+  "numComments": 0,
+  "numRatings": 0,
+  "avgRating": 0,
+  "numViews": 3046,
+  "contentStatus": "public_authoritative",
+  "scoreCompleteness": 98,
+  "groupDesignations": null,
+  "apiToken1ExpirationDate": -1,
+  "apiToken2ExpirationDate": -1,
+  "lastViewed": 1785106800000
+}
