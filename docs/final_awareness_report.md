@@ -67,6 +67,16 @@ Each species had 17 rolling-origin test years (2009–2025). The best Chinook co
 
 Bootstrap 95% intervals around the 17 held-out errors were wide. Empirical residual intervals covered 88.2% of held-out years for each retained Coho candidate, so nominal 95% calibration is not established. The dynamic 2026–2040 illustrations use 1,000 simulations per model and year, extrapolating observed Theil–Sen environmental trends with annual residual variation and held-out salmon-return residuals. They provide higher-input, trend-only, and lower-input paths; they should be read as conditional sensitivity ranges, not expected counts.
 
+#### Projection figures
+
+Historical-quantile sensitivity benchmark:
+
+![Conditional Coho projections using fixed observed quantiles](../outputs/figures/phase6_conditional_projections.png)
+
+Dynamic trend-and-variability illustration:
+
+![Dynamic illustrative Coho projections through 2040](../outputs/figures/phase6_dynamic_projections.png)
+
 The audit trail remains available in the phase-specific reports and tables referenced below, but the principal findings and limitations are summarized here for reviewers.
 
 Detailed evidence files are `docs/eda_report.md`, `docs/statistical_analysis_report.md`, `docs/phase5_uncertainty_report.md`, `docs/phase6_scenario_report.md`, and `docs/phase6_dynamic_report.md`.
