@@ -1,0 +1,2155 @@
+{
+  "id" : "9q4e-xhag",
+  "name" : "WDFW-Hatchery Adult Salmon Returns",
+  "assetType" : "dataset",
+  "averageRating" : 0,
+  "category" : "Natural Resources & Environment",
+  "createdAt" : 1557874472,
+  "description" : "This dataset are records of Adult Salmon that have returned to hatchery facilities.  The events are separated into categories which include the number of fish handled.  Event categories include Adult Receive, Trap Estimate, Adult Plant, Adult Ship, Adult Mortality, Adult Surplus, Eggtake, and Parent Spawn.\n\nAdult events are recorded by date and include counts of adults and jacks, where applicable.  Event details include species, run, brood year, sex of fish, and mark and tag information.",
+  "diciBackend" : false,
+  "displayType" : "table",
+  "downloadCount" : 2090,
+  "hideFromCatalog" : false,
+  "hideFromDataJson" : false,
+  "indexUpdatedAt" : 1574207129,
+  "locked" : false,
+  "newBackend" : true,
+  "numberOfComments" : 0,
+  "oid" : 31500990,
+  "provenance" : "official",
+  "publicationAppendEnabled" : false,
+  "publicationDate" : 1557943968,
+  "publicationGroup" : 16198250,
+  "publicationStage" : "published",
+  "rowsUpdatedAt" : 1784445133,
+  "rowsUpdatedBy" : "6tru-9twk",
+  "tableId" : 16199755,
+  "totalTimesRated" : 0,
+  "viewCount" : 1538,
+  "viewLastModified" : 1749860581,
+  "viewType" : "tabular",
+  "approvals" : [ {
+    "reviewedAt" : 1557943968,
+    "reviewedAutomatically" : true,
+    "state" : "approved",
+    "submissionId" : 746443,
+    "submissionObject" : "public_audience_request",
+    "submissionOutcome" : "change_audience",
+    "submittedAt" : 1557943968,
+    "targetAudience" : "public",
+    "workflowId" : 2106,
+    "submissionDetails" : {
+      "permissionType" : "READ"
+    },
+    "submissionOutcomeApplication" : {
+      "failureCount" : 0,
+      "status" : "success"
+    },
+    "submitter" : {
+      "id" : "h2p6-jrpv",
+      "displayName" : "WDFW Data"
+    }
+  } ],
+  "clientContext" : {
+    "clientContextVariables" : [ ],
+    "inheritedVariables" : { }
+  },
+  "columns" : [ {
+    "id" : 408619154,
+    "name" : "Event",
+    "dataTypeName" : "text",
+    "description" : "Adult event type",
+    "fieldName" : "event",
+    "position" : 1,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964520,
+    "cachedContents" : {
+      "largest" : "Trap Estimate",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Trap Estimate",
+        "count" : "191612"
+      }, {
+        "item" : "Adult Plant Event",
+        "count" : "121072"
+      }, {
+        "item" : "Adult Mortality Event",
+        "count" : "79588"
+      }, {
+        "item" : "Adult Surplus Event",
+        "count" : "62125"
+      }, {
+        "item" : "Parent Spawn Event",
+        "count" : "50905"
+      }, {
+        "item" : "EggTake",
+        "count" : "29139"
+      }, {
+        "item" : "Adult Ship",
+        "count" : "11404"
+      }, {
+        "item" : "Adult Receive",
+        "count" : "7094"
+      }, {
+        "item" : "Egg Seasonal Adjustment",
+        "count" : "72"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "Adult Mortality Event",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619155,
+    "name" : "Type",
+    "dataTypeName" : "text",
+    "description" : "Details of event, as needed",
+    "fieldName" : "type",
+    "position" : 2,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964521,
+    "cachedContents" : {
+      "largest" : "Upstream",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "",
+        "count" : "394357"
+      }, {
+        "item" : "Upstream",
+        "count" : "61869"
+      }, {
+        "item" : "Lethal",
+        "count" : "45201"
+      }, {
+        "item" : "Surplussed",
+        "count" : "35544"
+      }, {
+        "item" : "Downstream",
+        "count" : "8983"
+      }, {
+        "item" : "Live",
+        "count" : "5704"
+      }, {
+        "item" : "Sacrificed CWT",
+        "count" : "831"
+      }, {
+        "item" : "NA",
+        "count" : "448"
+      }, {
+        "item" : "Sacrificed Virology",
+        "count" : "74"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619156,
+    "name" : "Date",
+    "dataTypeName" : "calendar_date",
+    "description" : "Date and time of event, as recorded",
+    "fieldName" : "date",
+    "position" : 3,
+    "renderTypeName" : "calendar_date",
+    "tableColumnId" : 80964522,
+    "cachedContents" : {
+      "largest" : "2026-07-10T00:00:00.000",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "2023-10-03T00:00:00.000",
+        "count" : "304"
+      }, {
+        "item" : "2024-10-01T00:00:00.000",
+        "count" : "299"
+      }, {
+        "item" : "2020-09-29T00:00:00.000",
+        "count" : "291"
+      }, {
+        "item" : "2003-10-14T00:00:00.000",
+        "count" : "290"
+      }, {
+        "item" : "2014-11-10T00:00:00.000",
+        "count" : "287"
+      }, {
+        "item" : "2025-10-14T00:00:00.000",
+        "count" : "286"
+      }, {
+        "item" : "2024-09-24T00:00:00.000",
+        "count" : "284"
+      }, {
+        "item" : "2015-10-13T00:00:00.000",
+        "count" : "280"
+      }, {
+        "item" : "2021-09-28T00:00:00.000",
+        "count" : "280"
+      }, {
+        "item" : "2023-09-27T00:00:00.000",
+        "count" : "279"
+      }, {
+        "item" : "2025-09-23T00:00:00.000",
+        "count" : "279"
+      }, {
+        "item" : "2025-10-21T00:00:00.000",
+        "count" : "278"
+      }, {
+        "item" : "2025-09-30T00:00:00.000",
+        "count" : "277"
+      }, {
+        "item" : "2014-10-21T00:00:00.000",
+        "count" : "275"
+      }, {
+        "item" : "2005-10-18T00:00:00.000",
+        "count" : "274"
+      }, {
+        "item" : "2025-10-07T00:00:00.000",
+        "count" : "271"
+      }, {
+        "item" : "2003-12-02T00:00:00.000",
+        "count" : "270"
+      }, {
+        "item" : "2014-10-13T00:00:00.000",
+        "count" : "269"
+      }, {
+        "item" : "2015-11-09T00:00:00.000",
+        "count" : "268"
+      }, {
+        "item" : "2023-09-26T00:00:00.000",
+        "count" : "266"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "1994-01-01T00:00:00.000",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619157,
+    "name" : "Facility",
+    "dataTypeName" : "text",
+    "description" : "Hatchery reporting the event",
+    "fieldName" : "facility",
+    "position" : 4,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964523,
+    "cachedContents" : {
+      "largest" : "WHITEHORSE POND",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "COWLITZ SALMON HATCHERY",
+        "count" : "93214"
+      }, {
+        "item" : "KALAMA FALLS HATCHERY",
+        "count" : "42606"
+      }, {
+        "item" : "EASTBANK HATCHERY",
+        "count" : "37811"
+      }, {
+        "item" : "MERWIN DAM FCF",
+        "count" : "29474"
+      }, {
+        "item" : "LYONS FERRY HATCHERY",
+        "count" : "17616"
+      }, {
+        "item" : "PRIEST RAPIDS HATCHERY",
+        "count" : "15058"
+      }, {
+        "item" : "MINTER CR HATCHERY",
+        "count" : "14748"
+      }, {
+        "item" : "WALLACE R HATCHERY",
+        "count" : "14050"
+      }, {
+        "item" : "LEWIS RIVER HATCHERY",
+        "count" : "13313"
+      }, {
+        "item" : "TUCANNON HATCHERY",
+        "count" : "11765"
+      }, {
+        "item" : "MODROW TRAP",
+        "count" : "10842"
+      }, {
+        "item" : "FORKS CREEK HATCHERY",
+        "count" : "9225"
+      }, {
+        "item" : "BINGHAM CR HATCHERY",
+        "count" : "8669"
+      }, {
+        "item" : "SUNSET FALLS FCF",
+        "count" : "8571"
+      }, {
+        "item" : "GEORGE ADAMS HATCHERY",
+        "count" : "8392"
+      }, {
+        "item" : "MARBLEMOUNT HATCHERY",
+        "count" : "8272"
+      }, {
+        "item" : "SOOS CREEK HATCHERY",
+        "count" : "7958"
+      }, {
+        "item" : "SOLDUC HATCHERY",
+        "count" : "7871"
+      }, {
+        "item" : "WELLS HATCHERY",
+        "count" : "7803"
+      }, {
+        "item" : "NORTH TOUTLE HATCHERY",
+        "count" : "7545"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "BAKER LK HATCHERY",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619158,
+    "name" : "Remote Facility",
+    "dataTypeName" : "text",
+    "description" : "Hatchery that fish are either shipped to, or received from",
+    "fieldName" : "remote_facility",
+    "position" : 5,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964524,
+    "cachedContents" : {
+      "largest" : "WINTHROP NFH",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "",
+        "count" : "539045"
+      }, {
+        "item" : "MERWIN DAM FCF",
+        "count" : "1661"
+      }, {
+        "item" : "LYONS FERRY HATCHERY",
+        "count" : "1589"
+      }, {
+        "item" : "SPEELYAI HATCHERY",
+        "count" : "1206"
+      }, {
+        "item" : "MERWIN HATCHERY",
+        "count" : "982"
+      }, {
+        "item" : "KALAMA FALLS HATCHERY",
+        "count" : "809"
+      }, {
+        "item" : "TUCANNON HATCHERY",
+        "count" : "797"
+      }, {
+        "item" : "LEWIS RIVER HATCHERY",
+        "count" : "643"
+      }, {
+        "item" : "COWLITZ TROUT HATCHERY",
+        "count" : "618"
+      }, {
+        "item" : "WASHOUGAL HATCHERY",
+        "count" : "562"
+      }, {
+        "item" : "WASHOUGAL RIVER FISH WEIR",
+        "count" : "558"
+      }, {
+        "item" : "MODROW TRAP",
+        "count" : "553"
+      }, {
+        "item" : "EASTBANK HATCHERY",
+        "count" : "361"
+      }, {
+        "item" : "SUNSET FALLS FCF",
+        "count" : "302"
+      }, {
+        "item" : "TACOMA POWER",
+        "count" : "294"
+      }, {
+        "item" : "BEAVER CR HATCHERY",
+        "count" : "275"
+      }, {
+        "item" : "FOSTER RD TRAP",
+        "count" : "244"
+      }, {
+        "item" : "REITER PONDS",
+        "count" : "181"
+      }, {
+        "item" : "WINTHROP NFH",
+        "count" : "175"
+      }, {
+        "item" : "ICY CR HATCHERY",
+        "count" : "138"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619159,
+    "name" : "Trapsite",
+    "dataTypeName" : "text",
+    "description" : "Location adult fish trapped",
+    "fieldName" : "trapsite",
+    "position" : 6,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964525,
+    "cachedContents" : {
+      "largest" : "ZACCUSE CREEK",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "",
+        "count" : "134932"
+      }, {
+        "item" : "COWLITZ SALMON HATCHERY",
+        "count" : "45788"
+      }, {
+        "item" : "MERWIN DAM FCF",
+        "count" : "34533"
+      }, {
+        "item" : "KALAMA FALLS HATCHERY",
+        "count" : "19366"
+      }, {
+        "item" : "PRIEST RAPIDS HATCHERY",
+        "count" : "13460"
+      }, {
+        "item" : "DRYDEN LEFT BANK",
+        "count" : "12320"
+      }, {
+        "item" : "TUMWATER DAM FCF",
+        "count" : "10876"
+      }, {
+        "item" : "MODROW TRAP",
+        "count" : "9948"
+      }, {
+        "item" : "WALLACE R HATCHERY",
+        "count" : "9923"
+      }, {
+        "item" : "RAINBOW LK INTAKE TRAP",
+        "count" : "9546"
+      }, {
+        "item" : "FORKS CREEK HATCHERY",
+        "count" : "7955"
+      }, {
+        "item" : "SOLDUC HATCHERY",
+        "count" : "7089"
+      }, {
+        "item" : "MINTER CR HATCHERY",
+        "count" : "6984"
+      }, {
+        "item" : "MARBLEMOUNT HATCHERY",
+        "count" : "6881"
+      }, {
+        "item" : "LEWIS RIVER HATCHERY",
+        "count" : "6844"
+      }, {
+        "item" : "SOOS CREEK HATCHERY",
+        "count" : "6739"
+      }, {
+        "item" : "BINGHAM CR HATCHERY",
+        "count" : "6547"
+      }, {
+        "item" : "SUNSET FALLS FCF",
+        "count" : "6332"
+      }, {
+        "item" : "WASHOUGAL RIVER FISH WEIR",
+        "count" : "6147"
+      }, {
+        "item" : "DRYDEN RIGHT BANK",
+        "count" : "6006"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619160,
+    "name" : "Plant Location",
+    "dataTypeName" : "text",
+    "description" : "Location adult fish released/planted",
+    "fieldName" : "plant_location",
+    "position" : 7,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964526,
+    "cachedContents" : {
+      "largest" : "YALE RES-YALE PARK",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "",
+        "count" : "481722"
+      }, {
+        "item" : "KALAMA R     27.0002",
+        "count" : "9998"
+      }, {
+        "item" : "COWLITZ R -UPPER",
+        "count" : "8302"
+      }, {
+        "item" : "TILTON R     26.0560",
+        "count" : "8287"
+      }, {
+        "item" : "WENATCHEE R  45.0030",
+        "count" : "7793"
+      }, {
+        "item" : "LEWIS R -NF  27.0168",
+        "count" : "5947"
+      }, {
+        "item" : "CISPUS R     26.0668",
+        "count" : "2931"
+      }, {
+        "item" : "SKYKOMISH R -SF (07)",
+        "count" : "2752"
+      }, {
+        "item" : "COWLITZ R    26.0002",
+        "count" : "2454"
+      }, {
+        "item" : "TUCANNON R   35.0009",
+        "count" : "2226"
+      }, {
+        "item" : "WASHOUGAL R  28.0159",
+        "count" : "2141"
+      }, {
+        "item" : "COLUMBIA NEAR WELLS",
+        "count" : "1692"
+      }, {
+        "item" : "SWIFT RES (SKAM)",
+        "count" : "1115"
+      }, {
+        "item" : "ELOCHOMAN R  25.0236",
+        "count" : "1054"
+      }, {
+        "item" : "KRESS LK (COWL)",
+        "count" : "900"
+      }, {
+        "item" : "GREEN R      26.0323",
+        "count" : "769"
+      }, {
+        "item" : "RIFFE LK (LEWI)",
+        "count" : "689"
+      }, {
+        "item" : "SWIFT RES-EAGLE CLIFF",
+        "count" : "654"
+      }, {
+        "item" : "TUCANNON R TRAP @TUCAN HAT",
+        "count" : "554"
+      }, {
+        "item" : "NASELLE R    24.0543",
+        "count" : "526"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619161,
+    "name" : "Adult Count",
+    "dataTypeName" : "number",
+    "description" : "Number adult fish trapped, shipped, or received",
+    "fieldName" : "adult_count",
+    "position" : 8,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964527,
+    "cachedContents" : {
+      "largest" : "32670",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "360593"
+      }, {
+        "item" : "1",
+        "count" : "34980"
+      }, {
+        "item" : "2",
+        "count" : "19080"
+      }, {
+        "item" : "3",
+        "count" : "12258"
+      }, {
+        "item" : "4",
+        "count" : "9188"
+      }, {
+        "item" : "5",
+        "count" : "7466"
+      }, {
+        "item" : "6",
+        "count" : "5818"
+      }, {
+        "item" : "7",
+        "count" : "4649"
+      }, {
+        "item" : "8",
+        "count" : "4149"
+      }, {
+        "item" : "10",
+        "count" : "3966"
+      }, {
+        "item" : "9",
+        "count" : "3445"
+      }, {
+        "item" : "11",
+        "count" : "2669"
+      }, {
+        "item" : "12",
+        "count" : "2654"
+      }, {
+        "item" : "20",
+        "count" : "2272"
+      }, {
+        "item" : "15",
+        "count" : "2266"
+      }, {
+        "item" : "13",
+        "count" : "2136"
+      }, {
+        "item" : "14",
+        "count" : "1993"
+      }, {
+        "item" : "16",
+        "count" : "1730"
+      }, {
+        "item" : "50",
+        "count" : "1596"
+      }, {
+        "item" : "25",
+        "count" : "1506"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "-1222",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619162,
+    "name" : "Male Count",
+    "dataTypeName" : "number",
+    "description" : "Number of males recorded",
+    "fieldName" : "male_count",
+    "position" : 9,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964528,
+    "cachedContents" : {
+      "largest" : "10335",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "295437"
+      }, {
+        "item" : "1",
+        "count" : "60516"
+      }, {
+        "item" : "2",
+        "count" : "28465"
+      }, {
+        "item" : "3",
+        "count" : "17263"
+      }, {
+        "item" : "4",
+        "count" : "12329"
+      }, {
+        "item" : "5",
+        "count" : "9701"
+      }, {
+        "item" : "6",
+        "count" : "8041"
+      }, {
+        "item" : "7",
+        "count" : "6421"
+      }, {
+        "item" : "8",
+        "count" : "5589"
+      }, {
+        "item" : "10",
+        "count" : "4764"
+      }, {
+        "item" : "9",
+        "count" : "4597"
+      }, {
+        "item" : "12",
+        "count" : "3624"
+      }, {
+        "item" : "11",
+        "count" : "3622"
+      }, {
+        "item" : "13",
+        "count" : "2958"
+      }, {
+        "item" : "15",
+        "count" : "2876"
+      }, {
+        "item" : "14",
+        "count" : "2827"
+      }, {
+        "item" : "16",
+        "count" : "2427"
+      }, {
+        "item" : "20",
+        "count" : "2267"
+      }, {
+        "item" : "17",
+        "count" : "2203"
+      }, {
+        "item" : "18",
+        "count" : "2112"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "-291",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619163,
+    "name" : "Female Count",
+    "dataTypeName" : "number",
+    "description" : "Number of females recorded",
+    "fieldName" : "female_count",
+    "position" : 10,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964529,
+    "cachedContents" : {
+      "largest" : "10335",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "307713"
+      }, {
+        "item" : "1",
+        "count" : "60513"
+      }, {
+        "item" : "2",
+        "count" : "28100"
+      }, {
+        "item" : "3",
+        "count" : "17359"
+      }, {
+        "item" : "4",
+        "count" : "12052"
+      }, {
+        "item" : "5",
+        "count" : "9316"
+      }, {
+        "item" : "6",
+        "count" : "7527"
+      }, {
+        "item" : "7",
+        "count" : "6085"
+      }, {
+        "item" : "8",
+        "count" : "5397"
+      }, {
+        "item" : "10",
+        "count" : "4477"
+      }, {
+        "item" : "9",
+        "count" : "4363"
+      }, {
+        "item" : "11",
+        "count" : "3494"
+      }, {
+        "item" : "12",
+        "count" : "3345"
+      }, {
+        "item" : "13",
+        "count" : "2810"
+      }, {
+        "item" : "15",
+        "count" : "2705"
+      }, {
+        "item" : "14",
+        "count" : "2610"
+      }, {
+        "item" : "16",
+        "count" : "2236"
+      }, {
+        "item" : "20",
+        "count" : "2178"
+      }, {
+        "item" : "17",
+        "count" : "2030"
+      }, {
+        "item" : "18",
+        "count" : "1996"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "-308",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619164,
+    "name" : "Jack Count",
+    "dataTypeName" : "number",
+    "description" : "Number of jacks recorded",
+    "fieldName" : "jack_count",
+    "position" : 11,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964530,
+    "cachedContents" : {
+      "largest" : "5000",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "423914"
+      }, {
+        "item" : "1",
+        "count" : "37103"
+      }, {
+        "item" : "2",
+        "count" : "17989"
+      }, {
+        "item" : "3",
+        "count" : "10584"
+      }, {
+        "item" : "4",
+        "count" : "7228"
+      }, {
+        "item" : "5",
+        "count" : "6076"
+      }, {
+        "item" : "6",
+        "count" : "4190"
+      }, {
+        "item" : "7",
+        "count" : "3361"
+      }, {
+        "item" : "10",
+        "count" : "2762"
+      }, {
+        "item" : "8",
+        "count" : "2755"
+      }, {
+        "item" : "9",
+        "count" : "2198"
+      }, {
+        "item" : "11",
+        "count" : "1739"
+      }, {
+        "item" : "12",
+        "count" : "1578"
+      }, {
+        "item" : "13",
+        "count" : "1352"
+      }, {
+        "item" : "15",
+        "count" : "1332"
+      }, {
+        "item" : "14",
+        "count" : "1207"
+      }, {
+        "item" : "20",
+        "count" : "1158"
+      }, {
+        "item" : "16",
+        "count" : "964"
+      }, {
+        "item" : "17",
+        "count" : "930"
+      }, {
+        "item" : "18",
+        "count" : "847"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "-86",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619165,
+    "name" : "Non-viable Female Count",
+    "dataTypeName" : "number",
+    "description" : "Number of non-viable females recorded",
+    "fieldName" : "non_viable_female_count",
+    "position" : 12,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964531,
+    "cachedContents" : {
+      "largest" : "423",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "545672"
+      }, {
+        "item" : "1",
+        "count" : "2452"
+      }, {
+        "item" : "2",
+        "count" : "1252"
+      }, {
+        "item" : "3",
+        "count" : "798"
+      }, {
+        "item" : "4",
+        "count" : "543"
+      }, {
+        "item" : "5",
+        "count" : "395"
+      }, {
+        "item" : "6",
+        "count" : "309"
+      }, {
+        "item" : "7",
+        "count" : "215"
+      }, {
+        "item" : "8",
+        "count" : "185"
+      }, {
+        "item" : "10",
+        "count" : "182"
+      }, {
+        "item" : "9",
+        "count" : "125"
+      }, {
+        "item" : "12",
+        "count" : "80"
+      }, {
+        "item" : "11",
+        "count" : "64"
+      }, {
+        "item" : "13",
+        "count" : "56"
+      }, {
+        "item" : "15",
+        "count" : "56"
+      }, {
+        "item" : "14",
+        "count" : "43"
+      }, {
+        "item" : "16",
+        "count" : "40"
+      }, {
+        "item" : "17",
+        "count" : "38"
+      }, {
+        "item" : "20",
+        "count" : "34"
+      }, {
+        "item" : "19",
+        "count" : "31"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "0",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619166,
+    "name" : "Egg Take Count",
+    "dataTypeName" : "number",
+    "description" : "Number of eggs taken",
+    "fieldName" : "egg_take_count",
+    "position" : 13,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964532,
+    "cachedContents" : {
+      "largest" : "180000000",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "523806"
+      }, {
+        "item" : "4000",
+        "count" : "320"
+      }, {
+        "item" : "12000",
+        "count" : "246"
+      }, {
+        "item" : "10000",
+        "count" : "237"
+      }, {
+        "item" : "5000",
+        "count" : "236"
+      }, {
+        "item" : "20000",
+        "count" : "236"
+      }, {
+        "item" : "15000",
+        "count" : "202"
+      }, {
+        "item" : "50",
+        "count" : "194"
+      }, {
+        "item" : "8000",
+        "count" : "193"
+      }, {
+        "item" : "30000",
+        "count" : "178"
+      }, {
+        "item" : "60000",
+        "count" : "166"
+      }, {
+        "item" : "40000",
+        "count" : "156"
+      }, {
+        "item" : "24000",
+        "count" : "150"
+      }, {
+        "item" : "6000",
+        "count" : "143"
+      }, {
+        "item" : "16000",
+        "count" : "141"
+      }, {
+        "item" : "36000",
+        "count" : "139"
+      }, {
+        "item" : "3000",
+        "count" : "139"
+      }, {
+        "item" : "28000",
+        "count" : "137"
+      }, {
+        "item" : "9000",
+        "count" : "136"
+      }, {
+        "item" : "25000",
+        "count" : "135"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "-1883091",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619167,
+    "name" : "Species",
+    "dataTypeName" : "text",
+    "description" : "Species of adult fish in the record",
+    "fieldName" : "species",
+    "position" : 14,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964533,
+    "cachedContents" : {
+      "largest" : "Whitefish",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Chinook",
+        "count" : "213363"
+      }, {
+        "item" : "Steelhead",
+        "count" : "145274"
+      }, {
+        "item" : "Coho",
+        "count" : "123426"
+      }, {
+        "item" : "Sockeye",
+        "count" : "18456"
+      }, {
+        "item" : "Chum",
+        "count" : "14468"
+      }, {
+        "item" : "Cutthroat",
+        "count" : "13978"
+      }, {
+        "item" : "Dolly/Bull Trout",
+        "count" : "4631"
+      }, {
+        "item" : "Whitefish",
+        "count" : "4276"
+      }, {
+        "item" : "Rainbow",
+        "count" : "4275"
+      }, {
+        "item" : "Pink",
+        "count" : "3909"
+      }, {
+        "item" : "Kokanee",
+        "count" : "3733"
+      }, {
+        "item" : "Sucker: General",
+        "count" : "1657"
+      }, {
+        "item" : "Northern Pikeminnow",
+        "count" : "594"
+      }, {
+        "item" : "Brown Trout",
+        "count" : "276"
+      }, {
+        "item" : "Eastern Brook Trout",
+        "count" : "263"
+      }, {
+        "item" : "Walleye",
+        "count" : "155"
+      }, {
+        "item" : "Golden Trout",
+        "count" : "72"
+      }, {
+        "item" : "Atlantic Salmon",
+        "count" : "54"
+      }, {
+        "item" : "Black Crappie",
+        "count" : "51"
+      }, {
+        "item" : "Lake Trout",
+        "count" : "34"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "Atlantic Salmon",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619168,
+    "name" : "Run",
+    "dataTypeName" : "text",
+    "description" : "Run or race of the adult fish in the record",
+    "fieldName" : "run",
+    "position" : 15,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964534,
+    "cachedContents" : {
+      "largest" : "Winter-Late",
+      "non_null" : "552633",
+      "null" : "378",
+      "top" : [ {
+        "item" : "Fall",
+        "count" : "116306"
+      }, {
+        "item" : "Summer",
+        "count" : "112675"
+      }, {
+        "item" : "NA",
+        "count" : "102569"
+      }, {
+        "item" : "Spring",
+        "count" : "70792"
+      }, {
+        "item" : "Type N",
+        "count" : "47241"
+      }, {
+        "item" : "Winter",
+        "count" : "31758"
+      }, {
+        "item" : "Winter-Late",
+        "count" : "29201"
+      }, {
+        "item" : "Type S",
+        "count" : "20670"
+      }, {
+        "item" : "Anadromous Coastal",
+        "count" : "8304"
+      }, {
+        "item" : "Late",
+        "count" : "6153"
+      }, {
+        "item" : "Searun",
+        "count" : "3330"
+      }, {
+        "item" : "Odd Year",
+        "count" : "1398"
+      }, {
+        "item" : "Westslope",
+        "count" : "1191"
+      }, {
+        "item" : "Resident Coastal",
+        "count" : "498"
+      }, {
+        "item" : "Lahontan",
+        "count" : "275"
+      }, {
+        "item" : "Redband",
+        "count" : "213"
+      }, {
+        "item" : "Tule",
+        "count" : "24"
+      }, {
+        "item" : "Even Year",
+        "count" : "23"
+      }, {
+        "item" : "Mountain",
+        "count" : "12"
+      } ],
+      "not_null" : "413337",
+      "smallest" : "Anadromous Coastal",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619169,
+    "name" : "Stock",
+    "dataTypeName" : "text",
+    "description" : "Assumed stock of returning adult fish",
+    "fieldName" : "stock",
+    "position" : 16,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964535,
+    "cachedContents" : {
+      "largest" : "Yakima River",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Cowlitz River",
+        "count" : "72718"
+      }, {
+        "item" : "Kalama River",
+        "count" : "42976"
+      }, {
+        "item" : "Lewis River",
+        "count" : "41092"
+      }, {
+        "item" : "Wenatchee River",
+        "count" : "26954"
+      }, {
+        "item" : "Skykomish River",
+        "count" : "19500"
+      }, {
+        "item" : "Priest Rapids",
+        "count" : "15289"
+      }, {
+        "item" : "Cowlitz River Hatchery Stock",
+        "count" : "11006"
+      }, {
+        "item" : "Minter Creek",
+        "count" : "10556"
+      }, {
+        "item" : "Upper Cowlitz River",
+        "count" : "9965"
+      }, {
+        "item" : "Unknown Stock",
+        "count" : "9366"
+      }, {
+        "item" : "Satsop River",
+        "count" : "9352"
+      }, {
+        "item" : "Tucannon River Stock",
+        "count" : "9319"
+      }, {
+        "item" : "Washougal River",
+        "count" : "9285"
+      }, {
+        "item" : "Snake River",
+        "count" : "8874"
+      }, {
+        "item" : "Willapa River",
+        "count" : "8229"
+      }, {
+        "item" : "Elochoman River",
+        "count" : "7973"
+      }, {
+        "item" : "Wells",
+        "count" : "7886"
+      }, {
+        "item" : "Toutle River",
+        "count" : "7646"
+      }, {
+        "item" : "Skagit River",
+        "count" : "7450"
+      }, {
+        "item" : "Lewis River Hatchery Stock",
+        "count" : "7226"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "Abernathy Creek",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619170,
+    "name" : "Origin",
+    "dataTypeName" : "text",
+    "description" : "Brood origin assumed of returning adult fish",
+    "fieldName" : "origin",
+    "position" : 17,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964536,
+    "cachedContents" : {
+      "largest" : "WILD",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "HATCHERY",
+        "count" : "348762"
+      }, {
+        "item" : "WILD",
+        "count" : "142743"
+      }, {
+        "item" : "MIXED",
+        "count" : "49840"
+      }, {
+        "item" : "UNKNOWN",
+        "count" : "11302"
+      }, {
+        "item" : "CAPTIVE BROOD",
+        "count" : "259"
+      }, {
+        "item" : "KELT",
+        "count" : "98"
+      }, {
+        "item" : "NATURAL",
+        "count" : "7"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "CAPTIVE BROOD",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619171,
+    "name" : "ADULT_MARK_TYPE_Id",
+    "dataTypeName" : "text",
+    "description" : "Marks observed on returning adult fish",
+    "fieldName" : "adult_mark_type_id",
+    "position" : 18,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964537,
+    "cachedContents" : {
+      "largest" : "90",
+      "non_null" : "464163",
+      "null" : "88848",
+      "top" : [ {
+        "item" : "2",
+        "count" : "162148"
+      }, {
+        "item" : "14",
+        "count" : "139906"
+      }, {
+        "item" : "28",
+        "count" : "71752"
+      }, {
+        "item" : "1200",
+        "count" : "68000"
+      }, {
+        "item" : "5",
+        "count" : "3343"
+      }, {
+        "item" : "6",
+        "count" : "2433"
+      }, {
+        "item" : "44",
+        "count" : "2094"
+      }, {
+        "item" : "56",
+        "count" : "1161"
+      }, {
+        "item" : "8",
+        "count" : "1122"
+      }, {
+        "item" : "54",
+        "count" : "1085"
+      }, {
+        "item" : "30",
+        "count" : "1062"
+      }, {
+        "item" : "88",
+        "count" : "958"
+      }, {
+        "item" : "3",
+        "count" : "863"
+      }, {
+        "item" : "7",
+        "count" : "828"
+      }, {
+        "item" : "29",
+        "count" : "788"
+      }, {
+        "item" : "48",
+        "count" : "697"
+      }, {
+        "item" : "58",
+        "count" : "623"
+      }, {
+        "item" : "61",
+        "count" : "436"
+      }, {
+        "item" : "65",
+        "count" : "395"
+      }, {
+        "item" : "15",
+        "count" : "331"
+      } ],
+      "not_null" : "320280",
+      "smallest" : "10",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619184,
+    "name" : "Brood Year",
+    "dataTypeName" : "number",
+    "description" : "Brood year assumed for returning adult fish",
+    "fieldName" : "brood_year",
+    "position" : 19,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80969605,
+    "cachedContents" : {
+      "largest" : "2027",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "2025",
+        "count" : "24424"
+      }, {
+        "item" : "2024",
+        "count" : "23203"
+      }, {
+        "item" : "2015",
+        "count" : "22277"
+      }, {
+        "item" : "2016",
+        "count" : "21826"
+      }, {
+        "item" : "2023",
+        "count" : "21633"
+      }, {
+        "item" : "2017",
+        "count" : "20877"
+      }, {
+        "item" : "2022",
+        "count" : "20649"
+      }, {
+        "item" : "2021",
+        "count" : "20405"
+      }, {
+        "item" : "2014",
+        "count" : "20032"
+      }, {
+        "item" : "2011",
+        "count" : "19418"
+      }, {
+        "item" : "2020",
+        "count" : "19257"
+      }, {
+        "item" : "2019",
+        "count" : "19168"
+      }, {
+        "item" : "2009",
+        "count" : "19163"
+      }, {
+        "item" : "2013",
+        "count" : "19145"
+      }, {
+        "item" : "2018",
+        "count" : "19080"
+      }, {
+        "item" : "2010",
+        "count" : "18817"
+      }, {
+        "item" : "2012",
+        "count" : "18467"
+      }, {
+        "item" : "2004",
+        "count" : "17972"
+      }, {
+        "item" : "2005",
+        "count" : "17648"
+      }, {
+        "item" : "2007",
+        "count" : "17411"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "1989",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : {
+      "noCommas" : "true"
+    }
+  }, {
+    "id" : 408619173,
+    "name" : "CWT_METHOD_CHECKED_LUT_Id",
+    "dataTypeName" : "text",
+    "description" : "Method of checking adult fish for Coded Wire Tag (CWT)",
+    "fieldName" : "cwt_method_checked_lut_id",
+    "position" : 20,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964509,
+    "cachedContents" : {
+      "largest" : "6",
+      "non_null" : "148365",
+      "null" : "404646",
+      "top" : [ {
+        "item" : "3",
+        "count" : "87722"
+      }, {
+        "item" : "4",
+        "count" : "51310"
+      }, {
+        "item" : "6",
+        "count" : "8784"
+      }, {
+        "item" : "2",
+        "count" : "549"
+      } ],
+      "not_null" : "86018",
+      "smallest" : "2",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619174,
+    "name" : "CWT_Checked_Ind",
+    "dataTypeName" : "checkbox",
+    "description" : "Fish checked for CWT, yes or no",
+    "fieldName" : "cwt_checked_ind",
+    "position" : 21,
+    "renderTypeName" : "checkbox",
+    "tableColumnId" : 80969035,
+    "cachedContents" : {
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : false,
+        "count" : "290361"
+      }, {
+        "item" : true,
+        "count" : "262650"
+      } ],
+      "not_null" : "413689",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619175,
+    "name" : "CWT_REASON_NOT_CHECKED_LUT_Id",
+    "dataTypeName" : "text",
+    "description" : "If fish not checked for CWT, reason not checked",
+    "fieldName" : "cwt_reason_not_checked_lut",
+    "position" : 22,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964511,
+    "cachedContents" : {
+      "largest" : "99",
+      "non_null" : "33810",
+      "null" : "519201",
+      "top" : [ {
+        "item" : "1",
+        "count" : "23722"
+      }, {
+        "item" : "4",
+        "count" : "7018"
+      }, {
+        "item" : "5",
+        "count" : "1587"
+      }, {
+        "item" : "99",
+        "count" : "1332"
+      }, {
+        "item" : "3",
+        "count" : "151"
+      } ],
+      "not_null" : "19960",
+      "smallest" : "1",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619176,
+    "name" : "CWT_Reason_Not_Checked_Txt",
+    "dataTypeName" : "text",
+    "description" : "Explanation if not checked, and reason not checked unavailable",
+    "fieldName" : "cwt_reason_not_checked_txt",
+    "position" : 23,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964512,
+    "cachedContents" : {
+      "largest" : "would have been too stressful on fish",
+      "non_null" : "33811",
+      "null" : "519200",
+      "top" : [ {
+        "item" : "",
+        "count" : "31670"
+      }, {
+        "item" : "water to water transfer",
+        "count" : "257"
+      }, {
+        "item" : "No wand",
+        "count" : "127"
+      }, {
+        "item" : "Water to water transfer",
+        "count" : "100"
+      }, {
+        "item" : "sockeye",
+        "count" : "84"
+      }, {
+        "item" : "Kent Mayers crew to sample post spawn.",
+        "count" : "56"
+      }, {
+        "item" : "Sampled by Elwha weir personnel",
+        "count" : "54"
+      }, {
+        "item" : "Water to water transfer ",
+        "count" : "53"
+      }, {
+        "item" : "do not check um",
+        "count" : "33"
+      }, {
+        "item" : "Chum aren't marked.",
+        "count" : "28"
+      }, {
+        "item" : "Green River wild chums are not CWT",
+        "count" : "27"
+      }, {
+        "item" : "Captive brood, no CWT",
+        "count" : "21"
+      }, {
+        "item" : "No Wand",
+        "count" : "21"
+      }, {
+        "item" : "water to water",
+        "count" : "20"
+      }, {
+        "item" : "LEKT personnel handled and transfered out live adults",
+        "count" : "19"
+      }, {
+        "item" : "Chum aren't tagged.",
+        "count" : "18"
+      }, {
+        "item" : "Captive brood not checked",
+        "count" : "15"
+      }, {
+        "item" : "randy cooper",
+        "count" : "12"
+      }, {
+        "item" : "Captive brood",
+        "count" : "11"
+      }, {
+        "item" : "Live spawned",
+        "count" : "11"
+      } ],
+      "not_null" : "19961",
+      "smallest" : "",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619177,
+    "name" : "CWT_Present_Ind",
+    "dataTypeName" : "checkbox",
+    "description" : "CWT present in checked fish, yes or no",
+    "fieldName" : "cwt_present_ind",
+    "position" : 24,
+    "renderTypeName" : "checkbox",
+    "tableColumnId" : 80969036,
+    "cachedContents" : {
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : false,
+        "count" : "470239"
+      }, {
+        "item" : true,
+        "count" : "82772"
+      } ],
+      "not_null" : "413689",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619178,
+    "name" : "CWT_Collected_Ind",
+    "dataTypeName" : "checkbox",
+    "description" : "If CWT present, were they collected, yes or no",
+    "fieldName" : "cwt_collected_ind",
+    "position" : 25,
+    "renderTypeName" : "checkbox",
+    "tableColumnId" : 80965152,
+    "cachedContents" : {
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : false,
+        "count" : "495791"
+      }, {
+        "item" : true,
+        "count" : "57220"
+      } ],
+      "not_null" : "413689",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619179,
+    "name" : "CWT_Reason_Not_Collected_Txt",
+    "dataTypeName" : "text",
+    "description" : "If CWT present and not collected, reason not collected",
+    "fieldName" : "cwt_reason_not_collected",
+    "position" : 26,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964515,
+    "cachedContents" : {
+      "largest" : "Wires collected by Tribe",
+      "non_null" : "19141",
+      "null" : "533870",
+      "top" : [ {
+        "item" : "",
+        "count" : "16936"
+      }, {
+        "item" : "Sub-sampled at 25%",
+        "count" : "163"
+      }, {
+        "item" : "Blank wire",
+        "count" : "147"
+      }, {
+        "item" : "2 of 3",
+        "count" : "110"
+      }, {
+        "item" : "33% sampling",
+        "count" : "76"
+      }, {
+        "item" : "Quileute tribe will collect wire",
+        "count" : "67"
+      }, {
+        "item" : "33% SAMPLING",
+        "count" : "66"
+      }, {
+        "item" : "LIVE SPAWNED",
+        "count" : "52"
+      }, {
+        "item" : "live spawn",
+        "count" : "45"
+      }, {
+        "item" : "Blank Wire",
+        "count" : "40"
+      }, {
+        "item" : "This fish was surplused and no snout collected",
+        "count" : "39"
+      }, {
+        "item" : "Sub-sampled at 33%",
+        "count" : "37"
+      }, {
+        "item" : "cwts not collected from surplus fish",
+        "count" : "37"
+      }, {
+        "item" : "These fish were surplused and no snouts collected",
+        "count" : "36"
+      }, {
+        "item" : "Recovered 33%",
+        "count" : "24"
+      }, {
+        "item" : "Sub-sampled at %25",
+        "count" : "24"
+      }, {
+        "item" : "LIVE SPAWNED ADULTS",
+        "count" : "23"
+      }, {
+        "item" : "50%",
+        "count" : "23"
+      }, {
+        "item" : "Collected by tribe",
+        "count" : "22"
+      }, {
+        "item" : "Hatchery fish not collected for program",
+        "count" : "19"
+      } ],
+      "not_null" : "11157",
+      "smallest" : "",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619180,
+    "name" : "CWT_REASON_UNCOLLECTED_LUT_Id",
+    "dataTypeName" : "text",
+    "description" : "Explanation if CWT present and not collected, and reason unavailable",
+    "fieldName" : "cwt_reason_uncollected_lut",
+    "position" : 27,
+    "renderTypeName" : "text",
+    "tableColumnId" : 80964516,
+    "cachedContents" : {
+      "largest" : "99",
+      "non_null" : "18982",
+      "null" : "534029",
+      "top" : [ {
+        "item" : "2",
+        "count" : "13582"
+      }, {
+        "item" : "1",
+        "count" : "3064"
+      }, {
+        "item" : "99",
+        "count" : "1237"
+      }, {
+        "item" : "3",
+        "count" : "1099"
+      } ],
+      "not_null" : "11052",
+      "smallest" : "1",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619181,
+    "name" : "Tagged Males",
+    "dataTypeName" : "number",
+    "description" : "Number of male fish with CWT",
+    "fieldName" : "tagged_males",
+    "position" : 28,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964517,
+    "cachedContents" : {
+      "largest" : "1346",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "500632"
+      }, {
+        "item" : "1",
+        "count" : "13283"
+      }, {
+        "item" : "2",
+        "count" : "5960"
+      }, {
+        "item" : "3",
+        "count" : "3594"
+      }, {
+        "item" : "4",
+        "count" : "2699"
+      }, {
+        "item" : "5",
+        "count" : "2077"
+      }, {
+        "item" : "6",
+        "count" : "1812"
+      }, {
+        "item" : "7",
+        "count" : "1428"
+      }, {
+        "item" : "8",
+        "count" : "1230"
+      }, {
+        "item" : "9",
+        "count" : "1075"
+      }, {
+        "item" : "10",
+        "count" : "1003"
+      }, {
+        "item" : "11",
+        "count" : "846"
+      }, {
+        "item" : "12",
+        "count" : "818"
+      }, {
+        "item" : "14",
+        "count" : "703"
+      }, {
+        "item" : "13",
+        "count" : "689"
+      }, {
+        "item" : "15",
+        "count" : "603"
+      }, {
+        "item" : "16",
+        "count" : "557"
+      }, {
+        "item" : "17",
+        "count" : "509"
+      }, {
+        "item" : "18",
+        "count" : "470"
+      }, {
+        "item" : "20",
+        "count" : "434"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "0",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619182,
+    "name" : "Tagged Females",
+    "dataTypeName" : "number",
+    "description" : "Number of female fish with CWT",
+    "fieldName" : "tagged_females",
+    "position" : 29,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964518,
+    "cachedContents" : {
+      "largest" : "6000",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "502609"
+      }, {
+        "item" : "1",
+        "count" : "13631"
+      }, {
+        "item" : "2",
+        "count" : "5988"
+      }, {
+        "item" : "3",
+        "count" : "3737"
+      }, {
+        "item" : "4",
+        "count" : "2683"
+      }, {
+        "item" : "5",
+        "count" : "2040"
+      }, {
+        "item" : "6",
+        "count" : "1705"
+      }, {
+        "item" : "7",
+        "count" : "1315"
+      }, {
+        "item" : "8",
+        "count" : "1217"
+      }, {
+        "item" : "9",
+        "count" : "982"
+      }, {
+        "item" : "10",
+        "count" : "918"
+      }, {
+        "item" : "11",
+        "count" : "777"
+      }, {
+        "item" : "12",
+        "count" : "734"
+      }, {
+        "item" : "13",
+        "count" : "671"
+      }, {
+        "item" : "14",
+        "count" : "630"
+      }, {
+        "item" : "16",
+        "count" : "555"
+      }, {
+        "item" : "15",
+        "count" : "531"
+      }, {
+        "item" : "17",
+        "count" : "512"
+      }, {
+        "item" : "18",
+        "count" : "466"
+      }, {
+        "item" : "19",
+        "count" : "393"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "0",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  }, {
+    "id" : 408619183,
+    "name" : "Tagged Jacks",
+    "dataTypeName" : "number",
+    "description" : "Number of jacks with CWT",
+    "fieldName" : "tagged_jacks",
+    "position" : 30,
+    "renderTypeName" : "number",
+    "tableColumnId" : 80964519,
+    "cachedContents" : {
+      "largest" : "741",
+      "non_null" : "553011",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0",
+        "count" : "529531"
+      }, {
+        "item" : "1",
+        "count" : "7771"
+      }, {
+        "item" : "2",
+        "count" : "3443"
+      }, {
+        "item" : "3",
+        "count" : "2011"
+      }, {
+        "item" : "4",
+        "count" : "1434"
+      }, {
+        "item" : "5",
+        "count" : "1051"
+      }, {
+        "item" : "6",
+        "count" : "868"
+      }, {
+        "item" : "7",
+        "count" : "612"
+      }, {
+        "item" : "8",
+        "count" : "576"
+      }, {
+        "item" : "9",
+        "count" : "437"
+      }, {
+        "item" : "10",
+        "count" : "398"
+      }, {
+        "item" : "11",
+        "count" : "353"
+      }, {
+        "item" : "12",
+        "count" : "288"
+      }, {
+        "item" : "13",
+        "count" : "271"
+      }, {
+        "item" : "14",
+        "count" : "234"
+      }, {
+        "item" : "15",
+        "count" : "203"
+      }, {
+        "item" : "16",
+        "count" : "199"
+      }, {
+        "item" : "18",
+        "count" : "162"
+      }, {
+        "item" : "17",
+        "count" : "157"
+      }, {
+        "item" : "19",
+        "count" : "127"
+      } ],
+      "not_null" : "413689",
+      "smallest" : "0",
+      "count" : "553011",
+      "cardinality" : "553011"
+    },
+    "format" : { }
+  } ],
+  "grants" : [ {
+    "inherited" : false,
+    "type" : "viewer",
+    "flags" : [ "public" ]
+  } ],
+  "metadata" : {
+    "custom_fields" : {
+      "Temporal" : {
+        "Posting Frequency" : "Nightly",
+        "Period of Time" : "Beginning of Data Collection"
+      }
+    },
+    "availableDisplayTypes" : [ "table", "fatrow", "page" ]
+  },
+  "owner" : {
+    "id" : "msq3-adhc",
+    "createdAt" : 1741303986,
+    "displayName" : "Washington Department of Fish and Wildlife Data",
+    "screenName" : "Washington Department of Fish and Wildlife Data",
+    "type" : "team",
+    "members" : [ {
+      "id" : "b2s6-8ii9",
+      "createdAt" : 1332802552,
+      "displayName" : "Brodie Cox",
+      "profileImageUrlLarge" : "/api/users/b2s6-8ii9/profile_images/LARGE",
+      "profileImageUrlMedium" : "/api/users/b2s6-8ii9/profile_images/THUMB",
+      "profileImageUrlSmall" : "/api/users/b2s6-8ii9/profile_images/TINY",
+      "screenName" : "Brodie Cox",
+      "teamId" : 1713195,
+      "teamRole" : "owner",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    }, {
+      "id" : "dszk-xw6k",
+      "createdAt" : 1558071229,
+      "displayName" : "Danny Warren",
+      "screenName" : "Danny Warren",
+      "teamId" : 1713195,
+      "teamRole" : "member",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    }, {
+      "id" : "i2u5-ieen",
+      "createdAt" : 1556912403,
+      "displayName" : "John Chen",
+      "screenName" : "John Chen",
+      "teamId" : 1713195,
+      "teamRole" : "member",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    }, {
+      "id" : "ks2t-85xg",
+      "createdAt" : 1741365632,
+      "displayName" : "Phil",
+      "screenName" : "Phil",
+      "teamId" : 1713195,
+      "teamRole" : "member",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    } ]
+  },
+  "query" : { },
+  "rights" : [ "read" ],
+  "tableAuthor" : {
+    "id" : "msq3-adhc",
+    "createdAt" : 1741303986,
+    "displayName" : "Washington Department of Fish and Wildlife Data",
+    "screenName" : "Washington Department of Fish and Wildlife Data",
+    "type" : "team",
+    "members" : [ {
+      "id" : "b2s6-8ii9",
+      "createdAt" : 1332802552,
+      "displayName" : "Brodie Cox",
+      "profileImageUrlLarge" : "/api/users/b2s6-8ii9/profile_images/LARGE",
+      "profileImageUrlMedium" : "/api/users/b2s6-8ii9/profile_images/THUMB",
+      "profileImageUrlSmall" : "/api/users/b2s6-8ii9/profile_images/TINY",
+      "screenName" : "Brodie Cox",
+      "teamId" : 1713195,
+      "teamRole" : "owner",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    }, {
+      "id" : "dszk-xw6k",
+      "createdAt" : 1558071229,
+      "displayName" : "Danny Warren",
+      "screenName" : "Danny Warren",
+      "teamId" : 1713195,
+      "teamRole" : "member",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    }, {
+      "id" : "i2u5-ieen",
+      "createdAt" : 1556912403,
+      "displayName" : "John Chen",
+      "screenName" : "John Chen",
+      "teamId" : 1713195,
+      "teamRole" : "member",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    }, {
+      "id" : "ks2t-85xg",
+      "createdAt" : 1741365632,
+      "displayName" : "Phil",
+      "screenName" : "Phil",
+      "teamId" : 1713195,
+      "teamRole" : "member",
+      "type" : "interactive",
+      "flags" : [ "siteMember" ]
+    } ]
+  },
+  "tags" : [ "wdfw" ],
+  "flags" : [ "default", "ownerMayBeContacted", "restorable", "restorePossibleForType" ]
+}
