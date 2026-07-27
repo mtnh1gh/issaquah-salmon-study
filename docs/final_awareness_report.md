@@ -47,4 +47,26 @@ The Phase 6 outputs show 2026–2040 Coho sensitivity under constant predictor v
 
 Use the results to prioritize data improvements and questions for local partners, not to set numeric harvest, restoration, hatchery, or land-use targets. The highest-value next step is obtaining authorized release data and expert review, followed by rerunning the locked pipeline.
 
-Detailed evidence is in `docs/eda_report.md`, `docs/statistical_analysis_report.md`, `docs/phase5_uncertainty_report.md`, and `docs/phase6_scenario_report.md`.
+## Detailed evidence in one place
+
+### Observed trends
+
+| Result | Finding |
+|---|---|
+| Chinook total adults | Kendall tau -0.118; BH-adjusted p=0.857; no significant monotonic trend |
+| Coho total adults | Kendall tau -0.044; BH-adjusted p=0.857; no significant monotonic trend |
+| April 1 SWE | Declining trend; BH-adjusted p=0.025 |
+| Warm-season temperature | Increasing trend; BH-adjusted p=0.025 |
+| Annual PDO | Trend detected; BH-adjusted p=0.027 |
+
+### Predictive validation
+
+Each species had 17 rolling-origin test years (2009–2025). The best Chinook comparator was previous-year persistence (MAE 1,180; RMSE 1,414), and no environmental model beat it. Three Coho models beat both naive baselines: all-environment ridge (MAE 3,620; RMSE 4,285), freshwater/marine OLS (MAE 3,857; RMSE 4,805), and migration/marine OLS (MAE 3,713; RMSE 4,878). These results indicate limited and species-specific predictive skill, not causal effects.
+
+### Uncertainty and dynamic projections
+
+Bootstrap 95% intervals around the 17 held-out errors were wide. Empirical residual intervals covered 88.2% of held-out years for each retained Coho candidate, so nominal 95% calibration is not established. The dynamic 2026–2040 illustrations use 1,000 simulations per model and year, extrapolating observed Theil–Sen environmental trends with annual residual variation and held-out salmon-return residuals. They provide higher-input, trend-only, and lower-input paths; they should be read as conditional sensitivity ranges, not expected counts.
+
+The audit trail remains available in the phase-specific reports and tables referenced below, but the principal findings and limitations are summarized here for reviewers.
+
+Detailed evidence files are `docs/eda_report.md`, `docs/statistical_analysis_report.md`, `docs/phase5_uncertainty_report.md`, `docs/phase6_scenario_report.md`, and `docs/phase6_dynamic_report.md`.
