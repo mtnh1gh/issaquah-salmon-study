@@ -1,0 +1,4 @@
+species,model_id,lag_years,is_primary_lag,n_test_years,mae,rmse,r2
+Chinook,freshwater_marine_ols,3,False,17,1599.7256029097507,2315.7574820278696,-1.1221225793710694
+Chinook,freshwater_marine_ols,4,True,17,2037.937523255563,2401.941420427577,-1.2830169578203274
+Chinook,freshwater_marine_ols,5,False,17,2282.0948042854056,3268.2577340913585,-3.2268507156634962
