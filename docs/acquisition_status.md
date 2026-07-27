@@ -71,6 +71,8 @@ The WDFW response-definition gate is now passed for the available period. Annual
 
 King County station 0631 at SE 56th St is selected for the initial June–September temperature index. It supplies at least four grab samples in every response year; the upstream station is not selected because it has no 2009–2012 observations.
 
-Annual environmental summaries and a provisional master table have been built for 1997–2025. The master table deliberately leaves imperviousness and hatchery releases blank.
+Annual environmental summaries have been built for 1992–2025, with five pre-response years retained to support cohort lags. The provisional master table covers 1997–2025 and includes explicit cohort alignment, provenance, and value-status fields. It deliberately leaves imperviousness and hatchery releases blank.
+
+The Phase 2 validation gate passed all 14 critical checks: schema, keys, coverage, row counts, physical ranges, response reconciliation, WDFW published totals, temporal alignment, core missingness, blocker flags, temperature coverage, provenance, and feature-registry integrity. A repeated cached-input rebuild produced byte-identical processed outputs.
 
 Annual NLCD Collection 1.2 Fractional Impervious Surface is the approved land-use source. Official metadata are cached and an isolated raster-capable environment was prepared. Raster extraction is still pending because the MRLC WCS capabilities request timed out after two minutes and the official cloud mosaic returned requester-pays access responses. The remaining supported path is the provider's email-delivered AOI download or authorized requester-pays cloud access.

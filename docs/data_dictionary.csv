@@ -1,0 +1,37 @@
+field,type,units,definition,source_or_derivation,value_status,allowed_missing
+return_year,integer,year,Calendar year of adult trap return,WDFW event date,observed_key,no
+species,category,none,Chinook or Coho,WDFW species,observed_key,no
+hatchery_adults,integer,count,Sum of hatchery-origin Trap Estimate adult_count,WDFW Trap Estimate events,derived_from_observed_events,no
+wild_adults,integer,count,Sum of wild-origin Trap Estimate adult_count; zero where no wild-origin rows were reported,WDFW Trap Estimate events,derived_from_observed_events,no
+total_adults,integer,count,hatchery_adults plus wild_adults,derived,derived_from_observed_events,no
+hatchery_jacks,integer,count,Sum of hatchery-origin Trap Estimate jack_count,WDFW Trap Estimate events,derived_from_observed_events,no
+wild_jacks,integer,count,Sum of wild-origin Trap Estimate jack_count,WDFW Trap Estimate events,derived_from_observed_events,no
+total_jacks,integer,count,hatchery_jacks plus wild_jacks,derived,derived_from_observed_events,no
+adult_plus_jacks,integer,count,total_adults plus total_jacks,derived,derived_from_observed_events,no
+flow_water_year_mean_cfs,number,ft3/s,Mean daily discharge for water year ending in return year,USGS 12121600 daily values,derived_from_observed_measurements,no
+flow_jul_sep_mean_cfs,number,ft3/s,Mean daily discharge during July-September of return year,USGS 12121600 daily values,derived_from_observed_measurements,no
+flow_jul_sep_min_cfs,number,ft3/s,Minimum daily discharge during July-September of return year,USGS 12121600 daily values,derived_from_observed_measurements,no
+swe_apr01_inches,number,inches,April 1 start-of-day SWE in return year,NRCS SNOTEL 788,observed_date_value,no
+pdo_annual_mean,number,index,Mean of valid monthly PDO values in return year,NOAA PSL ERSSTv5 PDO,derived_from_observed_measurements,no
+temp_jun_sep_mean_c,number,deg C,Mean June-September grab-sample temperature in return year,King County station 0631,derived_from_observed_measurements,no
+temp_jun_sep_samples,integer,count,Number of grab samples in return-year temperature mean,King County station 0631,derived_coverage_count,no
+cohort_lag_years,integer,years,Primary cohort proxy lag: Coho 2 and Chinook 4,analysis protocol,protocol_parameter,no
+cohort_environment_year,integer,year,return_year minus cohort_lag_years,derived,derived_key,no
+cohort_flow_water_year_mean_cfs,number,ft3/s,Mean discharge in cohort proxy water year,USGS annual environmental table,derived_from_observed_measurements,no
+cohort_flow_jul_sep_mean_cfs,number,ft3/s,July-September mean discharge in cohort proxy year,USGS annual environmental table,derived_from_observed_measurements,no
+cohort_swe_apr01_inches,number,inches,April 1 SWE in cohort proxy year,NRCS annual environmental table,derived_from_observed_measurements,no
+cohort_temp_jun_sep_mean_c,number,deg C,Warm-season grab-sample index in cohort proxy year,King County annual environmental table,derived_from_observed_measurements,no
+marine_pdo_mean,number,index,Mean annual PDO after cohort proxy year through year before return,NOAA annual environmental table,derived_from_observed_measurements,no
+marine_pdo_start_year,integer,year,First year included in marine_pdo_mean,derived,derived_key,no
+marine_pdo_end_year,integer,year,Last year included in marine_pdo_mean,derived,derived_key,no
+impervious_pct,number,percent,Mean annual fractional impervious surface in approved basin,Annual NLCD Collection 1.2,not_available,yes
+hatchery_releases,integer,count,Actual cohort-aligned juvenile releases,RMIS or permitted FISH records,not_available,yes
+response_value_status,category,none,Status shared by response values,derived,provenance_flag,no
+environmental_value_status,category,none,Status shared by available environmental values,derived,provenance_flag,no
+impervious_value_status,category,none,Availability/status for impervious_pct,derived,provenance_flag,no
+releases_value_status,category,none,Availability/status for hatchery_releases,derived,provenance_flag,no
+response_source,text,none,Response source and event definition,source register,provenance,no
+environmental_sources,text,none,Semicolon-separated environmental source IDs,source register,provenance,no
+lag_definition,text,none,Human-readable species-specific primary lag definition,analysis protocol,protocol_parameter,no
+environmental_source_status,text,none,Environmental source completion summary,derived,provenance,no
+release_source_status,text,none,Release-source blocker summary,derived,provenance,no
