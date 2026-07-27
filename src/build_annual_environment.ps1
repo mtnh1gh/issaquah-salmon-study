@@ -23,9 +23,12 @@ function Min-OrNull {
     return [math]::Round([double](($valid | Measure-Object -Minimum).Minimum), 3)
 }
 
-$years = Import-Csv -LiteralPath $ReturnsPath |
+$responseYears = @(Import-Csv -LiteralPath $ReturnsPath |
     ForEach-Object { [int]$_.return_year } |
-    Sort-Object -Unique
+    Sort-Object -Unique)
+# Extend five years before the response series so pre-specified Chinook cohort
+# lags do not lose otherwise usable adult-return years.
+$years = (($responseYears[0] - 5)..$responseYears[-1])
 
 # USGS daily discharge. Water year Y runs from October Y-1 through September Y.
 $usgsJson = Get-Content -Raw -LiteralPath $UsgsPath | ConvertFrom-Json
@@ -110,7 +113,9 @@ $badFlow = @($output | Where-Object {
     $_.return_year -lt 2025 -and ($_.flow_water_year_days -lt 365 -or $_.flow_jul_sep_days -lt 92)
 })
 if ($badFlow.Count -gt 0) { throw "Unexpected incomplete USGS years: $($badFlow.return_year -join ', ')" }
-$badTemperature = @($output | Where-Object { $_.temp_jun_sep_samples -lt 4 })
+$badTemperature = @($output | Where-Object {
+    $_.return_year -in $responseYears -and $_.temp_jun_sep_samples -lt 4
+})
 if ($badTemperature.Count -gt 0) {
     throw "Temperature coverage rule failed for: $($badTemperature.return_year -join ', ')"
 }

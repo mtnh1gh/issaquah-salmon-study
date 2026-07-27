@@ -9,7 +9,7 @@ The reproducible scripts in `src/` produce:
 | Output | Rows | Coverage | Status |
 |---|---:|---|---|
 | `data/processed/wdfw_issaquah_annual_returns.csv` | 58 | Chinook and Coho, 1997–2025 | Validated |
-| `data/processed/issaquah_annual_environment.csv` | 29 | Annual predictors, 1997–2025 | Validated except imperviousness |
+| `data/processed/issaquah_annual_environment.csv` | 34 | Annual predictors, 1992–2025; pre-period supports cohort lags | Validated except imperviousness |
 | `data/processed/issaquah_creek_master.csv` | 58 | Species-year response and predictors, 1997–2025 | Provisional; releases and imperviousness intentionally blank |
 
 ## Response definition
@@ -42,6 +42,8 @@ Limitations:
 | `swe_apr01_inches` | NRCS Stampede Pass station 788 start-of-day SWE on April 1 | Exact date |
 | `pdo_annual_mean` | Mean of valid NOAA monthly PDO values in return year | 12 months |
 | `temp_jun_sep_mean_c` | Arithmetic mean of King County grab samples during June–September | At least 4 samples |
+
+The master table additionally aligns primary cohort proxies at `return_year - 2` for Coho and `return_year - 4` for Chinook. Chinook lags 3 and 5 remain required sensitivity cases. Marine PDO is averaged from the year after the cohort proxy through the year before adult return.
 
 ## Temperature station decision
 
