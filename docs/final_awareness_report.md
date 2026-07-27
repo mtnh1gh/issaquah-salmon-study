@@ -26,6 +26,18 @@ For each retained Coho model, each environmental input was extrapolated from its
 
 These projections are dynamic sensitivity illustrations. They are not authoritative climate projections, management forecasts, or calibrated prediction intervals. PDO is treated as an external uncertain input; hatchery releases and imperviousness remain implicitly constant because they are unavailable.
 
+### How to interpret the gradual upward projection
+
+The gradual upward movement in the dynamic figure is produced by the projection recipe, not by evidence that salmon returns will increase. The procedure extends observed environmental trends, adds annual variability, applies the fitted Coho model coefficients, and then adds held-out prediction residuals. The combined coefficients and extrapolated input trends happen to produce increasing modeled values.
+
+Therefore, the upward slope does not establish a salmon recovery trend, causation, or an official climate expectation. It is a model-generated result under stated assumptions, and the wide uncertainty bands indicate substantial uncertainty about both direction and magnitude.
+
+### How this analysis is useful
+
+The study is structured decision support rather than a precise count forecast. It identifies which indicators changed, compares Chinook and Coho behavior, tests whether environmental models improve on simple baselines, quantifies uncertainty, and shows what the models imply under alternative input assumptions. It also identifies the value of obtaining hatchery-release and land-use data and provides a reproducible baseline that can be rerun when better data become available.
+
+Use the projections for questions such as “what would the model imply if these environmental patterns continued?” Do not use them alone to set restoration targets, hatchery policy, harvest limits, or guaranteed population expectations.
+
 ## Predictive evidence
 
 Six interpretable association models and two naive comparators were evaluated using 17 expanding-window validation years. Three Coho candidates improved on both naive error measures; no Chinook candidate did. The retained Coho models have wide bootstrap uncertainty, and their empirical held-out intervals covered 88.2% of test years. This is insufficient to claim calibrated forecasting intervals.
