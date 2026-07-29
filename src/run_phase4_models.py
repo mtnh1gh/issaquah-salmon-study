@@ -20,8 +20,8 @@ import scipy
 from scipy import stats
 
 
-MASTER_PATH = ROOT / "data/processed/issaquah_creek_master.csv"
-ENV_PATH = ROOT / "data/processed/issaquah_annual_environment.csv"
+MASTER_PATH = ROOT / "data/gold/issaquah_creek_master.csv"
+ENV_PATH = ROOT / "data/silver/issaquah_annual_environment.csv"
 TABLE_DIR = ROOT / "outputs/tables"
 FIGURE_DIR = ROOT / "outputs/figures"
 REPORT_PATH = ROOT / "docs/statistical_analysis_report.md"
@@ -509,6 +509,8 @@ def write_registry(summary: pd.DataFrame, diagnostics: pd.DataFrame) -> None:
     master_hash = hashlib.sha256(MASTER_PATH.read_bytes()).hexdigest().upper()
     lines = [
         "# Model registry",
+        "",
+        "See `docs/model_summary.md` for a plain-language explanation of these models, the validation design, and how they feed the Phase 5/6 uncertainty and scenario work.",
         "",
         "Phase 4 experiments generated 2026-07-27.",
         "",

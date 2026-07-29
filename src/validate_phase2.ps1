@@ -1,7 +1,7 @@
 param(
-    [string]$ReturnsPath = "data/processed/wdfw_issaquah_annual_returns.csv",
-    [string]$EnvironmentPath = "data/processed/issaquah_annual_environment.csv",
-    [string]$MasterPath = "data/processed/issaquah_creek_master.csv",
+    [string]$ReturnsPath = "data/silver/wdfw_issaquah_annual_returns.csv",
+    [string]$EnvironmentPath = "data/silver/issaquah_annual_environment.csv",
+    [string]$MasterPath = "data/gold/issaquah_creek_master.csv",
     [string]$FeatureRegistryPath = "docs/feature_registry.csv",
     [string]$ReportPath = "docs/data_validation_report.md"
 )

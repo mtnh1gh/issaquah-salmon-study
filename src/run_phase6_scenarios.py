@@ -15,7 +15,7 @@ TABLE_DIR = ROOT / "outputs/tables"; FIGURE_DIR = ROOT / "outputs/figures"
 SCENARIOS = {"low": 0.10, "central": 0.50, "high": 0.90}
 
 def main() -> None:
-    master = pd.read_csv(ROOT / "data/processed/issaquah_creek_master.csv")
+    master = pd.read_csv(ROOT / "data/gold/issaquah_creek_master.csv")
     predictions = pd.read_csv(TABLE_DIR / "phase4_rolling_predictions.csv")
     validation = pd.read_csv(TABLE_DIR / "phase4_model_validation.csv")
     retained = validation[(validation["scenario_eligible"]) & (validation["species"] == "Coho")]["model_id"].tolist()

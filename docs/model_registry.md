@@ -1,5 +1,7 @@
 # Model registry
 
+See `docs/model_summary.md` for a plain-language explanation of these models, the validation design, and how they feed the Phase 5/6 uncertainty and scenario work.
+
 Phase 4 experiments generated 2026-07-27.
 
 Data-version ID: `issaquah_creek_master.csv`; SHA-256 `0AFAC071E4C5D2BF1C3631E073DEA3CE829776903A928B7BF71A3F0ACC15D92C`.

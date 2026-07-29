@@ -201,12 +201,13 @@ Each week should follow this pattern:
 
 ## 6. Output folders
 
-- data/raw: original downloaded datasets
-- data/processed: cleaned master dataset
-- notebooks: EDA, statistical analysis, and modeling notebooks
+- data/bronze: original downloaded datasets, dated and checksummed per source (raw layer)
+- data/silver: cleaned, source-conformed annual tables (silver layer)
+- data/gold: joined, cohort-aligned, model-ready master dataset (gold layer)
 - src: reusable data pipeline, feature engineering, and modeling code
 - outputs/figures: charts and plots
-- outputs/report: final report files
+- outputs/tables: analysis and model result tables
+- docs: source/decision/validation registers and analysis reports
 
 ---
 
@@ -454,7 +455,7 @@ Create these text-based files under `docs/` before collecting data. The project 
 | `docs/decision_log.md` | Scope, method, source, and scenario decisions | Immediately after a material decision |
 | `docs/data_validation_report.md` | Results of automated and manual quality checks | Each processed-data build |
 
-Suggested supporting folders: `docs/templates/`, `data/raw/<source>/<access-date>/`, `data/interim/`, `data/processed/`, `outputs/tables/`, and `tests/`. Never overwrite a raw download; store a new dated snapshot.
+Suggested supporting folders: `docs/templates/`, `data/bronze/<source>/<access-date>/`, `data/silver/`, `data/gold/`, `outputs/tables/`, and `tests/`. Never overwrite a raw download; store a new dated snapshot.
 
 ### 10.2 Pipeline architecture
 
