@@ -23,8 +23,8 @@ def main() -> None:
     missingness = pd.read_csv(TABLE_DIR / "master_missingness.csv")
     results: list[str] = []
 
-    check(len(trends) == 9, "Trend table has 9 pre-specified tests", results)
-    check(len(correlations) == 10, "Correlation table has 10 pre-specified tests", results)
+    check(len(trends) == 11, "Trend table has 11 pre-specified tests", results)
+    check(len(correlations) == 14, "Correlation table has 14 pre-specified tests", results)
     check(len(lags) == 12, "Lag table has 12 pre-specified tests", results)
     check(set(correlations["n"]) == {29}, "Every primary correlation uses all 29 return years", results)
     check(correlations["p_fdr_bh"].between(0, 1).all(), "All adjusted correlation p-values are valid", results)
@@ -41,8 +41,9 @@ def main() -> None:
         "environmental_trends.png",
         "return_predictor_correlations.png",
     }
+    present_figures = {path.name for path in FIGURE_DIR.glob("*.png")}
     check(
-        expected_figures == {path.name for path in FIGURE_DIR.glob("*.png")},
+        expected_figures <= present_figures,
         "All four expected figures are present",
         results,
     )

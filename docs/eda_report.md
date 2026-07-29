@@ -21,9 +21,10 @@ Neither species has a monotonic total-adult trend that passes the pre-specified 
 
 | Indicator | Kendall tau | BH-adjusted p | Theil–Sen change/year |
 |---|---:|---:|---:|
-| April 1 SWE | -0.351 | 0.025 | -0.887 |
-| Annual PDO | -0.315 | 0.027 | -0.055 |
-| Adult migration temperature | 0.338 | 0.025 | 0.050 |
+| April 1 SWE | -0.351 | 0.024 | -0.887 |
+| Annual PDO | -0.315 | 0.028 | -0.055 |
+| Annual NPGO | -0.522 | 0.000 | -0.129 |
+| Adult migration temperature | 0.338 | 0.024 | 0.050 |
 
 These monotonic environmental trends are indicators over the study period; they do not establish that the trend caused salmon-return variation.
 
@@ -31,10 +32,10 @@ These monotonic environmental trends are indicators over the study period; they 
 
 | Species | Predictor | Spearman rho | Block-bootstrap 95% CI | Raw p | BH-adjusted p |
 |---|---|---:|---:|---:|---:|
-| Coho | Marine-window PDO | -0.360 | [-0.685, 0.016] | 0.055 | 0.378 |
-| Chinook | Adult migration flow | -0.321 | [-0.559, 0.046] | 0.089 | 0.378 |
-| Chinook | Adult migration temperature | -0.300 | [-0.593, -0.014] | 0.113 | 0.378 |
-| Coho | Adult migration flow | 0.094 | [-0.353, 0.503] | 0.627 | 0.947 |
+| Coho | Marine-window ONI | -0.509 | [-0.740, -0.189] | 0.005 | 0.067 |
+| Coho | Marine-window PDO | -0.360 | [-0.685, 0.016] | 0.055 | 0.385 |
+| Chinook | Adult migration flow | -0.321 | [-0.559, 0.046] | 0.089 | 0.397 |
+| Chinook | Adult migration temperature | -0.300 | [-0.593, -0.014] | 0.113 | 0.397 |
 
 The moving-block bootstrap uses three-year blocks to partially reflect temporal dependence. With only 29 years, intervals are expected to be wide.
 
@@ -67,4 +68,4 @@ No core response or available environmental feature is missing. Releases and imp
 .\.venv\Scripts\python.exe .\src\run_eda.py
 ```
 
-Runtime: Python 3.14.6, pandas 3.0.5, NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.1.
+Runtime: Python 3.13.7, pandas 3.0.5, NumPy 2.3.2, SciPy 1.18.0, Matplotlib 3.11.1.
