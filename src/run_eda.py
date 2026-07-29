@@ -32,6 +32,8 @@ PREDICTORS = [
     "cohort_flow_water_year_mean_cfs",
     "cohort_swe_apr01_inches",
     "marine_pdo_mean",
+    "marine_npgo_mean",
+    "marine_oni_mean",
 ]
 
 LABELS = {
@@ -41,9 +43,13 @@ LABELS = {
     "cohort_swe_apr01_inches": "Cohort-year April 1 SWE",
     "cohort_temp_jun_sep_mean_c": "Cohort-year temperature",
     "marine_pdo_mean": "Marine-window PDO",
+    "marine_npgo_mean": "Marine-window NPGO",
+    "marine_oni_mean": "Marine-window ONI",
     "flow_water_year_mean_cfs": "Water-year flow",
     "swe_apr01_inches": "April 1 SWE",
     "pdo_annual_mean": "Annual PDO",
+    "npgo_annual_mean": "Annual NPGO",
+    "oni_annual_mean": "Annual ONI",
     "total_adults": "Total adults",
     "hatchery_adults": "Hatchery-origin adults",
     "wild_adults": "Wild-origin adults",
@@ -133,6 +139,8 @@ def make_trend_table(master: pd.DataFrame, env: pd.DataFrame) -> pd.DataFrame:
         "flow_jul_sep_mean_cfs",
         "swe_apr01_inches",
         "pdo_annual_mean",
+        "npgo_annual_mean",
+        "oni_annual_mean",
         "temp_jun_sep_mean_c",
     ]:
         response_period = env[env["return_year"].between(1997, 2025)]
@@ -292,8 +300,10 @@ def plot_environment(env: pd.DataFrame) -> None:
         ("temp_jun_sep_mean_c", "June–September temperature (°C)"),
         ("swe_apr01_inches", "April 1 SWE (inches)"),
         ("pdo_annual_mean", "Annual PDO index"),
+        ("npgo_annual_mean", "Annual NPGO index"),
+        ("oni_annual_mean", "Annual ONI index"),
     ]
-    fig, axes = plt.subplots(2, 2, figsize=(12, 8), sharex=True)
+    fig, axes = plt.subplots(2, 3, figsize=(16, 8), sharex=True)
     for axis, (variable, label) in zip(axes.flat, panels):
         axis.plot(plot_data["return_year"], plot_data[variable], marker="o", ms=3)
         slope = stats.theilslopes(plot_data[variable], plot_data["return_year"]).slope
@@ -311,6 +321,7 @@ def plot_environment(env: pd.DataFrame) -> None:
         axis.grid(alpha=0.2)
     axes[-1, 0].set_xlabel("Year")
     axes[-1, 1].set_xlabel("Year")
+    axes[-1, 2].set_xlabel("Year")
     fig.suptitle("Environmental indicators, response period")
     fig.tight_layout()
     fig.savefig(FIGURE_DIR / "environmental_trends.png", dpi=180)

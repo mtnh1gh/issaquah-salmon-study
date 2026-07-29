@@ -14,9 +14,13 @@ Each species has 17 rolling-origin test years (2009-2025). Every fold trains onl
 |---|---|---:|---:|---:|---|---|---|
 | Chinook | `previous_year` | 1180 | 1414 | 0.209 | False | False | False |
 | Chinook | `freshwater_marine_ols` | 2038 | 2402 | -1.283 | False | False | False |
+| Chinook | `all_environment_ocean_ridge` | 2092 | 2519 | -1.511 | False | False | False |
 | Chinook | `all_environment_ridge` | 2074 | 2538 | -1.549 | False | False | False |
+| Chinook | `ocean_index_ols` | 2327 | 2679 | -1.839 | False | False | False |
 | Chinook | `expanding_mean` | 2385 | 2693 | -1.870 | False | False | False |
 | Chinook | `migration_marine_ols` | 2609 | 4314 | -6.365 | False | False | False |
+| Coho | `all_environment_ocean_ridge` | 3149 | 4058 | -0.047 | True | True | True |
+| Coho | `ocean_index_ols` | 3355 | 4203 | -0.124 | True | True | True |
 | Coho | `all_environment_ridge` | 3620 | 4285 | -0.168 | True | True | True |
 | Coho | `freshwater_marine_ols` | 3857 | 4805 | -0.469 | True | True | True |
 | Coho | `migration_marine_ols` | 3713 | 4878 | -0.514 | True | True | True |
@@ -31,27 +35,35 @@ Coefficients below are multiplicative changes in the fitted median count per one
 
 | Species | Model | Strongest standardized association | Multiplier per 1 SD |
 |---|---|---|---:|
+| Chinook | `all_environment_ocean_ridge` | Cohort-year April 1 SWE (+0.051 log units) | 1.052x |
 | Chinook | `all_environment_ridge` | Cohort-year April 1 SWE (+0.052 log units) | 1.054x |
 | Chinook | `freshwater_marine_ols` | Cohort-year April 1 SWE (+0.273 log units) | 1.314x |
 | Chinook | `migration_marine_ols` | Adult migration temperature (-0.148 log units) | 0.863x |
+| Chinook | `ocean_index_ols` | Marine-window NPGO (+0.087 log units) | 1.091x |
+| Coho | `all_environment_ocean_ridge` | Marine-window ONI (-0.296 log units) | 0.744x |
 | Coho | `all_environment_ridge` | Marine-window PDO (-0.044 log units) | 0.957x |
 | Coho | `freshwater_marine_ols` | Marine-window PDO (-0.204 log units) | 0.816x |
 | Coho | `migration_marine_ols` | Marine-window PDO (-0.198 log units) | 0.820x |
+| Coho | `ocean_index_ols` | Marine-window ONI (-0.408 log units) | 0.665x |
 
 ## Diagnostics
 
 | Species | Model | Alpha | Shapiro p | Durbin-Watson | Max Cook's D (year) | Max VIF |
 |---|---|---:|---:|---:|---:|---:|
+| Chinook | `all_environment_ocean_ridge` | 100.0 | 0.232 | 1.027 | 0.037 (2001) | 2.75 |
 | Chinook | `all_environment_ridge` | 100.0 | 0.283 | 1.023 | 0.044 (2001) | 1.36 |
 | Chinook | `freshwater_marine_ols` | 0.0 | 0.378 | 1.372 | 0.168 (2007) | 1.20 |
 | Chinook | `migration_marine_ols` | 0.0 | 0.379 | 1.346 | 0.340 (1997) | 1.11 |
+| Chinook | `ocean_index_ols` | 0.0 | 0.525 | 0.985 | 0.184 (2004) | 2.30 |
+| Coho | `all_environment_ocean_ridge` | 10.0 | 0.164 | 2.164 | 0.318 (2010) | 1.79 |
 | Coho | `all_environment_ridge` | 100.0 | 0.139 | 2.154 | 0.123 (2010) | 1.40 |
 | Coho | `freshwater_marine_ols` | 0.0 | 0.105 | 2.125 | 0.500 (2010) | 1.16 |
 | Coho | `migration_marine_ols` | 0.0 | 0.068 | 2.160 | 0.557 (2010) | 1.07 |
+| Coho | `ocean_index_ols` | 0.0 | 0.088 | 2.168 | 0.232 (2010) | 1.64 |
 
 Cook's distance is a screening diagnostic; years exceeding roughly `4/n` warrant sensitivity review. Ridge leverage/Cook values are approximate. VIF describes predictor collinearity, not model validity.
 
-Excluding each model's highest-Cook's-distance year caused 5 coefficient sign changes across 22 coefficients. Detailed estimates are in `outputs/tables/phase4_influence_sensitivity.csv`.
+Excluding each model's highest-Cook's-distance year caused 13 coefficient sign changes across 42 coefficients. Detailed estimates are in `outputs/tables/phase4_influence_sensitivity.csv`.
 
 ## Chinook lag sensitivity
 
@@ -79,4 +91,4 @@ Lag sensitivity is evaluated with the same rolling-origin design. Material error
 .\.venv\Scripts\python.exe .\src\validate_phase4.py
 ```
 
-Runtime: Python 3.14.6, pandas 3.0.5, NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.1.
+Runtime: Python 3.13.7, pandas 3.0.5, NumPy 2.3.2, SciPy 1.18.0, Matplotlib 3.11.1.

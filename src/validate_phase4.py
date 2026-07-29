@@ -24,25 +24,25 @@ def main() -> None:
     lags = pd.read_csv(TABLE_DIR / "phase4_chinook_lag_sensitivity.csv")
     results: list[str] = []
 
-    check(len(validation) == 10, "Ten species/model experiments are registered", results)
-    check(len(predictions) == 170, "All 17 rolling-origin years exist for ten experiments", results)
+    check(len(validation) == 14, "14 species/model experiments are registered", results)
+    check(len(predictions) == 238, "All 17 rolling-origin years exist for 14 experiments", results)
     check(set(predictions["n_train"]) == set(range(12, 29)), "Training windows expand from 12 through 28 years", results)
     check((predictions["train_end_year"] < predictions["test_year"]).all(), "No validation fold trains on its test year or the future", results)
     check(predictions[["actual", "predicted"]].notna().all().all(), "All validation outcomes and predictions are finite", results)
     check((predictions["predicted"] >= 0).all(), "All back-transformed count predictions are nonnegative", results)
-    check(len(coefficients) == 22, "All 22 pre-specified model coefficients are present", results)
-    check(len(diagnostics) == 6, "All six fitted association models have diagnostics", results)
-    check(len(influence) == 22, "Every coefficient has an influential-year sensitivity estimate", results)
+    check(len(coefficients) == 42, "All 42 pre-specified model coefficients are present", results)
+    check(len(diagnostics) == 10, "All ten fitted association models have diagnostics", results)
+    check(len(influence) == 42, "Every coefficient has an influential-year sensitivity estimate", results)
     check(set(lags["lag_years"]) == {3, 4, 5}, "Chinook lag sensitivity covers lags 3, 4, and 5", results)
     check(lags.loc[lags["is_primary_lag"], "lag_years"].tolist() == [4], "Chinook lag 4 is the sole primary lag", results)
     check(
         validation.loc[validation["species"] == "Chinook", "scenario_eligible"].sum() == 0,
-        "No Chinook model passes the scenario-eligibility gate",
+        "No Chinook model passes the scenario-eligibility gate, including the two new ocean-index candidates (D-020)",
         results,
     )
     check(
-        validation.loc[validation["species"] == "Coho", "scenario_eligible"].sum() == 3,
-        "Three Coho candidates pass the preliminary baseline gate",
+        validation.loc[validation["species"] == "Coho", "scenario_eligible"].sum() == 5,
+        "Five Coho candidates pass the preliminary baseline gate after adding the two ocean-index models (D-020)",
         results,
     )
     check((ROOT / "docs/statistical_analysis_report.md").is_file(), "Statistical report is present", results)
