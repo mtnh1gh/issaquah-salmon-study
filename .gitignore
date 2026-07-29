@@ -208,7 +208,7 @@ __marimo__/
 
 # King County's source terms restrict redistribution of the raw basin polygon.
 # Keep the local analytical copy while committing its checksum and provenance.
-data/raw/king_county_gis/*/king_county_issaquah_creek_basin.geojson
+data/bronze/king_county_gis/*/king_county_issaquah_creek_basin.geojson
 
 # Local Matplotlib cache used by reproducible non-interactive analysis scripts.
 .matplotlib-cache/

@@ -1,6 +1,6 @@
 ﻿# Data validation report
 
-Generated: 2026-07-26T21:26:33-07:00
+Generated: 2026-07-29T09:23:22-07:00
 
 Inputs are cached local snapshots; no live API was used.
 

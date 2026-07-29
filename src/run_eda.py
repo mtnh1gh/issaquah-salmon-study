@@ -19,8 +19,8 @@ import scipy
 from scipy import stats
 
 
-MASTER_PATH = ROOT / "data/processed/issaquah_creek_master.csv"
-ENV_PATH = ROOT / "data/processed/issaquah_annual_environment.csv"
+MASTER_PATH = ROOT / "data/gold/issaquah_creek_master.csv"
+ENV_PATH = ROOT / "data/silver/issaquah_annual_environment.csv"
 TABLE_DIR = ROOT / "outputs/tables"
 FIGURE_DIR = ROOT / "outputs/figures"
 REPORT_PATH = ROOT / "docs/eda_report.md"

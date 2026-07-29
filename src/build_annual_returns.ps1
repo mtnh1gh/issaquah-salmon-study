@@ -1,6 +1,6 @@
 param(
-    [string]$InputPath = "data/raw/wdfw/2026-07-19/wdfw_issaquah_hatchery_chinook_coho_adult_return_events.csv",
-    [string]$OutputPath = "data/processed/wdfw_issaquah_annual_returns.csv"
+    [string]$InputPath = "data/bronze/wdfw/2026-07-19/wdfw_issaquah_hatchery_chinook_coho_adult_return_events.csv",
+    [string]$OutputPath = "data/silver/wdfw_issaquah_annual_returns.csv"
 )
 
 $ErrorActionPreference = "Stop"

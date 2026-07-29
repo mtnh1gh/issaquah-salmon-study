@@ -27,13 +27,13 @@ Required next action:
 
 ### 2. RMIS/FISH hatchery releases — API access blocked
 
-The documented RMIS API is available at `https://phish.rmis.org/release`, but a read-only request returned HTTP 401 (`No authorization token`). Its published API specification declares API-key/JWT authentication. The cached OpenAPI schema and probe response are retained under `data/raw/rmis/2026-07-19/`.
+The documented RMIS API is available at `https://phish.rmis.org/release`, but a read-only request returned HTTP 401 (`No authorization token`). Its published API specification declares API-key/JWT authentication. The cached OpenAPI schema and probe response are retained under `data/bronze/rmis/2026-07-19/`.
 
 Required next action:
 
 1. Query release records for Issaquah Hatchery and relevant Issaquah Creek release locations, separately by Chinook and Coho.
 2. Export fields for release year/date, species/stock, life stage, release number, release location, marks, and data owner.
-3. Save the unmodified export under `data/raw/rmis/<access-date>/` and add it to both registers.
+3. Save the unmodified export under `data/bronze/rmis/<access-date>/` and add it to both registers.
 4. Do not merge releases until the cohort/life-stage lag table is approved.
 
 ### 3. Water temperature — source acquired; feature definition pending
@@ -76,3 +76,34 @@ Annual environmental summaries have been built for 1992–2025, with five pre-re
 The Phase 2 validation gate passed all 14 critical checks: schema, keys, coverage, row counts, physical ranges, response reconciliation, WDFW published totals, temporal alignment, core missingness, blocker flags, temperature coverage, provenance, and feature-registry integrity. A repeated cached-input rebuild produced byte-identical processed outputs.
 
 Annual NLCD Collection 1.2 Fractional Impervious Surface is the approved land-use source. Official metadata are cached and an isolated raster-capable environment was prepared. Raster extraction is still pending because the MRLC WCS capabilities request timed out after two minutes and the official cloud mosaic returned requester-pays access responses. The remaining supported path is the provider's email-delivered AOI download or authorized requester-pays cloud access.
+
+## Candidate-data exploration — 2026-07-29
+
+Prompted by a request to identify additional data that could strengthen the analysis. This pass acquired two new clean numeric candidate sources and cached three supporting/qualitative documents; nothing here has been added to `src/feature_registry.csv` as `included_in_model: yes` or wired into the Phase 3–6 scripts — that requires the same decision/approval step every other feature went through.
+
+### RMIS hatchery releases — re-confirmed blocked, no anonymous path exists
+
+Re-checked whether an unauthenticated path exists beyond the API probe in D-005. The RMPC public site's `data-selection/rmis-files/`, `data-selection/rmis-queries/`, and `data-selection/find-tag/` pages were inspected directly: every one of them routes exclusively to the same login-gated `rmis.org` system (`rmis_login.php`) for both the `cwt` and `rar` systems, with no anonymous query or bulk-file path. The Issaquah hatchery's own public site (`issaquahfish.org/operations/`) was also checked as an alternative; it states only a static typical annual production figure ("roughly 3,500,000 Chinook and 1,000,000 coho," "about half a million yearling coho and 3 million juvenile Chinook" released each spring) with no year-by-year records or dates. **No path to an annual, cohort-aligned release series was found without direct RMIS authorization or a bespoke data request to FISH/WDFW.** R-003 and D-005 stand as written.
+
+### New candidate ocean-condition indices — acquired, not yet integrated
+
+Two additional marine-condition proxies were downloaded as clean numeric series, cached under `data/bronze/npgo/2026-07-29/` and `data/bronze/noaa_oni/2026-07-29/`, and registered in both `docs/source_register.csv` and `docs/data_inventory.csv`:
+
+- **NPGO** (North Pacific Gyre Oscillation), monthly, 1950–2025 — often reported as a stronger Pacific NW salmon-survival correlate than PDO in the literature, since it captures gyre-scale circulation/productivity rather than just SST.
+- **ONI** (Oceanic Nino Index), seasonal, 1950–2026 — a distinct El Nino/La Nina signal, uncorrelated enough with PDO/NPGO to be worth testing separately rather than assumed redundant.
+
+Both need the same seasonal-aggregation-and-lag-definition decision that PDO already went through (see D-with-pending-number below) before either can enter `feature_registry.csv` as an active predictor.
+
+### New supporting documents — pinniped predation and harvest management
+
+Three PDF reports were cached as qualitative/supporting evidence, the same tier as the legacy WDFW escapement PDFs (D-003) — none contain a machine-extracted numeric series, since no PDF-parsing tool is available in this environment:
+
+- `data/bronze/pinniped_predation/2026-07-29/wdfw_pinniped_predation_salish_sea_outer_coast.pdf` — statewide WDFW pinniped-predation assessment.
+- `data/bronze/pinniped_predation/2026-07-29/ballard_locks_pinniped_mgmt_recommendations_2024.pdf` — WRIA 8 (the same Cedar-Sammamish watershed group as Issaquah Creek) technical workshop recommendations specifically on pinniped predation at the Ballard Locks, the choke point every Issaquah Creek adult return must pass through en route from Puget Sound via Lake Washington. **Fetched without TLS certificate verification** — the source server presented a King County multi-domain certificate that does not list `govlink.org` as a subject alternative name. The cached SHA-256 fixes what was retrieved, but treat this document as unverified pending a re-fetch from a certificate-valid mirror.
+- `data/bronze/harvest_management/2026-07-29/wdfw_tribal_2025_management_objectives_chinook_coho.pdf` and `wdfw_puget_sound_chinook_comprehensive_mgmt_plan.pdf` — WDFW/tribal co-manager harvest and exploitation-rate framework documents for Puget Sound Chinook/Coho, relevant because escapement counts already net out pre-terminal harvest, a source of return variance not represented in any current feature.
+
+A Columbia River/Bonneville-focused USACE pinniped report was also fetched during this pass and then discarded after review showed it covers a different watershed (hundreds of miles away, unrelated to Lake Washington/Issaquah Creek) — noted here so the omission isn't mistaken for an oversight.
+
+### Recommended next decision-log entries
+
+None of the above have decision-log entries yet because none has been approved as an active feature — that step is intentionally left for the project lead, matching how every other feature in `feature_registry.csv` was added only after an explicit accepted decision.

@@ -1,10 +1,10 @@
 param(
-    [string]$ReturnsPath = "data/processed/wdfw_issaquah_annual_returns.csv",
-    [string]$UsgsPath = "data/raw/usgs/2026-07-19/usgs_12121600_daily_discharge_1986-10-01_2025-09-30.json",
-    [string]$SnotelPath = "data/raw/nrcs/2026-07-19/nrcs_snotel_788_stampede_pass_daily_swe_1980-04-01_2025-04-01.csv",
-    [string]$PdoPath = "data/raw/noaa/2026-07-19/noaa_pdo_ersstv5.csv",
-    [string]$TemperaturePath = "data/raw/king_county/2026-07-19/king_county_issaquah_creek_temperature_grab_samples.csv",
-    [string]$OutputPath = "data/processed/issaquah_annual_environment.csv"
+    [string]$ReturnsPath = "data/silver/wdfw_issaquah_annual_returns.csv",
+    [string]$UsgsPath = "data/bronze/usgs/2026-07-19/usgs_12121600_daily_discharge_1986-10-01_2025-09-30.json",
+    [string]$SnotelPath = "data/bronze/nrcs/2026-07-19/nrcs_snotel_788_stampede_pass_daily_swe_1980-04-01_2025-04-01.csv",
+    [string]$PdoPath = "data/bronze/noaa/2026-07-19/noaa_pdo_ersstv5.csv",
+    [string]$TemperaturePath = "data/bronze/king_county/2026-07-19/king_county_issaquah_creek_temperature_grab_samples.csv",
+    [string]$OutputPath = "data/silver/issaquah_annual_environment.csv"
 )
 
 $ErrorActionPreference = "Stop"

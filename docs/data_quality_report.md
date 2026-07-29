@@ -8,9 +8,9 @@ The reproducible scripts in `src/` produce:
 
 | Output | Rows | Coverage | Status |
 |---|---:|---|---|
-| `data/processed/wdfw_issaquah_annual_returns.csv` | 58 | Chinook and Coho, 1997–2025 | Validated |
-| `data/processed/issaquah_annual_environment.csv` | 34 | Annual predictors, 1992–2025; pre-period supports cohort lags | Validated except imperviousness |
-| `data/processed/issaquah_creek_master.csv` | 58 | Species-year response and predictors, 1997–2025 | Provisional; releases and imperviousness intentionally blank |
+| `data/silver/wdfw_issaquah_annual_returns.csv` | 58 | Chinook and Coho, 1997–2025 | Validated |
+| `data/silver/issaquah_annual_environment.csv` | 34 | Annual predictors, 1992–2025; pre-period supports cohort lags | Validated except imperviousness |
+| `data/gold/issaquah_creek_master.csv` | 58 | Species-year response and predictors, 1997–2025 | Provisional; releases and imperviousness intentionally blank |
 
 ## Response definition
 

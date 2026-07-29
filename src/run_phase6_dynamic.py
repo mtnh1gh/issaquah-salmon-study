@@ -19,8 +19,8 @@ TABLE_DIR = ROOT / "outputs/tables"; FIGURE_DIR = ROOT / "outputs/figures"
 YEARS = np.arange(2026, 2041); SCENARIOS = {"higher_input": 1, "trend_only": 0, "lower_input": -1}; DRAWS = 1000; SEED = 20260727
 
 def main() -> None:
-    master = pd.read_csv(ROOT / "data/processed/issaquah_creek_master.csv")
-    env = pd.read_csv(ROOT / "data/processed/issaquah_annual_environment.csv").set_index("return_year")
+    master = pd.read_csv(ROOT / "data/gold/issaquah_creek_master.csv")
+    env = pd.read_csv(ROOT / "data/silver/issaquah_annual_environment.csv").set_index("return_year")
     validation = pd.read_csv(TABLE_DIR / "phase4_model_validation.csv")
     retained = validation[(validation["scenario_eligible"]) & (validation["species"] == "Coho")]["model_id"].tolist()
     hist = env.loc[1997:2025]
