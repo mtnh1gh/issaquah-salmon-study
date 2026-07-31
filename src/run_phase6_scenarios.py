@@ -9,7 +9,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from run_phase4_models import MODEL_FEATURES, fit_linear, predict_linear, standardize_train_test
+from run_phase4_models import MODEL_FEATURES, RIDGE_MODEL_IDS, fit_linear, predict_linear, standardize_train_test
 
 TABLE_DIR = ROOT / "outputs/tables"; FIGURE_DIR = ROOT / "outputs/figures"
 SCENARIOS = {"low": 0.10, "central": 0.50, "high": 0.90}
@@ -26,7 +26,7 @@ def main() -> None:
         data = master[master["species"] == "Coho"].sort_values("return_year")
         x_raw = data[features].to_numpy(float); y = np.log1p(data["total_adults"].to_numpy(float))
         x, _, means, scales = standardize_train_test(x_raw, x_raw)
-        alpha = 100.0 if model_id == "all_environment_ridge" else 0.0
+        alpha = 100.0 if model_id in RIDGE_MODEL_IDS else 0.0
         coef = fit_linear(x, y, alpha)
         residuals = y - predict_linear(x, coef)
         held = predictions[(predictions["species"] == "Coho") & (predictions["model_id"] == model_id)]

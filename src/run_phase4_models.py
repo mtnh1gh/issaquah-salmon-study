@@ -46,7 +46,25 @@ MODEL_FEATURES = {
         "cohort_swe_apr01_inches",
         "marine_pdo_mean",
     ],
+    "ocean_index_ols": [
+        "marine_pdo_mean",
+        "marine_npgo_mean",
+        "marine_oni_mean",
+    ],
+    "all_environment_ocean_ridge": [
+        "flow_jul_sep_mean_cfs",
+        "temp_jun_sep_mean_c",
+        "cohort_flow_water_year_mean_cfs",
+        "cohort_swe_apr01_inches",
+        "marine_pdo_mean",
+        "marine_npgo_mean",
+        "marine_oni_mean",
+    ],
 }
+
+# Models added under D-020 alongside the three already-decided Phase 4 models
+# (D-014); ridge alpha selection applies to both ridge-fit model IDs.
+RIDGE_MODEL_IDS = ("all_environment_ridge", "all_environment_ocean_ridge")
 
 LABELS = {
     "flow_jul_sep_mean_cfs": "Adult migration flow",
@@ -54,6 +72,8 @@ LABELS = {
     "cohort_flow_water_year_mean_cfs": "Cohort-year flow",
     "cohort_swe_apr01_inches": "Cohort-year April 1 SWE",
     "marine_pdo_mean": "Marine-window PDO",
+    "marine_npgo_mean": "Marine-window NPGO",
+    "marine_oni_mean": "Marine-window ONI",
 }
 
 
@@ -145,7 +165,7 @@ def rolling_predictions(master: pd.DataFrame) -> pd.DataFrame:
                         data.loc[: test_index - 1, features].to_numpy(float),
                         train["total_adults"].to_numpy(float),
                     )
-                    if model_id == "all_environment_ridge"
+                    if model_id in RIDGE_MODEL_IDS
                     else 0.0
                 )
                 coefficients = fit_linear(
@@ -213,7 +233,7 @@ def final_model_tables(
         for model_id, features in MODEL_FEATURES.items():
             x_raw = data[features].to_numpy(float)
             x, _, means, scales = standardize_train_test(x_raw, x_raw)
-            alpha = inner_select_alpha(x_raw, data["total_adults"].to_numpy(float)) if model_id == "all_environment_ridge" else 0.0
+            alpha = inner_select_alpha(x_raw, data["total_adults"].to_numpy(float)) if model_id in RIDGE_MODEL_IDS else 0.0
             coefficients = fit_linear(x, y, alpha)
             fitted = predict_linear(x, coefficients)
             residuals = y - fitted
@@ -278,7 +298,7 @@ def influence_sensitivity(
         y = np.log1p(data["total_adults"].to_numpy(float))
         alpha = (
             inner_select_alpha(x_raw, data["total_adults"].to_numpy(float))
-            if diagnostic.model_id == "all_environment_ridge"
+            if diagnostic.model_id in RIDGE_MODEL_IDS
             else 0.0
         )
         reduced = fit_linear(x, y, alpha)[1:]
@@ -534,7 +554,7 @@ def write_registry(summary: pd.DataFrame, diagnostics: pd.DataFrame) -> None:
             f"- Algorithm/hyperparameters: `{row.model_id}`"
             + (
                 "; ridge alpha selected within each outer training window from 0.1, 1, 10, 100."
-                if row.model_id == "all_environment_ridge"
+                if row.model_id in RIDGE_MODEL_IDS
                 else "."
             ),
             "- Random seed: not applicable; deterministic fitting.",
