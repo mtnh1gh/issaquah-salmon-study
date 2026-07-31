@@ -4,8 +4,8 @@ Status: PASS
 
 Checks passed: 9
 
-- PASS: Trend table has 11 pre-specified tests
-- PASS: Correlation table has 14 pre-specified tests
+- PASS: Trend table has 9 pre-specified tests
+- PASS: Correlation table has 10 pre-specified tests
 - PASS: Lag table has 12 pre-specified tests
 - PASS: Every primary correlation uses all 29 return years
 - PASS: All adjusted correlation p-values are valid

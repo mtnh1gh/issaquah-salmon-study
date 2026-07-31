@@ -1,8 +1,8 @@
 # Analysis protocol
 
-Version: 1.1
+Version: 1.0
 
-Locked: 2026-07-26; amended 2026-07-29 (D-020: NPGO/ONI added as pre-specified marine-window predictors)
+Locked: 2026-07-26
 
 Scope: Issaquah Creek Chinook and Coho adult returns, 1997–2025
 
@@ -40,8 +40,7 @@ Source priority is:
 4. King County station 0631 for the warm-season grab-sample temperature index.
 5. NRCS Stampede Pass SNOTEL 788 for SWE.
 6. NOAA PSL ERSSTv5 PDO.
-7. NOAA/GaTech NPGO index and NOAA CPC ONI, as of D-020 -- additional marine-condition proxies, tested alongside rather than in place of PDO.
-8. Annual NLCD Collection 1.2 Fractional Impervious Surface; otherwise omit imperviousness.
+7. Annual NLCD Collection 1.2 Fractional Impervious Surface; otherwise omit imperviousness.
 
 No substitute from another watershed or a planned hatchery-production target may be represented as an observed value.
 
@@ -54,7 +53,7 @@ Return year is the calendar year of WDFW trap entry. Hydrologic water year ends 
 | Coho | `return_year - 2` | Report that a single lag is an approximation of a variable age distribution |
 | Chinook | `return_year - 4` | Repeat association results at lags 3 and 5 |
 
-Same-year July–September flow and June–September temperature are adult migration indicators. Cohort-year flow, SWE, and temperature are freshwater-condition proxies. `marine_pdo_mean` averages annual PDO from the year after the cohort proxy through the year before adult return. As of D-020, `marine_npgo_mean` and `marine_oni_mean` use the identical marine window and aggregation logic, applied to the NPGO and ONI indices respectively.
+Same-year July–September flow and June–September temperature are adult migration indicators. Cohort-year flow, SWE, and temperature are freshwater-condition proxies. `marine_pdo_mean` averages annual PDO from the year after the cohort proxy through the year before adult return.
 
 Hatchery releases, if obtained, must be matched to plausible return cohorts and analyzed separately from the environmental proxy lag. No return-per-release quantity will be calculated from planned production targets.
 
@@ -67,7 +66,6 @@ The initial association set is deliberately small:
 - `cohort_swe_apr01_inches`.
 - `cohort_flow_water_year_mean_cfs`.
 - `marine_pdo_mean`.
-- `marine_npgo_mean` and `marine_oni_mean` (D-020) -- additional ocean-condition proxies, tested both alone and alongside PDO; not substituted for it in the already-decided models.
 - `impervious_pct` only if acquired and validated.
 - `hatchery_releases` only if actual releases are acquired and cohort-aligned.
 

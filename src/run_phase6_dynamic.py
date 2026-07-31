@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
-from run_phase4_models import MODEL_FEATURES, RIDGE_MODEL_IDS, fit_linear, predict_linear, standardize_train_test
+from run_phase4_models import MODEL_FEATURES, fit_linear, predict_linear, standardize_train_test
 
 TABLE_DIR = ROOT / "outputs/tables"; FIGURE_DIR = ROOT / "outputs/figures"
 YEARS = np.arange(2026, 2041); SCENARIOS = {"higher_input": 1, "trend_only": 0, "lower_input": -1}; DRAWS = 1000; SEED = 20260727
@@ -25,7 +25,7 @@ def main() -> None:
     retained = validation[(validation["scenario_eligible"]) & (validation["species"] == "Coho")]["model_id"].tolist()
     hist = env.loc[1997:2025]
     feature_names = sorted({f for m in retained for f in MODEL_FEATURES[m]})
-    env_name = {"cohort_flow_water_year_mean_cfs": "flow_water_year_mean_cfs", "cohort_swe_apr01_inches": "swe_apr01_inches", "marine_pdo_mean": "pdo_annual_mean", "marine_npgo_mean": "npgo_annual_mean", "marine_oni_mean": "oni_annual_mean"}
+    env_name = {"cohort_flow_water_year_mean_cfs": "flow_water_year_mean_cfs", "cohort_swe_apr01_inches": "swe_apr01_inches", "marine_pdo_mean": "pdo_annual_mean"}
     slopes = {f: stats.theilslopes(hist[env_name.get(f, f)], hist.index).slope for f in feature_names}
     resid_sd = {f: float(np.std(hist[env_name.get(f, f)] - np.polyval(np.polyfit(hist.index, hist[env_name.get(f, f)], 1), hist.index), ddof=1)) for f in feature_names}
     rng = np.random.default_rng(SEED); rows = []

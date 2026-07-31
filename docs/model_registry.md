@@ -4,26 +4,9 @@ See `docs/model_summary.md` for a plain-language explanation of these models, th
 
 Phase 4 experiments generated 2026-07-27.
 
-Data-version ID: `issaquah_creek_master.csv`; SHA-256 `52D111CBADBB91AB2423F96E05F73E800C78662507A099721EEDADB46A0BEF50`.
+Data-version ID: `issaquah_creek_master.csv`; SHA-256 `0AFAC071E4C5D2BF1C3631E073DEA3CE829776903A928B7BF71A3F0ACC15D92C`.
 
 Feature-registry version: `docs/feature_registry.csv` at the Phase 4 commit.
-
-## P4-CHINOOK-ALL_ENVIRONMENT_OCEAN_RIDGE
-
-- Species/response: Chinook; annual `total_adults`.
-- Training years: expanding windows beginning 1997; final full-period fit 1997-2025.
-- Validation folds: 17 rolling-origin tests, 2009-2025.
-- Preprocessing: predictor standardization fitted separately inside each training fold; modeled response uses `log1p` for association candidates.
-- Algorithm/hyperparameters: `all_environment_ocean_ridge`; ridge alpha selected within each outer training window from 0.1, 1, 10, 100.
-- Random seed: not applicable; deterministic fitting.
-- Naive comparators: expanding-window historical mean and previous-year persistence.
-- MAE: 2092.371; RMSE: 2519.091; validation R-squared: -1.5111.
-- Uncertainty method: rolling-origin out-of-sample error distribution; no forecast interval approved in Phase 4.
-- Residual/influence diagnostics: Shapiro p=0.232; Durbin-Watson=1.027; maximum Cook's D=0.037.
-- Lag sensitivity: Coho lag 2 primary; Chinook lag 4 primary, with Phase 3 lags 3/5 sensitivity showing unstable cohort-flow association.
-- Scenario eligible: no.
-- Decision: reject.
-- Git commit: generated before commit; commit identifier is the repository history containing this registry.
 
 ## P4-CHINOOK-ALL_ENVIRONMENT_RIDGE
 
@@ -93,23 +76,6 @@ Feature-registry version: `docs/feature_registry.csv` at the Phase 4 commit.
 - Decision: reject.
 - Git commit: generated before commit; commit identifier is the repository history containing this registry.
 
-## P4-CHINOOK-OCEAN_INDEX_OLS
-
-- Species/response: Chinook; annual `total_adults`.
-- Training years: expanding windows beginning 1997; final full-period fit 1997-2025.
-- Validation folds: 17 rolling-origin tests, 2009-2025.
-- Preprocessing: predictor standardization fitted separately inside each training fold; modeled response uses `log1p` for association candidates.
-- Algorithm/hyperparameters: `ocean_index_ols`.
-- Random seed: not applicable; deterministic fitting.
-- Naive comparators: expanding-window historical mean and previous-year persistence.
-- MAE: 2326.566; RMSE: 2678.532; validation R-squared: -1.8391.
-- Uncertainty method: rolling-origin out-of-sample error distribution; no forecast interval approved in Phase 4.
-- Residual/influence diagnostics: Shapiro p=0.525; Durbin-Watson=0.985; maximum Cook's D=0.184.
-- Lag sensitivity: Coho lag 2 primary; Chinook lag 4 primary, with Phase 3 lags 3/5 sensitivity showing unstable cohort-flow association.
-- Scenario eligible: no.
-- Decision: reject.
-- Git commit: generated before commit; commit identifier is the repository history containing this registry.
-
 ## P4-CHINOOK-PREVIOUS_YEAR
 
 - Species/response: Chinook; annual `total_adults`.
@@ -125,23 +91,6 @@ Feature-registry version: `docs/feature_registry.csv` at the Phase 4 commit.
 - Lag sensitivity: Coho lag 2 primary; Chinook lag 4 primary, with Phase 3 lags 3/5 sensitivity showing unstable cohort-flow association.
 - Scenario eligible: no.
 - Decision: comparator.
-- Git commit: generated before commit; commit identifier is the repository history containing this registry.
-
-## P4-COHO-ALL_ENVIRONMENT_OCEAN_RIDGE
-
-- Species/response: Coho; annual `total_adults`.
-- Training years: expanding windows beginning 1997; final full-period fit 1997-2025.
-- Validation folds: 17 rolling-origin tests, 2009-2025.
-- Preprocessing: predictor standardization fitted separately inside each training fold; modeled response uses `log1p` for association candidates.
-- Algorithm/hyperparameters: `all_environment_ocean_ridge`; ridge alpha selected within each outer training window from 0.1, 1, 10, 100.
-- Random seed: not applicable; deterministic fitting.
-- Naive comparators: expanding-window historical mean and previous-year persistence.
-- MAE: 3148.930; RMSE: 4057.729; validation R-squared: -0.0474.
-- Uncertainty method: rolling-origin out-of-sample error distribution; no forecast interval approved in Phase 4.
-- Residual/influence diagnostics: Shapiro p=0.164; Durbin-Watson=2.164; maximum Cook's D=0.318.
-- Lag sensitivity: Coho lag 2 primary; Chinook lag 4 primary, with Phase 3 lags 3/5 sensitivity showing unstable cohort-flow association.
-- Scenario eligible: yes.
-- Decision: retain.
 - Git commit: generated before commit; commit identifier is the repository history containing this registry.
 
 ## P4-COHO-ALL_ENVIRONMENT_RIDGE
@@ -207,23 +156,6 @@ Feature-registry version: `docs/feature_registry.csv` at the Phase 4 commit.
 - MAE: 3712.991; RMSE: 4878.487; validation R-squared: -0.5140.
 - Uncertainty method: rolling-origin out-of-sample error distribution; no forecast interval approved in Phase 4.
 - Residual/influence diagnostics: Shapiro p=0.068; Durbin-Watson=2.160; maximum Cook's D=0.557.
-- Lag sensitivity: Coho lag 2 primary; Chinook lag 4 primary, with Phase 3 lags 3/5 sensitivity showing unstable cohort-flow association.
-- Scenario eligible: yes.
-- Decision: retain.
-- Git commit: generated before commit; commit identifier is the repository history containing this registry.
-
-## P4-COHO-OCEAN_INDEX_OLS
-
-- Species/response: Coho; annual `total_adults`.
-- Training years: expanding windows beginning 1997; final full-period fit 1997-2025.
-- Validation folds: 17 rolling-origin tests, 2009-2025.
-- Preprocessing: predictor standardization fitted separately inside each training fold; modeled response uses `log1p` for association candidates.
-- Algorithm/hyperparameters: `ocean_index_ols`.
-- Random seed: not applicable; deterministic fitting.
-- Naive comparators: expanding-window historical mean and previous-year persistence.
-- MAE: 3355.491; RMSE: 4202.670; validation R-squared: -0.1236.
-- Uncertainty method: rolling-origin out-of-sample error distribution; no forecast interval approved in Phase 4.
-- Residual/influence diagnostics: Shapiro p=0.088; Durbin-Watson=2.168; maximum Cook's D=0.232.
 - Lag sensitivity: Coho lag 2 primary; Chinook lag 4 primary, with Phase 3 lags 3/5 sensitivity showing unstable cohort-flow association.
 - Scenario eligible: yes.
 - Decision: retain.

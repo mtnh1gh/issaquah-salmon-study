@@ -4,8 +4,6 @@ param(
     [string]$SnotelPath = "data/bronze/nrcs/2026-07-19/nrcs_snotel_788_stampede_pass_daily_swe_1980-04-01_2025-04-01.csv",
     [string]$PdoPath = "data/bronze/noaa/2026-07-19/noaa_pdo_ersstv5.csv",
     [string]$TemperaturePath = "data/bronze/king_county/2026-07-19/king_county_issaquah_creek_temperature_grab_samples.csv",
-    [string]$NpgoPath = "data/bronze/npgo/2026-07-29/npgo_monthly_index_1950-2025.txt",
-    [string]$OniPath = "data/bronze/noaa_oni/2026-07-29/oni_seasonal_index_1950-present.txt",
     [string]$OutputPath = "data/silver/issaquah_annual_environment.csv"
 )
 
@@ -82,32 +80,6 @@ $temperature = @(Import-Csv -LiteralPath $TemperaturePath |
         }
     })
 
-# NPGO: monthly index, three whitespace-separated numeric columns after '#' comment
-# lines (year, month, value). Annual mean of the 12 monthly values, matching the
-# pdo_annual_mean aggregation (D-020).
-$npgoLines = Get-Content -LiteralPath $NpgoPath | Where-Object { $_ -notmatch '^\s*#' -and $_.Trim() -ne "" }
-$npgo = @($npgoLines | ForEach-Object {
-    $parts = @($_.Trim() -split '\s+')
-    [pscustomobject]@{
-        year  = [int][double]$parts[0]
-        month = [int][double]$parts[1]
-        value = [double]$parts[2]
-    }
-})
-
-# ONI: seasonal (3-month rolling window) index with columns SEAS, YR, TOTAL, ANOM.
-# ANOM is the published Oceanic Nino Index value. Annual mean of the (overlapping)
-# seasonal ANOM values tagged to a calendar year (D-020).
-$oniLines = (Get-Content -LiteralPath $OniPath) | Select-Object -Skip 1 | Where-Object { $_.Trim() -ne "" }
-$oni = @($oniLines | ForEach-Object {
-    $parts = @($_.Trim() -split '\s+')
-    [pscustomobject]@{
-        season = $parts[0]
-        year   = [int]$parts[1]
-        value  = [double]$parts[3]
-    }
-})
-
 $output = foreach ($year in $years) {
     $waterYearFlow = @($flow | Where-Object { $_.water_year -eq $year })
     $summerFlow = @($flow | Where-Object {
@@ -120,8 +92,6 @@ $output = foreach ($year in $years) {
     $summerTemperature = @($temperature | Where-Object {
         $_.date.Year -eq $year -and $_.date.Month -in @(6, 7, 8, 9)
     })
-    $annualNpgo = @($npgo | Where-Object { $_.year -eq $year })
-    $annualOni = @($oni | Where-Object { $_.year -eq $year })
 
     [pscustomobject][ordered]@{
         return_year = $year
@@ -133,10 +103,6 @@ $output = foreach ($year in $years) {
         swe_apr01_inches = if ($aprilSwe.Count -eq 1) { $aprilSwe[0].value } else { $null }
         pdo_annual_mean = Mean-OrNull @($annualPdo.value)
         pdo_months = @($annualPdo | Where-Object { $null -ne $_.value }).Count
-        npgo_annual_mean = Mean-OrNull @($annualNpgo.value)
-        npgo_months = @($annualNpgo | Where-Object { $null -ne $_.value }).Count
-        oni_annual_mean = Mean-OrNull @($annualOni.value)
-        oni_seasons = @($annualOni | Where-Object { $null -ne $_.value }).Count
         temp_jun_sep_mean_c = Mean-OrNull @($summerTemperature.value)
         temp_jun_sep_samples = $summerTemperature.Count
         temp_station = "King County 0631; Issaquah Creek at SE 56th St; grab samples"
@@ -152,12 +118,6 @@ $badTemperature = @($output | Where-Object {
 })
 if ($badTemperature.Count -gt 0) {
     throw "Temperature coverage rule failed for: $($badTemperature.return_year -join ', ')"
-}
-$badOceanIndex = @($output | Where-Object {
-    $_.npgo_months -lt 12 -or $_.oni_seasons -lt 12
-})
-if ($badOceanIndex.Count -gt 0) {
-    throw "Incomplete NPGO/ONI coverage for: $($badOceanIndex.return_year -join ', ')"
 }
 
 $outputDirectory = Split-Path -Parent $OutputPath

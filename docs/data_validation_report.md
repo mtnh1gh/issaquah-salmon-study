@@ -1,6 +1,6 @@
 ﻿# Data validation report
 
-Generated: 2026-07-29T11:38:45-07:00
+Generated: 2026-07-29T09:23:22-07:00
 
 Inputs are cached local snapshots; no live API was used.
 
@@ -19,7 +19,7 @@ Inputs are cached local snapshots; no live API was used.
 | Missingness | Blocked fields are blank and flagged | Critical | PASS | Checked impervious_pct and hatchery_releases on 58 rows |
 | Coverage | Temperature sample threshold | Critical | PASS | Rows below four samples: 0 |
 | Provenance | Source and value-status fields | Critical | PASS | Invalid rows: 0 |
-| Registry | Feature registry contract | Critical | PASS | Features registered: 15; duplicate IDs: False |
+| Registry | Feature registry contract | Critical | PASS | Features registered: 13; duplicate IDs: False |
 
 ## Gate decision
 

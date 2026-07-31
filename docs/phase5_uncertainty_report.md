@@ -6,11 +6,9 @@ The three Coho candidates that passed the Phase 4 baseline gate were reviewed wi
 
 | Model | MAE | Bootstrap 95% CI | RMSE | Bootstrap 95% CI | Interval coverage |
 |---|---:|---:|---:|---:|---:|
-| `all_environment_ocean_ridge` | 3149 | [1995, 4424] | 4058 | [2632, 5261] | 88.2% |
-| `ocean_index_ols` | 3355 | [2235, 4647] | 4203 | [2725, 5586] | 88.2% |
-| `all_environment_ridge` | 3620 | [2545, 4730] | 4285 | [3086, 5332] | 88.2% |
-| `freshwater_marine_ols` | 3857 | [2573, 5257] | 4805 | [3164, 6334] | 88.2% |
-| `migration_marine_ols` | 3713 | [2328, 5316] | 4878 | [3122, 6578] | 88.2% |
+| `all_environment_ridge` | 3620 | [2566, 4756] | 4285 | [3061, 5326] | 88.2% |
+| `freshwater_marine_ols` | 3857 | [2589, 5318] | 4805 | [3167, 6378] | 88.2% |
+| `migration_marine_ols` | 3713 | [2276, 5268] | 4878 | [3052, 6521] | 88.2% |
 
 Empirical intervals use held-out residual quantiles and are descriptive only. With 17 test years, coverage is too imprecise to certify nominal 95% calibration.
 

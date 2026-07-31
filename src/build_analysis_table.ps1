@@ -36,14 +36,6 @@ $master = foreach ($response in $returns) {
         $marineEnv = $environmentByYear[$_]
         if ($marineEnv) { $marineEnv.pdo_annual_mean }
     })
-    $marineNpgo = @($marineYears | ForEach-Object {
-        $marineEnv = $environmentByYear[$_]
-        if ($marineEnv) { $marineEnv.npgo_annual_mean }
-    })
-    $marineOni = @($marineYears | ForEach-Object {
-        $marineEnv = $environmentByYear[$_]
-        if ($marineEnv) { $marineEnv.oni_annual_mean }
-    })
 
     [pscustomobject][ordered]@{
         return_year = $year
@@ -71,8 +63,6 @@ $master = foreach ($response in $returns) {
         marine_pdo_mean = Mean-OrNull $marinePdo
         marine_pdo_start_year = $marineStartYear
         marine_pdo_end_year = $year - 1
-        marine_npgo_mean = Mean-OrNull $marineNpgo
-        marine_oni_mean = Mean-OrNull $marineOni
         impervious_pct = $null
         hatchery_releases = $null
         response_value_status = "derived_from_observed_events"
@@ -80,7 +70,7 @@ $master = foreach ($response in $returns) {
         impervious_value_status = "not_available"
         releases_value_status = "not_available"
         response_source = "WDFW Hatchery Adult Salmon Returns; Trap Estimate events"
-        environmental_sources = "USGS-12121600-DV-00060; NRCS-SNOTEL-788-WTEQ; NOAA-PDO-ERSSTV5; KINGCOUNTY-ISSAQUAH-TEMP; NOAA-NPGO-INDEX; NOAA-ONI-INDEX"
+        environmental_sources = "USGS-12121600-DV-00060; NRCS-SNOTEL-788-WTEQ; NOAA-PDO-ERSSTV5; KINGCOUNTY-ISSAQUAH-TEMP"
         lag_definition = if ($response.species -eq "Coho") {
             "primary cohort proxy: return_year - 2"
         } else {
