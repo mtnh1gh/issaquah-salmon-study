@@ -1,0 +1,3 @@
+model_id,predictors,uses_usgs_flow,selected_alpha,leave_year_out_rmse_c,leave_year_out_mae_c,leave_year_out_bias_c,leave_year_out_r_squared,rmse_improvement_over_climatology_pct
+T1,air temperature + streamflow + seasonal terms,true,10.0,0.786047,0.615022,-0.000281,0.957157,48.774
+T2,air temperature + seasonal terms,false,10.0,0.790391,0.619378,0.00013,0.956682,48.491

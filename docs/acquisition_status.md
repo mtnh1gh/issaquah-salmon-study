@@ -52,6 +52,33 @@ Acquire/approve the Issaquah Creek watershed boundary first. Only then obtain la
 
 The watershed-boundary prerequisite for land-use collection is complete. The King County GIS `TOPO_BASIN_KC_AREA` feature named `Issaquah Creek` was exported as a one-feature GeoJSON in EPSG:4326, along with complete ArcGIS layer and item metadata.
 
+## Experimental Daily Temperature Proxy Models
+
+Because USGS station 12121600 does not measure water temperature, the project
+also includes two separately labeled 1997-2025 daily temperature proxies. Both
+are calibrated to King County station 0631 grab samples with
+leave-one-year-out validation:
+
+- **T1 — full proxy:** NOAA air temperature, USGS flow, and seasonal terms.
+- **T2 — independent-of-flow proxy:** NOAA air temperature and seasonal terms
+  only, with no USGS flow variables.
+
+T1 has held-out RMSE 0.786 C and T2 has held-out RMSE 0.790 C. T2 is only 0.6%
+worse by RMSE while remaining independent of flow. Both improve approximately
+48.5-48.8% over the held-out monthly-climatology baseline.
+
+Run the accepted cached snapshot with:
+
+```powershell
+python src/calculate_issaquah_temp.py --snapshot-date 2026-08-22 --offline
+```
+
+The results are modeled rather than observed. Their seven-day means must not be
+reported as regulatory 7DADMax. See
+[`temperature_proxy_method.md`](temperature_proxy_method.md) for the
+method, validation results, output fields, and limitations.
+
+
 Validation results:
 
 - Polygon feature count: 1

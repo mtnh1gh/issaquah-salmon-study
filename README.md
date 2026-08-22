@@ -64,23 +64,3 @@ joined, cohort-aligned analysis dataset
       ↓
 EDA → Modeling → Validation → Uncertainty → Scenarios
 ```
-
----
-
-## Experimental Daily Temperature Proxy
-
-Because USGS station 12121600 does not measure water temperature, the project
-also includes a separately labeled 1997-2025 daily temperature proxy. It is
-calibrated to King County station 0631 grab samples using USGS flow, NOAA air
-temperature, and seasonal predictors, with leave-one-year-out validation.
-
-Run the accepted cached snapshot with:
-
-```powershell
-python src/calculate_issaquah_temp.py --snapshot-date 2026-08-22 --offline
-```
-
-The result is modeled rather than observed. Its seven-day mean must not be
-reported as regulatory 7DADMax. See
-[`docs/temperature_proxy_method.md`](docs/temperature_proxy_method.md) for the
-method, validation results, output fields, and limitations.

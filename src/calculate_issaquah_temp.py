@@ -642,6 +642,10 @@ def main() -> int:
             "air_min_c": air_min[index],
             "air_max_c": air_max[index],
             "air_mid_c": air_mid[index],
+            "air_predictor_interpolated": (
+                air_min_interpolated[index] or air_max_interpolated[index]
+            ),
+            "flow_predictor_interpolated": flow_interpolated[index],
             "predictor_interpolated": (
                 flow_interpolated[index]
                 or air_min_interpolated[index]
@@ -712,6 +716,49 @@ def main() -> int:
     residual_lower = quantile(cross_validated_residuals, 0.025)
     residual_upper = quantile(cross_validated_residuals, 0.975)
 
+    # Model T2 is deliberately independent of streamflow. It uses the same
+    # response observations, air-temperature features, seasonal harmonics,
+    # validation folds, and model-selection rule as T1, but removes both USGS
+    # flow features from its design matrix.
+    t2_feature_indices = (0, 1, 2, 3, 4, 7, 8, 9, 10)
+    t2_feature_names = tuple(feature_names[index] for index in t2_feature_indices)
+    t2_feature_by_date = {
+        item_date: tuple(features[index] for index in t2_feature_indices)
+        for item_date, features in feature_by_date.items()
+    }
+    t2_calibration_rows = [
+        CalibrationRow(
+            sample_date=row.sample_date,
+            target_c=row.target_c,
+            sample_count=row.sample_count,
+            features=t2_feature_by_date[row.sample_date],
+        )
+        for row in calibration_rows
+    ]
+    t2_alpha_results: dict[float, dict[str, float]] = {}
+    t2_alpha_predictions: dict[float, list[float]] = {}
+    for alpha in RIDGE_ALPHAS:
+        predictions = leave_year_out_predictions(
+            t2_feature_names, t2_calibration_rows, alpha
+        )
+        t2_alpha_predictions[alpha] = predictions
+        t2_alpha_results[alpha] = metrics(observed, predictions)
+    t2_selected_alpha = min(
+        RIDGE_ALPHAS,
+        key=lambda alpha: (t2_alpha_results[alpha]["rmse_c"], -alpha),
+    )
+    t2_cross_validated_predictions = t2_alpha_predictions[t2_selected_alpha]
+    t2_validation_metrics = t2_alpha_results[t2_selected_alpha]
+    t2_final_model = fit_ridge(
+        t2_feature_names, t2_calibration_rows, t2_selected_alpha
+    )
+    t2_cross_validated_residuals = [
+        actual - predicted
+        for actual, predicted in zip(observed, t2_cross_validated_predictions)
+    ]
+    t2_residual_lower = quantile(t2_cross_validated_residuals, 0.025)
+    t2_residual_upper = quantile(t2_cross_validated_residuals, 0.975)
+
     # Range flags apply only to measured/derived air and flow predictors. The
     # harmonic terms intentionally span a fixed [-1, 1] seasonal cycle, so
     # comparing their exact extrema with sparse sample dates creates false
@@ -742,6 +789,33 @@ def main() -> int:
     all_rolling_7day = trailing_mean(all_point_predictions, 7)
     rolling_7day_by_date = {
         item_date: all_rolling_7day[index]
+        for index, item_date in enumerate(all_dates)
+        if index >= 6
+    }
+
+    t2_extrapolation_feature_names = t2_feature_names[:5]
+    t2_feature_minima = [
+        min(row.features[index] for row in t2_calibration_rows)
+        for index in range(len(t2_extrapolation_feature_names))
+    ]
+    t2_feature_maxima = [
+        max(row.features[index] for row in t2_calibration_rows)
+        for index in range(len(t2_extrapolation_feature_names))
+    ]
+    t2_raw_prediction_by_date = {
+        item_date: t2_final_model.predict_one(t2_feature_by_date[item_date])
+        for item_date in all_dates
+    }
+    t2_prediction_by_date = {
+        item_date: clamp(raw_prediction)
+        for item_date, raw_prediction in t2_raw_prediction_by_date.items()
+    }
+    t2_all_point_predictions = [
+        t2_prediction_by_date[item_date] for item_date in all_dates
+    ]
+    t2_all_rolling_7day = trailing_mean(t2_all_point_predictions, 7)
+    t2_rolling_7day_by_date = {
+        item_date: t2_all_rolling_7day[index]
         for index, item_date in enumerate(all_dates)
         if index >= 6
     }
@@ -851,6 +925,121 @@ def main() -> int:
             }
         )
 
+    t2_daily_records: list[dict[str, object]] = []
+    t2_point_predictions: list[float] = []
+    t2_point_was_clipped: list[bool] = []
+    for item_date in output_dates:
+        features = t2_feature_by_date[item_date]
+        raw_prediction = t2_raw_prediction_by_date[item_date]
+        point_prediction = t2_prediction_by_date[item_date]
+        clipped = not math.isclose(raw_prediction, point_prediction, abs_tol=1e-12)
+        lower = clamp(point_prediction + t2_residual_lower)
+        upper = clamp(point_prediction + t2_residual_upper)
+        extrapolation_features = [
+            name
+            for name, value, minimum, maximum in zip(
+                t2_extrapolation_feature_names,
+                features[: len(t2_extrapolation_feature_names)],
+                t2_feature_minima,
+                t2_feature_maxima,
+            )
+            if value < minimum or value > maximum
+        ]
+        observed_values = grab_values.get(item_date, [])
+        observed_value = statistics.fmean(observed_values) if observed_values else None
+        metadata = predictor_metadata[item_date]
+        t2_point_predictions.append(point_prediction)
+        t2_point_was_clipped.append(clipped)
+        t2_daily_records.append(
+            {
+                "model_id": "T2",
+                "date": item_date.isoformat(),
+                "noaa_air_tmin_c": round(float(metadata["air_min_c"]), 3),
+                "noaa_air_tmax_c": round(float(metadata["air_max_c"]), 3),
+                "noaa_air_mid_c": round(float(metadata["air_mid_c"]), 3),
+                "modeled_daily_water_temp_proxy_c": round(point_prediction, 3),
+                "modeled_lower_95_c": round(lower, 3),
+                "modeled_upper_95_c": round(upper, 3),
+                "observed_grab_temp_c": round_or_blank(observed_value),
+                "observed_grab_count": len(observed_values),
+                "observed_minus_modeled_c": round_or_blank(
+                    observed_value - point_prediction if observed_value is not None else None
+                ),
+                "modeled_7day_mean_proxy_c": round(
+                    t2_rolling_7day_by_date[item_date], 3
+                ),
+                "predictor_interpolated": str(
+                    metadata["air_predictor_interpolated"]
+                ).lower(),
+                "prediction_clipped_to_physical_range": str(clipped).lower(),
+                "outside_calibration_predictor_range": str(
+                    bool(extrapolation_features)
+                ).lower(),
+                "outside_range_features": ";".join(extrapolation_features),
+                "value_status": (
+                    "modeled_proxy_t2_air_seasonal_calibrated_to_grab_samples"
+                ),
+            }
+        )
+
+    t2_annual_records: list[dict[str, object]] = []
+    for year in expected_years:
+        indices = [
+            index for index, item_date in enumerate(output_dates) if item_date.year == year
+        ]
+        yearly_predictions = [t2_point_predictions[index] for index in indices]
+        eligible_rolling = [
+            (output_dates[index], t2_rolling_7day_by_date[output_dates[index]])
+            for index in indices
+        ]
+        max_rolling_date, max_rolling_value = max(
+            eligible_rolling, key=lambda item: item[1]
+        )
+        t2_annual_records.append(
+            {
+                "model_id": "T2",
+                "year": year,
+                "days": len(indices),
+                "modeled_annual_mean_proxy_c": round(
+                    statistics.fmean(yearly_predictions), 3
+                ),
+                "modeled_annual_max_daily_proxy_c": round(max(yearly_predictions), 3),
+                "annual_max_modeled_7day_mean_proxy_c": round(max_rolling_value, 3),
+                "annual_max_modeled_7day_mean_date": max_rolling_date.isoformat(),
+                "grab_sample_dates": sum(
+                    1 for row in t2_calibration_rows if row.sample_date.year == year
+                ),
+                "metric_warning": (
+                    "Modeled proxy; not observed daily maximum or regulatory 7DADMax"
+                ),
+            }
+        )
+
+    t2_calibration_output: list[dict[str, object]] = []
+    t2_final_fitted_predictions = [
+        clamp(t2_final_model.predict_one(row.features))
+        for row in t2_calibration_rows
+    ]
+    for row, cross_validated, fitted in zip(
+        t2_calibration_rows,
+        t2_cross_validated_predictions,
+        t2_final_fitted_predictions,
+    ):
+        t2_calibration_output.append(
+            {
+                "model_id": "T2",
+                "date": row.sample_date.isoformat(),
+                "year": row.sample_date.year,
+                "month": row.sample_date.month,
+                "observed_grab_temp_c": round(row.target_c, 3),
+                "grab_count": row.sample_count,
+                "quality_ids": ";".join(sorted(grab_quality_ids[row.sample_date])),
+                "leave_year_out_prediction_c": round(cross_validated, 3),
+                "leave_year_out_residual_c": round(row.target_c - cross_validated, 3),
+                "final_model_fitted_c": round(fitted, 3),
+            }
+        )
+
     daily_path = output_dir / (
         f"issaquah_creek_daily_temperature_proxy_{args.start_date.year}_{args.end_date.year}.csv"
     )
@@ -859,14 +1048,78 @@ def main() -> int:
     )
     calibration_path = output_dir / "issaquah_temperature_proxy_calibration.csv"
     diagnostics_path = output_dir / "issaquah_temperature_proxy_diagnostics.json"
+    t2_daily_path = output_dir / (
+        "issaquah_creek_daily_temperature_proxy_t2_air_seasonal_"
+        f"{args.start_date.year}_{args.end_date.year}.csv"
+    )
+    t2_annual_path = output_dir / (
+        "issaquah_creek_annual_temperature_proxy_t2_air_seasonal_"
+        f"{args.start_date.year}_{args.end_date.year}.csv"
+    )
+    t2_calibration_path = output_dir / (
+        "issaquah_temperature_proxy_t2_air_seasonal_calibration.csv"
+    )
+    t2_diagnostics_path = output_dir / (
+        "issaquah_temperature_proxy_t2_air_seasonal_diagnostics.json"
+    )
+    comparison_path = output_dir / "issaquah_temperature_proxy_model_comparison.csv"
     manifest_path = cache_dir / "source_manifest.json"
 
     atomic_write_csv(daily_path, list(daily_records[0]), daily_records)
     atomic_write_csv(annual_path, list(annual_records[0]), annual_records)
     atomic_write_csv(calibration_path, list(calibration_output[0]), calibration_output)
+    atomic_write_csv(t2_daily_path, list(t2_daily_records[0]), t2_daily_records)
+    atomic_write_csv(t2_annual_path, list(t2_annual_records[0]), t2_annual_records)
+    atomic_write_csv(
+        t2_calibration_path,
+        list(t2_calibration_output[0]),
+        t2_calibration_output,
+    )
+    comparison_records = [
+        {
+            "model_id": "T1",
+            "predictors": "air temperature + streamflow + seasonal terms",
+            "uses_usgs_flow": "true",
+            "selected_alpha": selected_alpha,
+            "leave_year_out_rmse_c": round(validation_metrics["rmse_c"], 6),
+            "leave_year_out_mae_c": round(validation_metrics["mae_c"], 6),
+            "leave_year_out_bias_c": round(
+                validation_metrics["bias_observed_minus_predicted_c"], 6
+            ),
+            "leave_year_out_r_squared": round(validation_metrics["r_squared"], 6),
+            "rmse_improvement_over_climatology_pct": round(
+                100.0
+                * (baseline_metrics["rmse_c"] - validation_metrics["rmse_c"])
+                / baseline_metrics["rmse_c"],
+                3,
+            ),
+        },
+        {
+            "model_id": "T2",
+            "predictors": "air temperature + seasonal terms",
+            "uses_usgs_flow": "false",
+            "selected_alpha": t2_selected_alpha,
+            "leave_year_out_rmse_c": round(t2_validation_metrics["rmse_c"], 6),
+            "leave_year_out_mae_c": round(t2_validation_metrics["mae_c"], 6),
+            "leave_year_out_bias_c": round(
+                t2_validation_metrics["bias_observed_minus_predicted_c"], 6
+            ),
+            "leave_year_out_r_squared": round(
+                t2_validation_metrics["r_squared"], 6
+            ),
+            "rmse_improvement_over_climatology_pct": round(
+                100.0
+                * (baseline_metrics["rmse_c"] - t2_validation_metrics["rmse_c"])
+                / baseline_metrics["rmse_c"],
+                3,
+            ),
+        },
+    ]
+    atomic_write_csv(comparison_path, list(comparison_records[0]), comparison_records)
 
     diagnostics = {
         "model": {
+            "model_id": "T1",
             "type": (
                 "ridge_linear_regression_with_engineered_air_flow_and_seasonal_features"
             ),
@@ -930,25 +1183,125 @@ def main() -> int:
             "daily": relative_path(daily_path),
             "annual": relative_path(annual_path),
             "calibration": relative_path(calibration_path),
+            "model_comparison": relative_path(comparison_path),
         },
     }
     atomic_write_json(diagnostics_path, diagnostics)
+    t2_diagnostics = {
+        "model": {
+            "model_id": "T2",
+            "type": (
+                "ridge_linear_regression_with_engineered_air_and_seasonal_features"
+            ),
+            "uses_usgs_flow": False,
+            "selected_alpha": t2_selected_alpha,
+            "candidate_alpha_leave_year_out_metrics": {
+                str(alpha): values for alpha, values in t2_alpha_results.items()
+            },
+            "feature_names": list(t2_feature_names),
+            "raw_scale_coefficients": t2_final_model.raw_coefficients(),
+            "physical_prediction_bounds_c": [MIN_WATER_TEMP_C, MAX_WATER_TEMP_C],
+        },
+        "calibration": {
+            "target": "King County station 0631 grab-sample water temperature",
+            "site": KING_COUNTY_SITE_NAME,
+            "unique_sample_dates": len(t2_calibration_rows),
+            "raw_samples_in_period": sum(
+                row.sample_count for row in t2_calibration_rows
+            ),
+            "date_range": [
+                t2_calibration_rows[0].sample_date.isoformat(),
+                t2_calibration_rows[-1].sample_date.isoformat(),
+            ],
+            "years": [calibration_years[0], calibration_years[-1]],
+            "leave_year_out_metrics": t2_validation_metrics,
+            "leave_year_out_month_climatology_baseline_metrics": baseline_metrics,
+            "rmse_improvement_over_baseline_pct": 100.0
+            * (baseline_metrics["rmse_c"] - t2_validation_metrics["rmse_c"])
+            / baseline_metrics["rmse_c"],
+            "rmse_change_from_t1_pct": 100.0
+            * (t2_validation_metrics["rmse_c"] - validation_metrics["rmse_c"])
+            / validation_metrics["rmse_c"],
+            "empirical_95_percent_residual_offsets_c": [
+                t2_residual_lower,
+                t2_residual_upper,
+            ],
+        },
+        "coverage": {
+            "output_start": args.start_date.isoformat(),
+            "output_end": args.end_date.isoformat(),
+            "daily_rows": len(t2_daily_records),
+            "expected_daily_rows": (args.end_date - args.start_date).days + 1,
+            "air_predictor_interpolated_days": sum(
+                record["predictor_interpolated"] == "true"
+                for record in t2_daily_records
+            ),
+            "prediction_clipped_days": sum(t2_point_was_clipped),
+            "outside_calibration_predictor_range_days": sum(
+                record["outside_calibration_predictor_range"] == "true"
+                for record in t2_daily_records
+            ),
+        },
+        "sources": {
+            "noaa": f"GHCN-Daily {NOAA_STATION}, {NOAA_STATION_NAME}",
+            "king_county": (
+                f"Station {KING_COUNTY_LOCATOR}, {KING_COUNTY_SITE_NAME}"
+            ),
+        },
+        "limitations": [
+            "The daily values are modeled estimates, not continuous in-stream observations.",
+            "T2 intentionally excludes streamflow and cannot represent flow-specific thermal effects.",
+            "The calibration target consists of sparse grab samples and does not identify daily maxima.",
+            "modeled_7day_mean_proxy_c is not regulatory 7DADMax and must not be labeled as observed 7DADMax.",
+            "The empirical interval uses leave-year-out residuals and does not include all structural or source-data uncertainty.",
+            "Sea-Tac air temperature is a regional proxy and may not capture all microclimate conditions in the Issaquah Creek watershed.",
+        ],
+        "outputs": {
+            "daily": relative_path(t2_daily_path),
+            "annual": relative_path(t2_annual_path),
+            "calibration": relative_path(t2_calibration_path),
+            "model_comparison": relative_path(comparison_path),
+        },
+    }
+    atomic_write_json(t2_diagnostics_path, t2_diagnostics)
     manifest = {
         "access_date": args.snapshot_date.isoformat(),
         "created_at": datetime.now().astimezone().isoformat(),
         "sources": manifest_sources,
     }
-    atomic_write_json(manifest_path, manifest)
+    if manifest_path.exists():
+        existing_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        existing_sources = existing_manifest.get("sources", {})
+        for source_name, source_details in manifest_sources.items():
+            existing_details = existing_sources.get(source_name, {})
+            if existing_details.get("sha256") != source_details["sha256"]:
+                raise ValueError(
+                    f"Cached source hash no longer matches immutable manifest: {source_name}"
+                )
+            if existing_details.get("url") != source_details["url"]:
+                raise ValueError(
+                    f"Cached source URL no longer matches immutable manifest: {source_name}"
+                )
+    else:
+        atomic_write_json(manifest_path, manifest)
 
     if len(daily_records) != (args.end_date - args.start_date).days + 1:
-        raise AssertionError("Daily output row count is incomplete.")
+        raise AssertionError("T1 daily output row count is incomplete.")
+    if len(t2_daily_records) != (args.end_date - args.start_date).days + 1:
+        raise AssertionError("T2 daily output row count is incomplete.")
+    if any("flow" in feature_name.lower() for feature_name in t2_feature_names):
+        raise AssertionError("T2 feature matrix unexpectedly contains a flow variable.")
     if validation_metrics["rmse_c"] >= baseline_metrics["rmse_c"]:
         raise RuntimeError(
-            "Hybrid model did not improve on the held-out seasonal baseline; output is not accepted."
+            "T1 did not improve on the held-out seasonal baseline; output is not accepted."
+        )
+    if t2_validation_metrics["rmse_c"] >= baseline_metrics["rmse_c"]:
+        raise RuntimeError(
+            "T2 did not improve on the held-out seasonal baseline; output is not accepted."
         )
 
     print(
-        "Calibration: "
+        "T1 calibration: "
         f"{len(calibration_rows)} unique dates, alpha={selected_alpha:g}, "
         f"leave-year-out RMSE={validation_metrics['rmse_c']:.3f} C, "
         f"MAE={validation_metrics['mae_c']:.3f} C, "
@@ -959,8 +1312,22 @@ def main() -> int:
         f"hybrid improvement="
         f"{diagnostics['calibration']['rmse_improvement_over_baseline_pct']:.1f}%."
     )
-    print(f"Wrote {len(daily_records)} daily proxy rows to {daily_path}")
-    print(f"Wrote annual proxy metrics to {annual_path}")
+    print(
+        "T2 calibration: "
+        f"{len(t2_calibration_rows)} unique dates, alpha={t2_selected_alpha:g}, "
+        f"leave-year-out RMSE={t2_validation_metrics['rmse_c']:.3f} C, "
+        f"MAE={t2_validation_metrics['mae_c']:.3f} C, "
+        f"R2={t2_validation_metrics['r_squared']:.3f}."
+    )
+    print(
+        f"T2 baseline improvement="
+        f"{t2_diagnostics['calibration']['rmse_improvement_over_baseline_pct']:.1f}%; "
+        f"RMSE change from T1="
+        f"{t2_diagnostics['calibration']['rmse_change_from_t1_pct']:.1f}%."
+    )
+    print(f"Wrote {len(daily_records)} T1 daily proxy rows to {daily_path}")
+    print(f"Wrote {len(t2_daily_records)} T2 daily proxy rows to {t2_daily_path}")
+    print(f"Wrote T1 and T2 annual proxy metrics to {output_dir}")
     print("WARNING: modeled_7day_mean_proxy_c is not observed or regulatory 7DADMax.")
     return 0
 
