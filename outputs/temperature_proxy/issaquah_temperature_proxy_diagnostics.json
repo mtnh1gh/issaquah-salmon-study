@@ -1,0 +1,126 @@
+{
+  "calibration": {
+    "date_range": [
+      "1997-01-14",
+      "2025-12-08"
+    ],
+    "empirical_95_percent_residual_offsets_c": [
+      -1.4672255985988252,
+      1.4491241172346327
+    ],
+    "leave_year_out_metrics": {
+      "bias_observed_minus_predicted_c": -0.00028076008840031963,
+      "mae_c": 0.615022040660215,
+      "r_squared": 0.9571570256400267,
+      "rmse_c": 0.7860468322676238
+    },
+    "leave_year_out_month_climatology_baseline_metrics": {
+      "bias_observed_minus_predicted_c": -0.0009195626684195522,
+      "mae_c": 1.201989898584527,
+      "r_squared": 0.8367328739165059,
+      "rmse_c": 1.5344685402650364
+    },
+    "raw_samples_in_period": 397,
+    "rmse_improvement_over_baseline_pct": 48.774001444705,
+    "site": "Issaquah Creek at SE 56th St",
+    "target": "King County station 0631 grab-sample water temperature",
+    "unique_sample_dates": 385,
+    "years": [
+      1997,
+      2025
+    ]
+  },
+  "coverage": {
+    "daily_rows": 10592,
+    "expected_daily_rows": 10592,
+    "output_end": "2025-12-31",
+    "output_start": "1997-01-01",
+    "outside_calibration_predictor_range_days": 295,
+    "prediction_clipped_days": 0,
+    "predictor_interpolated_days": 1
+  },
+  "limitations": [
+    "The daily values are modeled estimates, not continuous in-stream observations.",
+    "The calibration target consists of sparse grab samples and does not identify daily maxima.",
+    "modeled_7day_mean_proxy_c is not regulatory 7DADMax and must not be labeled as observed 7DADMax.",
+    "The empirical interval uses leave-year-out residuals and does not include all structural or source-data uncertainty.",
+    "Sea-Tac air temperature is a regional proxy and may not capture all microclimate conditions in the Issaquah Creek watershed."
+  ],
+  "model": {
+    "candidate_alpha_leave_year_out_metrics": {
+      "0.01": {
+        "bias_observed_minus_predicted_c": 6.268040173502196e-05,
+        "mae_c": 0.616435692079583,
+        "r_squared": 0.9570521032174151,
+        "rmse_c": 0.7870087578369507
+      },
+      "0.1": {
+        "bias_observed_minus_predicted_c": 5.3188534293053065e-05,
+        "mae_c": 0.616364733052209,
+        "r_squared": 0.9570610459912474,
+        "rmse_c": 0.7869268165981161
+      },
+      "1.0": {
+        "bias_observed_minus_predicted_c": -2.7718112010278495e-05,
+        "mae_c": 0.6157566154763282,
+        "r_squared": 0.9571288191274726,
+        "rmse_c": 0.7863055443679258
+      },
+      "10.0": {
+        "bias_observed_minus_predicted_c": -0.00028076008840031963,
+        "mae_c": 0.615022040660215,
+        "r_squared": 0.9571570256400267,
+        "rmse_c": 0.7860468322676238
+      },
+      "100.0": {
+        "bias_observed_minus_predicted_c": -0.0002636862945159543,
+        "mae_c": 0.6622075421560052,
+        "r_squared": 0.9488255527545715,
+        "rmse_c": 0.8590831384590304
+      }
+    },
+    "feature_names": [
+      "air_mid_c",
+      "air_mid_trailing_3d_c",
+      "air_mid_trailing_7d_c",
+      "air_mid_trailing_30d_c",
+      "air_range_c",
+      "log1p_flow_cfs",
+      "log1p_flow_trailing_7d",
+      "sin_day_of_year",
+      "cos_day_of_year",
+      "sin_2x_day_of_year",
+      "cos_2x_day_of_year"
+    ],
+    "physical_prediction_bounds_c": [
+      0.0,
+      30.0
+    ],
+    "raw_scale_coefficients": {
+      "air_mid_c": 0.1632671799119213,
+      "air_mid_trailing_30d_c": 0.10065441026289082,
+      "air_mid_trailing_3d_c": 0.22065002328363598,
+      "air_mid_trailing_7d_c": 0.14638863837924068,
+      "air_range_c": -0.06348526447878106,
+      "cos_2x_day_of_year": 0.08107575459668566,
+      "cos_day_of_year": -0.6383965822997589,
+      "intercept": 2.8274650299022586,
+      "log1p_flow_cfs": 0.1473258486112239,
+      "log1p_flow_trailing_7d": 0.018891552735253222,
+      "sin_2x_day_of_year": 0.022690736352742925,
+      "sin_day_of_year": -0.2763659593228936
+    },
+    "selected_alpha": 10.0,
+    "type": "ridge_linear_regression_with_engineered_air_flow_and_seasonal_features"
+  },
+  "outputs": {
+    "annual": "outputs/temperature_proxy/issaquah_creek_annual_temperature_proxy_1997_2025.csv",
+    "calibration": "outputs/temperature_proxy/issaquah_temperature_proxy_calibration.csv",
+    "daily": "outputs/temperature_proxy/issaquah_creek_daily_temperature_proxy_1997_2025.csv"
+  },
+  "sources": {
+    "king_county": "Station 0631, Issaquah Creek at SE 56th St",
+    "noaa": "GHCN-Daily USW00024233, Seattle-Tacoma International Airport",
+    "usgs": "USGS 12121600 daily mean discharge"
+  }
+}
