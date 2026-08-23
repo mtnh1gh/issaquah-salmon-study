@@ -4,6 +4,8 @@ Run date: 2026-08-23
 
 Frozen protocol: version 1.1; SHA-256 `33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2`.
 
+Machine-readable results were written before this narrative: `phase7_primary_results.csv`, `phase7_mechanism_results.csv`, `phase7_sensitivity_results.csv`, and `phase7_execution_metadata.json`.
+
 Status: deterministic observational analysis of modeled temperature proxies. These results are not causal effects, observed continuous water temperatures, or regulatory 7DADMax estimates.
 
 ## Input validation

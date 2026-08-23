@@ -80,6 +80,15 @@ python src/run_phase7_hypothesis_tests.py
 
 The exact protocol version and SHA-256 are enforced by the program. Results,
 diagnostics, input hashes, software versions, and deterministic seeds are under
-`outputs/phase7/`; start with
-`outputs/phase7/phase7_hypothesis_analysis_report.md` and
-`outputs/phase7/phase7_output_manifest.json`.
+`outputs/phase7/`. Start with the machine-readable files before narrative
+interpretation:
+
+- `phase7_primary_results.csv` for A1/A3/A5;
+- `phase7_mechanism_results.csv` for A6/A7;
+- `phase7_sensitivity_results.csv` for alternate-window, T1, jack-inclusive,
+  extrapolation, Cook, and temporal-trend sensitivities; and
+- `phase7_execution_metadata.json` for protocol, program, input, seed, runtime,
+  and package-version provenance.
+
+The narrative is in `phase7_hypothesis_analysis_report.md`; the authoritative
+completion marker and artifact hashes are in `phase7_output_manifest.json`.

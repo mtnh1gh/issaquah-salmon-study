@@ -35,6 +35,8 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 ANALYSIS_DATE = "2026-08-23"
+RUN_TIMESTAMP_UTC = "2026-08-23T17:19:18Z"
+SCRIPT_VERSION = "1.1.0"
 PROTOCOL_VERSION = "1.1"
 EXPECTED_PROTOCOL_SHA256 = (
     "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2"
@@ -1224,6 +1226,10 @@ def build_report(
         "",
         f"Frozen protocol: version {PROTOCOL_VERSION}; SHA-256 `{EXPECTED_PROTOCOL_SHA256}`.",
         "",
+        "Machine-readable results were written before this narrative: "
+        "`phase7_primary_results.csv`, `phase7_mechanism_results.csv`, "
+        "`phase7_sensitivity_results.csv`, and `phase7_execution_metadata.json`.",
+        "",
         "Status: deterministic observational analysis of modeled temperature proxies. "
         "These results are not causal effects, observed continuous water temperatures, "
         "or regulatory 7DADMax estimates.",
@@ -1428,6 +1434,226 @@ def build_report(
         ]
     )
     return "\n".join(lines)
+
+
+def primary_results_frame(rows: list[dict[str, object]]) -> pd.DataFrame:
+    """Return the stable, publication-facing A1/A3/A5 result schema."""
+    records = [
+        {
+            "analysis_id": row["analysis_id"],
+            "species": row["species"],
+            "analysis_label": row["analysis_label"],
+            "n": row["n"],
+            "expected_sign": row["expected_direction"],
+            "observed_spearman_rho": row["spearman_rho"],
+            "raw_permutation_p": row["permutation_p_raw"],
+            "holm_adjusted_p": row["permutation_p_holm"],
+            "bootstrap_ci_lower": row["bootstrap_ci_low"],
+            "bootstrap_ci_upper": row["bootstrap_ci_high"],
+            "ols_beta": row["ols_beta"],
+            "hc3_ci_lower": row["ols_hc3_ci_low"],
+            "hc3_ci_upper": row["ols_hc3_ci_high"],
+            "percent_difference_per_sd": row[
+                "ols_fitted_percent_count_difference_per_1sd"
+            ],
+            "expected_direction_matched": row["direction_matches_expected"],
+            "formal_support_status": row["protocol_support_classification"],
+            "t2_extrapolation_flagged_rows": row["t2_extrapolation_flagged_rows"],
+            "t2_extrapolation_days_total": row["t2_extrapolation_days_total"],
+        }
+        for row in rows
+    ]
+    return pd.DataFrame(records)
+
+
+def mechanism_results_frame(rows: list[dict[str, object]]) -> pd.DataFrame:
+    """Return the stable, publication-facing A6/A7 result schema."""
+    records: list[dict[str, object]] = []
+    for row in rows:
+        supported = bool(row["direction_matches_expected"]) and bool(
+            row["passes_family_alpha_0_05"]
+        )
+        records.append(
+            {
+                "analysis_id": row["analysis_id"],
+                "analysis_label": row["analysis_label"],
+                "n": row["n"],
+                "expected_sign": row["expected_direction"],
+                "observed_spearman_rho": row["spearman_rho"],
+                "raw_permutation_p": row["permutation_p_raw"],
+                "holm_adjusted_p": row["permutation_p_holm"],
+                "bootstrap_ci_lower": row["bootstrap_ci_low"],
+                "bootstrap_ci_upper": row["bootstrap_ci_high"],
+                "ols_beta": row["ols_beta"],
+                "hc3_ci_lower": row["ols_hc3_ci_low"],
+                "hc3_ci_upper": row["ols_hc3_ci_high"],
+                "expected_direction_matched": row["direction_matches_expected"],
+                "formal_support_status": (
+                    "supported_by_observational_mechanism_analysis"
+                    if supported
+                    else "not_supported_by_these_data"
+                ),
+            }
+        )
+    return pd.DataFrame(records)
+
+
+def sensitivity_results_frame(
+    association_rows: list[dict[str, object]],
+    temporal_rows: list[dict[str, object]],
+) -> pd.DataFrame:
+    """Combine the requested frozen sensitivities in one explicit long schema."""
+    sensitivity_type = {
+        "window_alternative": "alternate_window",
+        "t1_replacement": "T1",
+        "adults_plus_jacks": "jack_inclusive",
+        "no_t2_extrapolation_rows": "extrapolation_exclusion",
+        "highest_cook_removed": "cook_exclusion",
+    }
+    records: list[dict[str, object]] = []
+    for row in association_rows:
+        records.append(
+            {
+                "analysis_id": row["analysis_id"],
+                "species": row["species"],
+                "sensitivity_type": sensitivity_type[row["sensitivity_id"]],
+                "sensitivity_id": row["sensitivity_id"],
+                "sensitivity_metric": "spearman_rho",
+                "n": row["n"],
+                "expected_sign": row["expected_direction"],
+                "primary_spearman_rho": math.nan,
+                "sensitivity_rho": row["spearman_rho"],
+                "raw_permutation_p": row["permutation_p_raw"],
+                "bootstrap_ci_lower": row["bootstrap_ci_low"],
+                "bootstrap_ci_upper": row["bootstrap_ci_high"],
+                "ols_beta": row["ols_beta"],
+                "hc3_ci_lower": row["ols_hc3_ci_low"],
+                "hc3_ci_upper": row["ols_hc3_ci_high"],
+                "percent_difference_per_sd": row[
+                    "ols_fitted_percent_count_difference_per_1sd"
+                ],
+                "expected_direction_matched": row["direction_matches_expected"],
+                "excluded_return_year": row.get(
+                    "excluded_primary_highest_cooks_year", math.nan
+                ),
+                "predictor_raw_lag1_rank_autocorrelation": math.nan,
+                "outcome_raw_lag1_rank_autocorrelation": math.nan,
+                "predictor_residual_lag1_autocorrelation": math.nan,
+                "outcome_residual_lag1_autocorrelation": math.nan,
+                "temporal_direction_status": "not_applicable",
+                "temporal_magnitude_change_pct": math.nan,
+                "circular_shift_status": "not_applicable",
+                "circular_shift_exact_two_sided_p": math.nan,
+                "inference_status": "descriptive_unadjusted_sensitivity",
+            }
+        )
+    for row in temporal_rows:
+        expected = str(ANALYSIS_SPECS[str(row["analysis_id"])]["expected_direction"])
+        records.append(
+            {
+                "analysis_id": row["analysis_id"],
+                "species": row["species"],
+                "sensitivity_type": "temporal_sensitivity",
+                "sensitivity_id": "temporal_trend_d022",
+                "sensitivity_metric": "partial_spearman_controlling_linear_year",
+                "n": row["n"],
+                "expected_sign": expected,
+                "primary_spearman_rho": row["rho_primary"],
+                "sensitivity_rho": row["rho_detrended"],
+                # D-022 explicitly prohibits an unrestricted p-value here.
+                "raw_permutation_p": math.nan,
+                "bootstrap_ci_lower": math.nan,
+                "bootstrap_ci_upper": math.nan,
+                "ols_beta": math.nan,
+                "hc3_ci_lower": math.nan,
+                "hc3_ci_upper": math.nan,
+                "percent_difference_per_sd": math.nan,
+                "expected_direction_matched": (
+                    observed_direction(float(row["rho_detrended"])) == expected
+                ),
+                "excluded_return_year": math.nan,
+                "predictor_raw_lag1_rank_autocorrelation": row[
+                    "predictor_raw_lag1_rank_autocorrelation"
+                ],
+                "outcome_raw_lag1_rank_autocorrelation": row[
+                    "outcome_raw_lag1_rank_autocorrelation"
+                ],
+                "predictor_residual_lag1_autocorrelation": row[
+                    "predictor_residual_lag1_autocorrelation"
+                ],
+                "outcome_residual_lag1_autocorrelation": row[
+                    "outcome_residual_lag1_autocorrelation"
+                ],
+                "temporal_direction_status": row["direction_status"],
+                "temporal_magnitude_change_pct": row["magnitude_change_pct"],
+                "circular_shift_status": row["circular_shift_status"],
+                "circular_shift_exact_two_sided_p": row[
+                    "circular_shift_exact_two_sided_p"
+                ],
+                "inference_status": "temporal_trend_sensitivity_only",
+            }
+        )
+    return pd.DataFrame(records)
+
+
+def execution_metadata(input_hashes: dict[str, str]) -> dict[str, object]:
+    """Build deterministic execution provenance for the machine-readable results."""
+    analysis_ids = ("A1", "A2", "A3", "A4", "A5", "A6", "A7")
+    return {
+        "analysis_date": ANALYSIS_DATE,
+        "run_timestamp_utc": RUN_TIMESTAMP_UTC,
+        "run_timestamp_policy": (
+            "frozen_first_execution_timestamp_retained_for_deterministic_reruns"
+        ),
+        "protocol": {
+            "path": relative(PROTOCOL_PATH),
+            "version": PROTOCOL_VERSION,
+            "sha256": EXPECTED_PROTOCOL_SHA256,
+            "amendments": ["D-022"],
+        },
+        "analysis_program": {
+            "path": relative(Path(__file__)),
+            "version": SCRIPT_VERSION,
+            "sha256": sha256_file(Path(__file__)),
+        },
+        "input_file_sha256": input_hashes,
+        "random_seeds": {
+            "base_seed": BASE_SEED,
+            "permutation_by_analysis_id": {
+                analysis_id: BASE_SEED + int(analysis_id[1:])
+                for analysis_id in analysis_ids
+            },
+            "bootstrap_by_analysis_id": {
+                analysis_id: BASE_SEED + 100 + int(analysis_id[1:])
+                for analysis_id in analysis_ids
+            },
+            "sensitivity_seed_policy": (
+                "A1-A5 sensitivity reruns reuse the corresponding analysis-ID seeds"
+            ),
+            "nonrandom_components": [
+                "OLS_HC3",
+                "Holm_adjustment",
+                "leave_one_year_out_rho",
+                "D022_detrending",
+                "D022_circular_shift",
+                "A8",
+            ],
+        },
+        "analysis_parameters": {
+            "permutation_repetitions": PERMUTATION_REPETITIONS,
+            "bootstrap_repetitions": BOOTSTRAP_REPETITIONS,
+            "family_alpha": ALPHA,
+            "temporal_residual_lag1_trigger": TEMPORAL_LAG1_TRIGGER,
+        },
+        "software_versions": {
+            "python": platform.python_version(),
+            "pandas": pd.__version__,
+            "numpy": np.__version__,
+            "scipy": scipy.__version__,
+            "statsmodels": statsmodels.__version__,
+            "matplotlib": matplotlib.__version__,
+        },
+    }
 
 
 def write_csv(frame: pd.DataFrame, path: Path) -> None:
@@ -1752,6 +1978,12 @@ def main() -> None:
         ignore_index=True,
     )
     joined_output = joined_output.drop(columns=["_merge"])
+    primary_machine_results = primary_results_frame(primary_results)
+    mechanism_machine_results = mechanism_results_frame(mechanism_results)
+    sensitivity_machine_results = sensitivity_results_frame(
+        sensitivity_results, temporal_rows
+    )
+    metadata_payload = execution_metadata(input_hashes)
 
     with tempfile.TemporaryDirectory(prefix="phase7-stage-", dir=ROOT / "outputs") as temp:
         staging = Path(temp)
@@ -1769,6 +2001,18 @@ def main() -> None:
             json.dumps(json_ready(validation_payload), indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
+        # Publication-facing machine-readable results are emitted before narrative.
+        write_csv(primary_machine_results, staging / "phase7_primary_results.csv")
+        write_csv(mechanism_machine_results, staging / "phase7_mechanism_results.csv")
+        write_csv(
+            sensitivity_machine_results, staging / "phase7_sensitivity_results.csv"
+        )
+        (staging / "phase7_execution_metadata.json").write_text(
+            json.dumps(json_ready(metadata_payload), indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+        # Detailed audit tables remain available as stable backward-compatible outputs.
         write_csv(joined_output, staging / "phase7_joined_analysis_rows.csv")
         write_csv(pd.DataFrame(primary_results), staging / "phase7_primary_associations.csv")
         write_csv(
@@ -1822,6 +2066,7 @@ def main() -> None:
         }
         manifest = {
             "analysis_date": ANALYSIS_DATE,
+            "run_timestamp_utc": RUN_TIMESTAMP_UTC,
             "status": "COMPLETE",
             "salmon_association_tests_run": True,
             "execution_order": [
@@ -1839,6 +2084,7 @@ def main() -> None:
             },
             "analysis_program": {
                 "path": relative(Path(__file__)),
+                "version": SCRIPT_VERSION,
                 "sha256": sha256_file(Path(__file__)),
             },
             "inputs": input_hashes,
@@ -1862,6 +2108,9 @@ def main() -> None:
                 "primary_results": len(primary_results),
                 "mechanism_results": len(mechanism_results),
                 "sensitivity_results": len(sensitivity_results),
+                "combined_machine_readable_sensitivity_results": len(
+                    sensitivity_machine_results
+                ),
                 "leave_one_year_out_results": len(loo_rows),
                 "temporal_sensitivity_results": len(temporal_rows),
                 "a8_models": len(a8_bundles),

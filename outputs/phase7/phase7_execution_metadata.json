@@ -1,0 +1,69 @@
+{
+  "analysis_date": "2026-08-23",
+  "analysis_parameters": {
+    "bootstrap_repetitions": 10000,
+    "family_alpha": 0.05,
+    "permutation_repetitions": 100000,
+    "temporal_residual_lag1_trigger": 0.3
+  },
+  "analysis_program": {
+    "path": "src/run_phase7_hypothesis_tests.py",
+    "sha256": "3A8FA2A8289C5C3697E0413838550AC671783A9A09376B3B0139AB747DAC8E4A",
+    "version": "1.1.0"
+  },
+  "input_file_sha256": {
+    "data/gold/issaquah_creek_master.csv": "52D111CBADBB91AB2423F96E05F73E800C78662507A099721EEDADB46A0BEF50",
+    "data/silver/issaquah_annual_environment.csv": "4A4389F04A104DDB44DA028B79DCEE614853E4DFCC6E89FD0D46D85D5559006C",
+    "docs/phase7_hypothesis_analysis_protocol.md": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+    "outputs/temperature_proxy/issaquah_life_stage_temperature_exposure_1995_2025.csv": "DB1F090BD984F818304989DF616B6A799F841E757AAE85D0B36D08F9B0692E1A",
+    "outputs/temperature_proxy/issaquah_temperature_proxy_preassociation_validation.json": "A116B847D9343B6B5874D26EB6CBC9C8BB1ED59A4D24B8D36A17A69F2B7438EE"
+  },
+  "protocol": {
+    "amendments": [
+      "D-022"
+    ],
+    "path": "docs/phase7_hypothesis_analysis_protocol.md",
+    "sha256": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+    "version": "1.1"
+  },
+  "random_seeds": {
+    "base_seed": 20260823,
+    "bootstrap_by_analysis_id": {
+      "A1": 20260924,
+      "A2": 20260925,
+      "A3": 20260926,
+      "A4": 20260927,
+      "A5": 20260928,
+      "A6": 20260929,
+      "A7": 20260930
+    },
+    "nonrandom_components": [
+      "OLS_HC3",
+      "Holm_adjustment",
+      "leave_one_year_out_rho",
+      "D022_detrending",
+      "D022_circular_shift",
+      "A8"
+    ],
+    "permutation_by_analysis_id": {
+      "A1": 20260824,
+      "A2": 20260825,
+      "A3": 20260826,
+      "A4": 20260827,
+      "A5": 20260828,
+      "A6": 20260829,
+      "A7": 20260830
+    },
+    "sensitivity_seed_policy": "A1-A5 sensitivity reruns reuse the corresponding analysis-ID seeds"
+  },
+  "run_timestamp_policy": "frozen_first_execution_timestamp_retained_for_deterministic_reruns",
+  "run_timestamp_utc": "2026-08-23T17:19:18Z",
+  "software_versions": {
+    "matplotlib": "3.9.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "python": "3.11.9",
+    "scipy": "1.13.1",
+    "statsmodels": "0.14.2"
+  }
+}
