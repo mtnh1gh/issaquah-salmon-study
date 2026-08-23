@@ -67,6 +67,19 @@ T1 has held-out RMSE 0.786 C and T2 has held-out RMSE 0.790 C. T2 is only 0.6%
 worse by RMSE while remaining independent of flow. Both improve approximately
 48.5-48.8% over the held-out monthly-climatology baseline.
 
+The same held-out predictions are now validated within the three hypothesis
+windows. T1 and T2 are effectively tied: Jun-Sep RMSE is 0.962 C versus 0.958 C,
+Aug 15-Sep 30 is 0.794 C versus 0.797 C, and Sep 15-Oct 31 is 0.694 C versus
+0.702 C. T1's 295 predictor-range flags have a day-level audit; 102 occur in
+June-October, with one high-severity date during the 2021 heat dome and no
+same-day grab observations on any flagged date.
+
+A separate 87-row life-stage exposure table now covers all 29 years for A1
+Chinook adult migration, A3 Coho adult migration, and A5 Coho juvenile rearing.
+The pre-association construction gate passes, but no salmon association test is
+run by the temperature script. All values remain explicitly labeled modeled
+proxies for exploratory sensitivity analysis.
+
 Run the accepted cached snapshot with:
 
 ```powershell

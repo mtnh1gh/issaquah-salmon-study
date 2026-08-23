@@ -117,7 +117,10 @@
     "annual": "outputs/temperature_proxy/issaquah_creek_annual_temperature_proxy_t2_air_seasonal_1997_2025.csv",
     "calibration": "outputs/temperature_proxy/issaquah_temperature_proxy_t2_air_seasonal_calibration.csv",
     "daily": "outputs/temperature_proxy/issaquah_creek_daily_temperature_proxy_t2_air_seasonal_1997_2025.csv",
-    "model_comparison": "outputs/temperature_proxy/issaquah_temperature_proxy_model_comparison.csv"
+    "hypothesis_window_validation": "outputs/temperature_proxy/issaquah_temperature_proxy_hypothesis_window_validation.csv",
+    "life_stage_exposure_table": "outputs/temperature_proxy/issaquah_life_stage_temperature_exposure_1997_2025.csv",
+    "model_comparison": "outputs/temperature_proxy/issaquah_temperature_proxy_model_comparison.csv",
+    "preassociation_validation": "outputs/temperature_proxy/issaquah_temperature_proxy_preassociation_validation.json"
   },
   "sources": {
     "king_county": "Station 0631, Issaquah Creek at SE 56th St",

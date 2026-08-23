@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Build a daily Issaquah Creek water-temperature proxy for 1997-2025.
+"""Build and validate daily Issaquah Creek temperature proxies for 1997-2025.
 
 This is a hindcast/interpolation model, not a continuous sensor record. It is
 calibrated to King County grab samples at station 0631 using continuous USGS
 daily discharge, NOAA daily air temperature, and seasonal terms. The modeled
-response is a day-level proxy for grab-sample water temperature; it is not an
-observed daily maximum and must not be presented as regulatory 7DADMax.
+responses are day-level proxies for grab-sample water temperature; they are not
+observed daily maxima and must not be presented as regulatory 7DADMax. The
+pipeline also validates pre-specified biological windows, audits extrapolation,
+and builds a life-stage exposure table before association testing.
 
 The implementation intentionally uses only the Python standard library so the
 acquisition and model can run before the project's optional analysis packages
@@ -26,7 +28,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -53,6 +55,75 @@ class CalibrationRow:
     target_c: float
     sample_count: int
     features: tuple[float, ...]
+
+
+@dataclass(frozen=True)
+class WindowDefinition:
+    window_id: str
+    analysis_id: str
+    species: str
+    life_stage: str
+    start_month: int
+    start_day: int
+    end_month: int
+    end_day: int
+    return_year_offset: int
+    alignment_definition: str
+
+    def contains(self, item_date: date) -> bool:
+        month_day = (item_date.month, item_date.day)
+        return (self.start_month, self.start_day) <= month_day <= (
+            self.end_month,
+            self.end_day,
+        )
+
+    def start_date(self, year: int) -> date:
+        return date(year, self.start_month, self.start_day)
+
+    def end_date(self, year: int) -> date:
+        return date(year, self.end_month, self.end_day)
+
+
+HYPOTHESIS_WINDOWS = (
+    WindowDefinition(
+        window_id="jun_sep",
+        analysis_id="A5",
+        species="Coho",
+        life_stage="juvenile_rearing",
+        start_month=6,
+        start_day=1,
+        end_month=9,
+        end_day=30,
+        return_year_offset=2,
+        alignment_definition=(
+            "primary Coho cohort proxy: exposure_year = return_year - 2"
+        ),
+    ),
+    WindowDefinition(
+        window_id="aug15_sep30",
+        analysis_id="A1",
+        species="Chinook",
+        life_stage="adult_migration",
+        start_month=8,
+        start_day=15,
+        end_month=9,
+        end_day=30,
+        return_year_offset=0,
+        alignment_definition="adult migration exposure_year = return_year",
+    ),
+    WindowDefinition(
+        window_id="sep15_oct31",
+        analysis_id="A3",
+        species="Coho",
+        life_stage="adult_migration",
+        start_month=9,
+        start_day=15,
+        end_month=10,
+        end_day=31,
+        return_year_offset=0,
+        alignment_definition="adult migration exposure_year = return_year",
+    ),
+)
 
 
 @dataclass
@@ -462,6 +533,53 @@ def seasonal_baseline_predictions(rows: Sequence[CalibrationRow]) -> list[float]
             if row.sample_date.year == held_out_year:
                 predictions[index] = month_means[row.sample_date.month]
     return predictions
+
+
+def longest_run_at_or_above(values: Sequence[float], threshold: float) -> int:
+    longest = 0
+    current = 0
+    for value in values:
+        if value >= threshold:
+            current += 1
+            longest = max(longest, current)
+        else:
+            current = 0
+    return longest
+
+
+def summarize_exposure_window(
+    window_dates: Sequence[date],
+    prediction_by_date: dict[date, float],
+) -> dict[str, object]:
+    # Use the same three-decimal values published in the daily CSV so threshold
+    # counts and window summaries are exactly reproducible from that artifact.
+    values = [round(prediction_by_date[item_date], 3) for item_date in window_dates]
+    if len(values) < 7:
+        raise ValueError("Exposure windows must contain at least seven days.")
+    rolling = trailing_mean(values, 7)
+    eligible_rolling = [
+        (window_dates[index], rolling[index]) for index in range(6, len(values))
+    ]
+    max_rolling_date, max_rolling_value = max(
+        eligible_rolling, key=lambda item: item[1]
+    )
+    max_daily_index = max(range(len(values)), key=values.__getitem__)
+    return {
+        "complete_days": len(values),
+        "window_mean_proxy_c": statistics.fmean(values),
+        "window_max_modeled_daily_proxy_c": values[max_daily_index],
+        "window_max_modeled_daily_proxy_date": window_dates[
+            max_daily_index
+        ].isoformat(),
+        "window_max_within_window_7day_mean_proxy_c": max_rolling_value,
+        "window_max_within_window_7day_mean_date": max_rolling_date.isoformat(),
+        "days_proxy_ge_17_5c": sum(value >= 17.5 for value in values),
+        "days_proxy_ge_19c": sum(value >= 19.0 for value in values),
+        "days_proxy_ge_21c": sum(value >= 21.0 for value in values),
+        "longest_proxy_spell_ge_17_5c_days": longest_run_at_or_above(
+            values, 17.5
+        ),
+    }
 
 
 def quantile(values: Sequence[float], probability: float) -> float:
@@ -1040,6 +1158,474 @@ def main() -> int:
             }
         )
 
+    # Validate the already-held-out predictions within the three pre-specified
+    # hypothesis windows. No model is refit on a window, and no salmon response
+    # data are read or tested here.
+    window_validation_records: list[dict[str, object]] = []
+    window_validation_summary: dict[str, dict[str, object]] = {}
+    for window in HYPOTHESIS_WINDOWS:
+        indices = [
+            index
+            for index, row in enumerate(calibration_rows)
+            if window.contains(row.sample_date)
+        ]
+        if len(indices) < 2:
+            raise ValueError(
+                f"Hypothesis window {window.window_id} has fewer than two calibration dates."
+            )
+        window_observed = [observed[index] for index in indices]
+        window_t1_predictions = [
+            cross_validated_predictions[index] for index in indices
+        ]
+        window_t2_predictions = [
+            t2_cross_validated_predictions[index] for index in indices
+        ]
+        window_baseline_predictions = [baseline_predictions[index] for index in indices]
+        t1_window_metrics = metrics(window_observed, window_t1_predictions)
+        t2_window_metrics = metrics(window_observed, window_t2_predictions)
+        baseline_window_metrics = metrics(window_observed, window_baseline_predictions)
+        represented_years = sorted(
+            {calibration_rows[index].sample_date.year for index in indices}
+        )
+        common = {
+            "window_id": window.window_id,
+            "analysis_id": window.analysis_id,
+            "species": window.species,
+            "life_stage": window.life_stage,
+            "window_start": f"{window.start_month:02d}-{window.start_day:02d}",
+            "window_end": f"{window.end_month:02d}-{window.end_day:02d}",
+            "calibration_unique_dates": len(indices),
+            "calibration_raw_samples": sum(
+                calibration_rows[index].sample_count for index in indices
+            ),
+            "calibration_years_represented": len(represented_years),
+            "first_calibration_year": represented_years[0],
+            "last_calibration_year": represented_years[-1],
+            "baseline_rmse_c": round(baseline_window_metrics["rmse_c"], 6),
+            "baseline_mae_c": round(baseline_window_metrics["mae_c"], 6),
+            "baseline_r_squared": round(
+                baseline_window_metrics["r_squared"], 6
+            ),
+        }
+        for model_id, uses_flow, model_metrics in (
+            ("T1", "true", t1_window_metrics),
+            ("T2", "false", t2_window_metrics),
+        ):
+            window_validation_records.append(
+                {
+                    **common,
+                    "model_id": model_id,
+                    "uses_usgs_flow": uses_flow,
+                    "leave_year_out_rmse_c": round(model_metrics["rmse_c"], 6),
+                    "leave_year_out_mae_c": round(model_metrics["mae_c"], 6),
+                    "leave_year_out_bias_c": round(
+                        model_metrics["bias_observed_minus_predicted_c"], 6
+                    ),
+                    "leave_year_out_r_squared": round(
+                        model_metrics["r_squared"], 6
+                    ),
+                    "rmse_improvement_over_window_climatology_pct": round(
+                        100.0
+                        * (
+                            baseline_window_metrics["rmse_c"]
+                            - model_metrics["rmse_c"]
+                        )
+                        / baseline_window_metrics["rmse_c"],
+                        3,
+                    ),
+                    "t2_minus_t1_rmse_c": round(
+                        t2_window_metrics["rmse_c"]
+                        - t1_window_metrics["rmse_c"],
+                        6,
+                    ),
+                    "validation_status": (
+                        "window_subset_of_leave_year_out_predictions"
+                    ),
+                }
+            )
+        window_validation_summary[window.window_id] = {
+            "analysis_id": window.analysis_id,
+            "calibration_unique_dates": len(indices),
+            "calibration_years_represented": len(represented_years),
+            "t1": t1_window_metrics,
+            "t2": t2_window_metrics,
+            "monthly_climatology": baseline_window_metrics,
+            "t2_minus_t1_rmse_c": (
+                t2_window_metrics["rmse_c"] - t1_window_metrics["rmse_c"]
+            ),
+        }
+
+    # Audit every T1 day outside the calibration predictor range. The audit is
+    # day-level (295 rows for the accepted 1997-2025 snapshot), with explicit
+    # emphasis on June-October and the hypothesis-window memberships.
+    t1_daily_by_date = {
+        date.fromisoformat(str(record["date"])): record for record in daily_records
+    }
+    t2_daily_by_date = {
+        date.fromisoformat(str(record["date"])): record
+        for record in t2_daily_records
+    }
+    calibration_ranges = {
+        name: (minimum, maximum)
+        for name, minimum, maximum in zip(
+            extrapolation_feature_names, feature_minima, feature_maxima
+        )
+    }
+    extrapolation_audit_records: list[dict[str, object]] = []
+    extrapolation_feature_counts: Counter[str] = Counter()
+    extrapolation_month_counts: Counter[str] = Counter()
+    extrapolation_year_counts: Counter[str] = Counter()
+    extrapolation_window_counts: Counter[str] = Counter()
+    extrapolation_severity_counts: Counter[str] = Counter()
+    for item_date in output_dates:
+        daily_record = t1_daily_by_date[item_date]
+        if daily_record["outside_calibration_predictor_range"] != "true":
+            continue
+        features = feature_by_date[item_date]
+        feature_values = {
+            name: value
+            for name, value in zip(extrapolation_feature_names, features)
+        }
+        outside_features = [
+            name
+            for name in extrapolation_feature_names
+            if feature_values[name] < calibration_ranges[name][0]
+            or feature_values[name] > calibration_ranges[name][1]
+        ]
+        detail_parts: list[str] = []
+        normalized_distances: list[float] = []
+        for name in outside_features:
+            value = feature_values[name]
+            minimum, maximum = calibration_ranges[name]
+            distance = minimum - value if value < minimum else value - maximum
+            span = maximum - minimum
+            normalized_distance = distance / span if span > 0 else math.inf
+            normalized_distances.append(normalized_distance)
+            detail_parts.append(
+                f"{name}={value:.6f}|range={minimum:.6f}..{maximum:.6f}"
+                f"|distance_fraction={normalized_distance:.6f}"
+            )
+            extrapolation_feature_counts[name] += 1
+        max_normalized_distance = max(normalized_distances)
+        if max_normalized_distance <= 0.05:
+            severity = "within_5pct_beyond_calibration_range"
+        elif max_normalized_distance <= 0.20:
+            severity = "5_to_20pct_beyond_calibration_range"
+        else:
+            severity = "over_20pct_beyond_calibration_range"
+        window_ids = [
+            window.window_id for window in HYPOTHESIS_WINDOWS if window.contains(item_date)
+        ]
+        for window_id in window_ids:
+            extrapolation_window_counts[window_id] += 1
+        month_key = f"{item_date.month:02d}-{item_date.strftime('%b')}"
+        extrapolation_month_counts[month_key] += 1
+        extrapolation_year_counts[str(item_date.year)] += 1
+        extrapolation_severity_counts[severity] += 1
+        extrapolation_audit_records.append(
+            {
+                "date": item_date.isoformat(),
+                "year": item_date.year,
+                "month": item_date.month,
+                "month_name": item_date.strftime("%b"),
+                "june_through_october": str(6 <= item_date.month <= 10).lower(),
+                "hypothesis_windows": ";".join(window_ids),
+                "outside_feature_count": len(outside_features),
+                "outside_range_features": ";".join(outside_features),
+                "outside_feature_details": ";".join(detail_parts),
+                "max_distance_fraction_of_calibration_span": round(
+                    max_normalized_distance, 6
+                ),
+                "screening_severity": severity,
+                "usgs_flow_cfs": daily_record["usgs_flow_cfs"],
+                "noaa_air_mid_c": daily_record["noaa_air_mid_c"],
+                "t1_modeled_daily_water_temp_proxy_c": daily_record[
+                    "modeled_daily_water_temp_proxy_c"
+                ],
+                "t2_modeled_daily_water_temp_proxy_c": t2_daily_by_date[item_date][
+                    "modeled_daily_water_temp_proxy_c"
+                ],
+                "t2_minus_t1_c": round(
+                    float(
+                        t2_daily_by_date[item_date][
+                            "modeled_daily_water_temp_proxy_c"
+                        ]
+                    )
+                    - float(daily_record["modeled_daily_water_temp_proxy_c"]),
+                    3,
+                ),
+                "observed_grab_temp_c": daily_record["observed_grab_temp_c"],
+                "audit_status": "flagged_for_predictor_range_extrapolation",
+            }
+        )
+
+    june_october_extrapolation_days = sum(
+        record["june_through_october"] == "true"
+        for record in extrapolation_audit_records
+    )
+    june_october_records = [
+        record
+        for record in extrapolation_audit_records
+        if record["june_through_october"] == "true"
+    ]
+    june_october_calendar_days = sum(
+        6 <= item_date.month <= 10 for item_date in output_dates
+    )
+    june_october_feature_counts = Counter(
+        feature_name
+        for record in june_october_records
+        for feature_name in str(record["outside_range_features"]).split(";")
+        if feature_name
+    )
+    june_october_severity_counts = Counter(
+        str(record["screening_severity"]) for record in june_october_records
+    )
+    june_october_year_counts = Counter(
+        str(record["year"]) for record in june_october_records
+    )
+    maximum_distance_record = max(
+        extrapolation_audit_records,
+        key=lambda record: float(
+            record["max_distance_fraction_of_calibration_span"]
+        ),
+    )
+    extrapolation_audit_summary = {
+        "model_id": "T1",
+        "total_extrapolation_days": len(extrapolation_audit_records),
+        "total_output_days": len(output_dates),
+        "total_extrapolation_pct": 100.0
+        * len(extrapolation_audit_records)
+        / len(output_dates),
+        "observed_grab_overlap_days": sum(
+            record["observed_grab_temp_c"] != ""
+            for record in extrapolation_audit_records
+        ),
+        "june_through_october": {
+            "extrapolation_days": june_october_extrapolation_days,
+            "calendar_days": june_october_calendar_days,
+            "extrapolation_pct": 100.0
+            * june_october_extrapolation_days
+            / june_october_calendar_days,
+            "by_feature": dict(sorted(june_october_feature_counts.items())),
+            "by_year": dict(sorted(june_october_year_counts.items())),
+            "screening_severity": dict(
+                sorted(june_october_severity_counts.items())
+            ),
+        },
+        "by_feature": dict(sorted(extrapolation_feature_counts.items())),
+        "by_month": dict(sorted(extrapolation_month_counts.items())),
+        "by_year": dict(sorted(extrapolation_year_counts.items())),
+        "by_hypothesis_window": {
+            window.window_id: {
+                "extrapolation_days": extrapolation_window_counts[window.window_id],
+                "calendar_days": sum(window.contains(item_date) for item_date in output_dates),
+                "extrapolation_pct": 100.0
+                * extrapolation_window_counts[window.window_id]
+                / sum(window.contains(item_date) for item_date in output_dates),
+            }
+            for window in HYPOTHESIS_WINDOWS
+        },
+        "screening_severity": dict(sorted(extrapolation_severity_counts.items())),
+        "maximum_distance_day": {
+            "date": maximum_distance_record["date"],
+            "outside_range_features": maximum_distance_record[
+                "outside_range_features"
+            ],
+            "max_distance_fraction_of_calibration_span": maximum_distance_record[
+                "max_distance_fraction_of_calibration_span"
+            ],
+            "screening_severity": maximum_distance_record[
+                "screening_severity"
+            ],
+            "t1_modeled_daily_water_temp_proxy_c": maximum_distance_record[
+                "t1_modeled_daily_water_temp_proxy_c"
+            ],
+            "t2_modeled_daily_water_temp_proxy_c": maximum_distance_record[
+                "t2_modeled_daily_water_temp_proxy_c"
+            ],
+        },
+        "severity_definition": (
+            "maximum distance beyond a calibration min/max divided by that "
+            "feature's calibration span; screening categories are descriptive only"
+        ),
+    }
+
+    # Construct the pre-association, life-stage-specific exposure table. Each
+    # year-window row contains matched T1/T2 proxy metrics and explicit cohort
+    # or same-year alignment. Seven-day metrics are recalculated strictly from
+    # days inside each biological window.
+    life_stage_exposure_records: list[dict[str, object]] = []
+    for exposure_year in expected_years:
+        for window in HYPOTHESIS_WINDOWS:
+            window_dates = inclusive_dates(
+                window.start_date(exposure_year), window.end_date(exposure_year)
+            )
+            t1_exposure = summarize_exposure_window(
+                window_dates, prediction_by_date
+            )
+            t2_exposure = summarize_exposure_window(
+                window_dates, t2_prediction_by_date
+            )
+            expected_days = len(window_dates)
+            t1_extrapolation_days = sum(
+                t1_daily_by_date[item_date][
+                    "outside_calibration_predictor_range"
+                ]
+                == "true"
+                for item_date in window_dates
+            )
+            t2_extrapolation_days = sum(
+                t2_daily_by_date[item_date][
+                    "outside_calibration_predictor_range"
+                ]
+                == "true"
+                for item_date in window_dates
+            )
+            observed_dates = [
+                item_date for item_date in window_dates if item_date in grab_values
+            ]
+            primary_return_year = exposure_year + window.return_year_offset
+            life_stage_exposure_records.append(
+                {
+                    "exposure_year": exposure_year,
+                    "analysis_id": window.analysis_id,
+                    "window_id": window.window_id,
+                    "species": window.species,
+                    "life_stage": window.life_stage,
+                    "window_start_date": window_dates[0].isoformat(),
+                    "window_end_date": window_dates[-1].isoformat(),
+                    "primary_return_year": primary_return_year,
+                    "return_year_in_1997_2025": str(
+                        args.start_date.year
+                        <= primary_return_year
+                        <= args.end_date.year
+                    ).lower(),
+                    "alignment_definition": window.alignment_definition,
+                    "expected_days": expected_days,
+                    "observed_grab_sample_dates": len(observed_dates),
+                    "observed_grab_samples": sum(
+                        len(grab_values[item_date]) for item_date in observed_dates
+                    ),
+                    "t1_complete_days": t1_exposure["complete_days"],
+                    "t1_window_mean_proxy_c": round(
+                        float(t1_exposure["window_mean_proxy_c"]), 3
+                    ),
+                    "t1_window_max_modeled_daily_proxy_c": round(
+                        float(t1_exposure["window_max_modeled_daily_proxy_c"]), 3
+                    ),
+                    "t1_window_max_modeled_daily_proxy_date": t1_exposure[
+                        "window_max_modeled_daily_proxy_date"
+                    ],
+                    "t1_window_max_within_window_7day_mean_proxy_c": round(
+                        float(
+                            t1_exposure[
+                                "window_max_within_window_7day_mean_proxy_c"
+                            ]
+                        ),
+                        3,
+                    ),
+                    "t1_window_max_within_window_7day_mean_date": t1_exposure[
+                        "window_max_within_window_7day_mean_date"
+                    ],
+                    "t1_days_proxy_ge_17_5c": t1_exposure[
+                        "days_proxy_ge_17_5c"
+                    ],
+                    "t1_days_proxy_ge_19c": t1_exposure["days_proxy_ge_19c"],
+                    "t1_days_proxy_ge_21c": t1_exposure["days_proxy_ge_21c"],
+                    "t1_longest_proxy_spell_ge_17_5c_days": t1_exposure[
+                        "longest_proxy_spell_ge_17_5c_days"
+                    ],
+                    "t1_extrapolation_days": t1_extrapolation_days,
+                    "t1_extrapolation_pct": round(
+                        100.0 * t1_extrapolation_days / expected_days, 3
+                    ),
+                    "t2_complete_days": t2_exposure["complete_days"],
+                    "t2_window_mean_proxy_c": round(
+                        float(t2_exposure["window_mean_proxy_c"]), 3
+                    ),
+                    "t2_window_max_modeled_daily_proxy_c": round(
+                        float(t2_exposure["window_max_modeled_daily_proxy_c"]), 3
+                    ),
+                    "t2_window_max_modeled_daily_proxy_date": t2_exposure[
+                        "window_max_modeled_daily_proxy_date"
+                    ],
+                    "t2_window_max_within_window_7day_mean_proxy_c": round(
+                        float(
+                            t2_exposure[
+                                "window_max_within_window_7day_mean_proxy_c"
+                            ]
+                        ),
+                        3,
+                    ),
+                    "t2_window_max_within_window_7day_mean_date": t2_exposure[
+                        "window_max_within_window_7day_mean_date"
+                    ],
+                    "t2_days_proxy_ge_17_5c": t2_exposure[
+                        "days_proxy_ge_17_5c"
+                    ],
+                    "t2_days_proxy_ge_19c": t2_exposure["days_proxy_ge_19c"],
+                    "t2_days_proxy_ge_21c": t2_exposure["days_proxy_ge_21c"],
+                    "t2_longest_proxy_spell_ge_17_5c_days": t2_exposure[
+                        "longest_proxy_spell_ge_17_5c_days"
+                    ],
+                    "t2_extrapolation_days": t2_extrapolation_days,
+                    "t2_extrapolation_pct": round(
+                        100.0 * t2_extrapolation_days / expected_days, 3
+                    ),
+                    "t2_minus_t1_window_mean_c": round(
+                        float(t2_exposure["window_mean_proxy_c"])
+                        - float(t1_exposure["window_mean_proxy_c"]),
+                        3,
+                    ),
+                    "value_status": (
+                        "modeled_proxy_exposure_ready_for_exploratory_sensitivity_only"
+                    ),
+                    "metric_warning": (
+                        "Modeled grab-temperature proxies; daily maxima, threshold "
+                        "counts, and seven-day means are not observed/regulatory metrics"
+                    ),
+                }
+            )
+
+    expected_exposure_rows = len(expected_years) * len(HYPOTHESIS_WINDOWS)
+    exposure_rows_by_window = Counter(
+        str(record["window_id"]) for record in life_stage_exposure_records
+    )
+    exposure_table_complete = (
+        len(life_stage_exposure_records) == expected_exposure_rows
+        and all(
+            exposure_rows_by_window[window.window_id] == len(expected_years)
+            for window in HYPOTHESIS_WINDOWS
+        )
+        and all(
+            record["t1_complete_days"] == record["expected_days"]
+            and record["t2_complete_days"] == record["expected_days"]
+            for record in life_stage_exposure_records
+        )
+    )
+    preassociation_validation = {
+        "gate_status": (
+            "PASS_FOR_EXPLORATORY_PROXY_INPUT_CONSTRUCTION"
+            if exposure_table_complete
+            else "FAIL"
+        ),
+        "salmon_association_tests_run": False,
+        "exposure_table": {
+            "rows": len(life_stage_exposure_records),
+            "expected_rows": expected_exposure_rows,
+            "years": [expected_years[0], expected_years[-1]],
+            "rows_by_window": dict(sorted(exposure_rows_by_window.items())),
+            "complete": exposure_table_complete,
+        },
+        "hypothesis_window_validation": window_validation_summary,
+        "t1_extrapolation_audit": extrapolation_audit_summary,
+        "interpretation": (
+            "Passing this gate validates construction and provenance only. "
+            "It does not convert modeled proxies into observed temperatures, "
+            "validate regulatory 7DADMax, or authorize causal claims."
+        ),
+    }
+
     daily_path = output_dir / (
         f"issaquah_creek_daily_temperature_proxy_{args.start_date.year}_{args.end_date.year}.csv"
     )
@@ -1063,6 +1649,22 @@ def main() -> int:
         "issaquah_temperature_proxy_t2_air_seasonal_diagnostics.json"
     )
     comparison_path = output_dir / "issaquah_temperature_proxy_model_comparison.csv"
+    window_validation_path = output_dir / (
+        "issaquah_temperature_proxy_hypothesis_window_validation.csv"
+    )
+    extrapolation_audit_path = output_dir / (
+        "issaquah_temperature_proxy_t1_extrapolation_audit.csv"
+    )
+    extrapolation_summary_path = output_dir / (
+        "issaquah_temperature_proxy_t1_extrapolation_summary.json"
+    )
+    life_stage_exposure_path = output_dir / (
+        "issaquah_life_stage_temperature_exposure_"
+        f"{args.start_date.year}_{args.end_date.year}.csv"
+    )
+    preassociation_validation_path = output_dir / (
+        "issaquah_temperature_proxy_preassociation_validation.json"
+    )
     manifest_path = cache_dir / "source_manifest.json"
 
     atomic_write_csv(daily_path, list(daily_records[0]), daily_records)
@@ -1116,6 +1718,23 @@ def main() -> int:
         },
     ]
     atomic_write_csv(comparison_path, list(comparison_records[0]), comparison_records)
+    atomic_write_csv(
+        window_validation_path,
+        list(window_validation_records[0]),
+        window_validation_records,
+    )
+    atomic_write_csv(
+        extrapolation_audit_path,
+        list(extrapolation_audit_records[0]),
+        extrapolation_audit_records,
+    )
+    atomic_write_json(extrapolation_summary_path, extrapolation_audit_summary)
+    atomic_write_csv(
+        life_stage_exposure_path,
+        list(life_stage_exposure_records[0]),
+        life_stage_exposure_records,
+    )
+    atomic_write_json(preassociation_validation_path, preassociation_validation)
 
     diagnostics = {
         "model": {
@@ -1184,6 +1803,19 @@ def main() -> int:
             "annual": relative_path(annual_path),
             "calibration": relative_path(calibration_path),
             "model_comparison": relative_path(comparison_path),
+            "hypothesis_window_validation": relative_path(
+                window_validation_path
+            ),
+            "extrapolation_audit": relative_path(extrapolation_audit_path),
+            "extrapolation_summary": relative_path(
+                extrapolation_summary_path
+            ),
+            "life_stage_exposure_table": relative_path(
+                life_stage_exposure_path
+            ),
+            "preassociation_validation": relative_path(
+                preassociation_validation_path
+            ),
         },
     }
     atomic_write_json(diagnostics_path, diagnostics)
@@ -1261,6 +1893,15 @@ def main() -> int:
             "annual": relative_path(t2_annual_path),
             "calibration": relative_path(t2_calibration_path),
             "model_comparison": relative_path(comparison_path),
+            "hypothesis_window_validation": relative_path(
+                window_validation_path
+            ),
+            "life_stage_exposure_table": relative_path(
+                life_stage_exposure_path
+            ),
+            "preassociation_validation": relative_path(
+                preassociation_validation_path
+            ),
         },
     }
     atomic_write_json(t2_diagnostics_path, t2_diagnostics)
@@ -1291,6 +1932,26 @@ def main() -> int:
         raise AssertionError("T2 daily output row count is incomplete.")
     if any("flow" in feature_name.lower() for feature_name in t2_feature_names):
         raise AssertionError("T2 feature matrix unexpectedly contains a flow variable.")
+    flagged_t1_days = sum(
+        record["outside_calibration_predictor_range"] == "true"
+        for record in daily_records
+    )
+    if len(extrapolation_audit_records) != flagged_t1_days:
+        raise AssertionError("T1 extrapolation audit does not cover every flagged day.")
+    if (
+        args.start_date == DEFAULT_START
+        and args.end_date == DEFAULT_END
+        and len(extrapolation_audit_records) != 295
+    ):
+        raise AssertionError(
+            "Accepted 1997-2025 T1 snapshot no longer has the expected 295 extrapolation days."
+        )
+    if len(window_validation_records) != 2 * len(HYPOTHESIS_WINDOWS):
+        raise AssertionError("Hypothesis-window validation output is incomplete.")
+    if not exposure_table_complete:
+        raise AssertionError("Life-stage-specific exposure table failed completeness checks.")
+    if preassociation_validation["salmon_association_tests_run"] is not False:
+        raise AssertionError("Temperature preparation must not run salmon association tests.")
     if validation_metrics["rmse_c"] >= baseline_metrics["rmse_c"]:
         raise RuntimeError(
             "T1 did not improve on the held-out seasonal baseline; output is not accepted."
@@ -1328,6 +1989,22 @@ def main() -> int:
     print(f"Wrote {len(daily_records)} T1 daily proxy rows to {daily_path}")
     print(f"Wrote {len(t2_daily_records)} T2 daily proxy rows to {t2_daily_path}")
     print(f"Wrote T1 and T2 annual proxy metrics to {output_dir}")
+    for window in HYPOTHESIS_WINDOWS:
+        summary = window_validation_summary[window.window_id]
+        print(
+            f"{window.window_id} held-out validation: "
+            f"n={summary['calibration_unique_dates']}, "
+            f"T1 RMSE={summary['t1']['rmse_c']:.3f} C, "
+            f"T2 RMSE={summary['t2']['rmse_c']:.3f} C."
+        )
+    print(
+        f"Audited {len(extrapolation_audit_records)} T1 extrapolation days; "
+        f"{june_october_extrapolation_days} occur June-October."
+    )
+    print(
+        f"Wrote {len(life_stage_exposure_records)} pre-association "
+        f"life-stage exposure rows to {life_stage_exposure_path}"
+    )
     print("WARNING: modeled_7day_mean_proxy_c is not observed or regulatory 7DADMax.")
     return 0
 

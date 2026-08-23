@@ -1,0 +1,132 @@
+{
+  "by_feature": {
+    "air_mid_c": 43,
+    "air_mid_trailing_30d_c": 18,
+    "air_mid_trailing_3d_c": 83,
+    "air_mid_trailing_7d_c": 85,
+    "air_range_c": 88,
+    "log1p_flow_cfs": 31,
+    "log1p_flow_trailing_7d": 49
+  },
+  "by_hypothesis_window": {
+    "aug15_sep30": {
+      "calendar_days": 1363,
+      "extrapolation_days": 46,
+      "extrapolation_pct": 3.374908290535583
+    },
+    "jun_sep": {
+      "calendar_days": 3538,
+      "extrapolation_days": 91,
+      "extrapolation_pct": 2.572074618428491
+    },
+    "sep15_oct31": {
+      "calendar_days": 1363,
+      "extrapolation_days": 19,
+      "extrapolation_pct": 1.3939838591342626
+    }
+  },
+  "by_month": {
+    "01-Jan": 70,
+    "02-Feb": 23,
+    "03-Mar": 4,
+    "04-Apr": 7,
+    "05-May": 7,
+    "06-Jun": 6,
+    "07-Jul": 21,
+    "08-Aug": 46,
+    "09-Sep": 18,
+    "10-Oct": 11,
+    "11-Nov": 20,
+    "12-Dec": 62
+  },
+  "by_year": {
+    "1997": 8,
+    "1998": 12,
+    "1999": 2,
+    "2000": 3,
+    "2001": 6,
+    "2002": 6,
+    "2003": 36,
+    "2004": 24,
+    "2005": 3,
+    "2006": 7,
+    "2007": 13,
+    "2008": 14,
+    "2009": 17,
+    "2010": 8,
+    "2011": 7,
+    "2012": 6,
+    "2013": 11,
+    "2014": 7,
+    "2015": 12,
+    "2016": 6,
+    "2017": 11,
+    "2018": 11,
+    "2019": 9,
+    "2020": 4,
+    "2021": 20,
+    "2022": 16,
+    "2023": 4,
+    "2024": 9,
+    "2025": 3
+  },
+  "june_through_october": {
+    "by_feature": {
+      "air_mid_c": 10,
+      "air_mid_trailing_30d_c": 17,
+      "air_mid_trailing_3d_c": 8,
+      "air_mid_trailing_7d_c": 12,
+      "air_range_c": 14,
+      "log1p_flow_cfs": 24,
+      "log1p_flow_trailing_7d": 45
+    },
+    "by_year": {
+      "2002": 2,
+      "2003": 34,
+      "2004": 15,
+      "2005": 1,
+      "2006": 3,
+      "2007": 2,
+      "2009": 6,
+      "2013": 1,
+      "2015": 9,
+      "2016": 1,
+      "2017": 1,
+      "2018": 7,
+      "2019": 1,
+      "2020": 1,
+      "2021": 8,
+      "2022": 5,
+      "2023": 3,
+      "2024": 1,
+      "2025": 1
+    },
+    "calendar_days": 4437,
+    "extrapolation_days": 102,
+    "extrapolation_pct": 2.2988505747126435,
+    "screening_severity": {
+      "5_to_20pct_beyond_calibration_range": 8,
+      "over_20pct_beyond_calibration_range": 1,
+      "within_5pct_beyond_calibration_range": 93
+    }
+  },
+  "maximum_distance_day": {
+    "date": "2021-06-28",
+    "max_distance_fraction_of_calibration_span": 0.263473,
+    "outside_range_features": "air_mid_c;air_mid_trailing_3d_c;air_mid_trailing_7d_c;air_range_c",
+    "screening_severity": "over_20pct_beyond_calibration_range",
+    "t1_modeled_daily_water_temp_proxy_c": 19.889,
+    "t2_modeled_daily_water_temp_proxy_c": 19.887
+  },
+  "model_id": "T1",
+  "observed_grab_overlap_days": 0,
+  "screening_severity": {
+    "5_to_20pct_beyond_calibration_range": 96,
+    "over_20pct_beyond_calibration_range": 1,
+    "within_5pct_beyond_calibration_range": 198
+  },
+  "severity_definition": "maximum distance beyond a calibration min/max divided by that feature's calibration span; screening categories are descriptive only",
+  "total_extrapolation_days": 295,
+  "total_extrapolation_pct": 2.7851208459214503,
+  "total_output_days": 10592
+}
