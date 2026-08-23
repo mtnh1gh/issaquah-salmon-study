@@ -4,67 +4,65 @@
     "air_mid_trailing_30d_c": 18,
     "air_mid_trailing_3d_c": 88,
     "air_mid_trailing_7d_c": 91,
-    "air_range_c": 91,
-    "log1p_flow_cfs": 28,
-    "log1p_flow_trailing_7d": 50
+    "air_range_c": 91
   },
   "by_hypothesis_window": {
     "aug15_oct31": {
       "calendar_days": 2418,
-      "extrapolation_days": 57,
-      "extrapolation_pct": 2.357320099255583
+      "extrapolation_days": 16,
+      "extrapolation_pct": 0.6617038875103392
     },
     "aug15_sep30": {
       "calendar_days": 1457,
-      "extrapolation_days": 46,
-      "extrapolation_pct": 3.157172271791352
+      "extrapolation_days": 11,
+      "extrapolation_pct": 0.7549759780370625
     },
     "jun_sep": {
       "calendar_days": 3782,
-      "extrapolation_days": 91,
-      "extrapolation_pct": 2.4061343204653625
+      "extrapolation_days": 49,
+      "extrapolation_pct": 1.2956107879428873
     },
     "sep15_nov30": {
       "calendar_days": 2387,
-      "extrapolation_days": 41,
-      "extrapolation_pct": 1.7176372015081693
+      "extrapolation_days": 28,
+      "extrapolation_pct": 1.1730205278592376
     },
     "sep15_oct31": {
       "calendar_days": 1457,
-      "extrapolation_days": 19,
-      "extrapolation_pct": 1.3040494166094716
+      "extrapolation_days": 7,
+      "extrapolation_pct": 0.4804392587508579
     }
   },
   "by_month": {
-    "01-Jan": 71,
-    "02-Feb": 28,
+    "01-Jan": 67,
+    "02-Feb": 27,
     "03-Mar": 3,
     "04-Apr": 7,
     "05-May": 7,
     "06-Jun": 6,
-    "07-Jul": 21,
-    "08-Aug": 46,
-    "09-Sep": 18,
-    "10-Oct": 11,
-    "11-Nov": 22,
-    "12-Dec": 64
+    "07-Jul": 20,
+    "08-Aug": 21,
+    "09-Sep": 2,
+    "10-Oct": 5,
+    "11-Nov": 21,
+    "12-Dec": 62
   },
   "by_year": {
-    "1995": 5,
+    "1995": 3,
     "1996": 7,
-    "1997": 7,
+    "1997": 4,
     "1998": 12,
     "1999": 2,
     "2000": 3,
     "2001": 6,
     "2002": 6,
-    "2003": 36,
-    "2004": 24,
+    "2003": 2,
+    "2004": 10,
     "2005": 3,
     "2006": 7,
     "2007": 13,
     "2008": 14,
-    "2009": 17,
+    "2009": 16,
     "2010": 8,
     "2011": 7,
     "2012": 6,
@@ -75,12 +73,12 @@
     "2017": 11,
     "2018": 11,
     "2019": 9,
-    "2020": 4,
+    "2020": 3,
     "2021": 20,
     "2022": 14,
     "2023": 4,
     "2024": 9,
-    "2025": 3
+    "2025": 2
   },
   "june_through_october": {
     "by_feature": {
@@ -88,14 +86,11 @@
       "air_mid_trailing_30d_c": 17,
       "air_mid_trailing_3d_c": 8,
       "air_mid_trailing_7d_c": 12,
-      "air_range_c": 14,
-      "log1p_flow_cfs": 24,
-      "log1p_flow_trailing_7d": 45
+      "air_range_c": 14
     },
     "by_year": {
       "2002": 2,
-      "2003": 34,
-      "2004": 15,
+      "2004": 1,
       "2005": 1,
       "2006": 3,
       "2007": 2,
@@ -114,12 +109,12 @@
       "2025": 1
     },
     "calendar_days": 4743,
-    "extrapolation_days": 102,
-    "extrapolation_pct": 2.150537634408602,
+    "extrapolation_days": 54,
+    "extrapolation_pct": 1.1385199240986716,
     "screening_severity": {
       "5_to_20pct_beyond_calibration_range": 8,
       "over_20pct_beyond_calibration_range": 1,
-      "within_5pct_beyond_calibration_range": 93
+      "within_5pct_beyond_calibration_range": 45
     }
   },
   "maximum_distance_day": {
@@ -130,16 +125,16 @@
     "t1_modeled_daily_water_temp_proxy_c": 19.779,
     "t2_modeled_daily_water_temp_proxy_c": 19.788
   },
-  "model_id": "T1",
+  "model_id": "T2",
   "observed_grab_overlap_days": 0,
-  "phase7_analysis_role": "sensitivity_thermal_model",
+  "phase7_analysis_role": "primary_thermal_model",
   "screening_severity": {
-    "5_to_20pct_beyond_calibration_range": 103,
+    "5_to_20pct_beyond_calibration_range": 100,
     "over_20pct_beyond_calibration_range": 1,
-    "within_5pct_beyond_calibration_range": 200
+    "within_5pct_beyond_calibration_range": 147
   },
   "severity_definition": "maximum distance beyond a calibration min/max divided by that feature's calibration span; screening categories are descriptive only",
-  "total_extrapolation_days": 304,
-  "total_extrapolation_pct": 2.6848008478318466,
+  "total_extrapolation_days": 248,
+  "total_extrapolation_pct": 2.1902322705996644,
   "total_output_days": 11323
 }

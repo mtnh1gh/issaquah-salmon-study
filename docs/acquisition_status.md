@@ -55,35 +55,30 @@ The watershed-boundary prerequisite for land-use collection is complete. The Kin
 ## Experimental Daily Temperature Proxy Models
 
 Because USGS station 12121600 does not measure water temperature, the project
-also includes two separately labeled 1997-2025 daily temperature proxies. Both
-are calibrated to King County station 0631 grab samples with
-leave-one-year-out validation:
+includes two separately labeled 1995-2025 daily proxy models calibrated to 415
+King County station 0631 grab-sample dates. The two extra years provide Coho A5
+exposures for the 1997 and 1998 return cohorts.
 
-- **T1 — full proxy:** NOAA air temperature, USGS flow, and seasonal terms.
-- **T2 — independent-of-flow proxy:** NOAA air temperature and seasonal terms
-  only, with no USGS flow variables.
+- **T2 - Phase 7 primary:** NOAA air temperature and seasonal terms; only the
+  biological-window mean is primary.
+- **T1 - model sensitivity:** NOAA air temperature, USGS flow, and seasonal
+  terms.
 
-T1 has held-out RMSE 0.786 C and T2 has held-out RMSE 0.790 C. T2 is only 0.6%
-worse by RMSE while remaining independent of flow. Both improve approximately
-48.5-48.8% over the held-out monthly-climatology baseline.
+T2 held-out RMSE is 0.788 C and T1 RMSE is 0.781 C. The 0.9% T2 penalty is small,
+and T2 avoids mathematical flow coupling. Both improve about 48% over held-out
+monthly climatology. Detailed audits cover all 248 T2 and 304 T1 predictor-range
+flags; 54 T2 flags and 102 T1 flags occur June-October.
 
-The same held-out predictions are now validated within the three hypothesis
-windows. T1 and T2 are effectively tied: Jun-Sep RMSE is 0.962 C versus 0.958 C,
-Aug 15-Sep 30 is 0.794 C versus 0.797 C, and Sep 15-Oct 31 is 0.694 C versus
-0.702 C. T1's 295 predictor-range flags have a day-level audit; 102 occur in
-June-October, with one high-severity date during the 2021 heat dome and no
-same-day grab observations on any flagged date.
-
-A separate 87-row life-stage exposure table now covers all 29 years for A1
-Chinook adult migration, A3 Coho adult migration, and A5 Coho juvenile rearing.
-The pre-association construction gate passes, but no salmon association test is
-run by the temperature script. All values remain explicitly labeled modeled
-proxies for exploratory sensitivity analysis.
+The 155-row life-stage table covers 31 exposure years and five frozen A1-A5
+windows. Each analysis has exactly 29 eligible 1997-2025 return years; A5 maps
+1995-2023 exposure to 1997-2025 Coho returns. Threshold-count and every other
+nonmean thermal metric are exploratory only. The pre-association gate passes,
+but the temperature script runs no salmon association test.
 
 Run the accepted cached snapshot with:
 
 ```powershell
-python src/calculate_issaquah_temp.py --snapshot-date 2026-08-22 --offline
+python src/calculate_issaquah_temp.py --snapshot-date 2026-08-23 --offline
 ```
 
 The results are modeled rather than observed. Their seven-day means must not be

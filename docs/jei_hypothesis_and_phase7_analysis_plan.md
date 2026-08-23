@@ -5,6 +5,11 @@
 **Project:** Issaquah Creek Salmon Return Study  
 **Purpose:** Convert the project's original observation-driven ideas into explicit, biologically grounded, testable hypotheses; identify the analyses needed before preparing a Journal of Emerging Investigators (JEI) manuscript; and separate pre-specified hypotheses from later exploratory modeling.
 
+**Execution freeze:** Exact Phase 7 predictor, outcome, lag, window, and test
+definitions are frozen in `docs/phase7_hypothesis_analysis_protocol.md` as of
+2026-08-23. Where this planning document lists broader candidate metrics, the
+frozen protocol governs the analysis.
+
 ---
 
 ## 1. Why this document exists
@@ -216,15 +221,14 @@ Instead, each link should be tested separately. The final interpretation should 
 
 A single seasonal mean is unlikely to capture all biologically relevant thermal exposure. If continuous or sufficiently dense temperature records are available, derive the following metrics for each candidate exposure window.
 
-### Core metrics
+### Candidate metrics and final Phase 7 status
 
-1. **Mean daily temperature** over the window.
-2. **Maximum daily temperature** over the window.
-3. **Maximum 7DADMax** — highest 7-day average of daily maximum temperature.
-4. **Number of days exceeding 17.5°C**.
-5. **Number of days exceeding 19°C**.
-6. **Number of days exceeding 21–22°C**, only if enough observations occur to make the metric informative.
-7. **Longest consecutive warm spell**, where data completeness supports it.
+1. **Window mean T2 temperature proxy** — frozen Phase 7 primary thermal variable.
+2. **Window mean T1 temperature proxy** — frozen model-form sensitivity.
+3. **Modeled daily maximum** — exploratory only.
+4. **Modeled maximum seven-day mean** — exploratory only and never labeled 7DADMax.
+5. **Counts at or above 17.5°C, 19°C, or 21°C** — exploratory only.
+6. **Longest modeled warm spell** — exploratory only.
 
 ### Why 7DADMax matters
 

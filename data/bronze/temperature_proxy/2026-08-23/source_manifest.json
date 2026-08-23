@@ -1,0 +1,24 @@
+{
+  "access_date": "2026-08-23",
+  "created_at": "2026-08-23T09:03:00.504490-07:00",
+  "sources": {
+    "king_county_grab_temperature": {
+      "acquisition_status": "downloaded",
+      "path": "data/bronze/temperature_proxy/2026-08-23/king_county_0631_temperature_grab_samples.csv",
+      "sha256": "229AD1D01D509B298E23688419B9F0D5BC35D4BF70A049DD4AFA5EF1DA543FCF",
+      "url": "https://data.kingcounty.gov/resource/vwmt-pvjw.csv?%24limit=50000&%24where=parameter%3D%27Temperature%27+AND+locator%3D%270631%27&%24order=collect_datetime"
+    },
+    "noaa_air_temperature": {
+      "acquisition_status": "downloaded",
+      "path": "data/bronze/temperature_proxy/2026-08-23/noaa_USW00024233_daily_air_temperature_1994-12-03_2025-12-31.csv",
+      "sha256": "E794D7AF5D9E1362005090D6EC03E92A07929E051C7C5A04CA492C65D706C6A0",
+      "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00024233&startDate=1994-12-03&endDate=2025-12-31&dataTypes=TMAX%2CTMIN&units=metric&format=csv"
+    },
+    "usgs_discharge": {
+      "acquisition_status": "downloaded",
+      "path": "data/bronze/temperature_proxy/2026-08-23/usgs_12121600_daily_discharge_1994-12-03_2025-12-31.json",
+      "sha256": "4FA62EE6360FA13CC528F190662E6C220EED2A2DB87828955A9F41F18D6226FF",
+      "url": "https://waterservices.usgs.gov/nwis/dv/?format=json&sites=12121600&startDT=1994-12-03&endDT=2025-12-31&statCd=00003&parameterCd=00060"
+    }
+  }
+}

@@ -1,12 +1,19 @@
 # Analysis protocol
 
-Version: 1.1
+Version: 1.2
 
-Locked: 2026-07-26; amended 2026-07-29 (D-020: NPGO/ONI added as pre-specified marine-window predictors)
+Locked: 2026-07-26; amended 2026-07-29 (D-020) and 2026-08-23 (D-021)
 
 Scope: Issaquah Creek Chinook and Coho adult returns, 1997–2025
 
 Changes to this protocol require a dated decision-log entry before results are regenerated.
+
+Phase 7 life-stage temperature analyses are governed by the more specific frozen
+`docs/phase7_hypothesis_analysis_protocol.md`. Under D-021, T2 biological-window
+mean is primary, T1 window mean is sensitivity, and threshold/nonmean modeled
+temperature metrics are exploratory only. These definitions supersede the
+earlier generic June-September grab-index predictor for Phase 7 only; they do
+not retroactively alter Phase 3-6 outputs.
 
 ## Study questions
 

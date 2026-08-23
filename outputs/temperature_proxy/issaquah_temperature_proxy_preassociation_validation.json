@@ -1,126 +1,154 @@
 {
   "exposure_table": {
     "complete": true,
-    "expected_rows": 87,
-    "rows": 87,
-    "rows_by_window": {
-      "aug15_sep30": 29,
-      "jun_sep": 29,
-      "sep15_oct31": 29
-    },
-    "years": [
+    "eligible_return_years": [
       1997,
       2025
-    ]
+    ],
+    "eligible_rows_by_window": {
+      "aug15_oct31": 29,
+      "aug15_sep30": 29,
+      "jun_sep": 29,
+      "sep15_nov30": 29,
+      "sep15_oct31": 29
+    },
+    "expected_rows": 155,
+    "exposure_years": [
+      1995,
+      2025
+    ],
+    "rows": 155,
+    "rows_by_window": {
+      "aug15_oct31": 31,
+      "aug15_sep30": 31,
+      "jun_sep": 31,
+      "sep15_nov30": 31,
+      "sep15_oct31": 31
+    }
   },
-  "gate_status": "PASS_FOR_EXPLORATORY_PROXY_INPUT_CONSTRUCTION",
+  "frozen_phase7_protocol": {
+    "path": "docs/phase7_hypothesis_analysis_protocol.md",
+    "sha256": "3E35DE39A57618B6AAFCF8827FCB574E4F70F5646445C38649E55808A232BE0B",
+    "status": "frozen_2026-08-23_before_phase7_life_stage_tests"
+  },
+  "gate_status": "PASS_FOR_PHASE7_PROXY_INPUT_CONSTRUCTION",
   "hypothesis_window_validation": {
     "aug15_sep30": {
       "analysis_id": "A1",
-      "calibration_unique_dates": 38,
-      "calibration_years_represented": 29,
+      "calibration_unique_dates": 42,
+      "calibration_years_represented": 31,
       "monthly_climatology": {
-        "bias_observed_minus_predicted_c": -0.1244445033955861,
-        "mae_c": 0.9921839629315226,
-        "r_squared": 0.03189092668281002,
-        "rmse_c": 1.2259400462978467
+        "bias_observed_minus_predicted_c": -0.2138669104005241,
+        "mae_c": 1.0414841542677675,
+        "r_squared": -0.1504059340023305,
+        "rmse_c": 1.3094972644205063
       },
       "t1": {
-        "bias_observed_minus_predicted_c": -0.14058900631406793,
-        "mae_c": 0.6370868387848851,
-        "r_squared": 0.5936227101456824,
-        "rmse_c": 0.7942766610409696
+        "bias_observed_minus_predicted_c": -0.12566592236911894,
+        "mae_c": 0.6156635366002248,
+        "r_squared": 0.6068056428354565,
+        "rmse_c": 0.765566069939383
       },
       "t2": {
-        "bias_observed_minus_predicted_c": -0.1429840358886251,
-        "mae_c": 0.6417247236840697,
-        "r_squared": 0.5903580526331698,
-        "rmse_c": 0.7974607147607231
+        "bias_observed_minus_predicted_c": -0.12660245613496474,
+        "mae_c": 0.6200619975118906,
+        "r_squared": 0.601207751327969,
+        "rmse_c": 0.7709964760832492
       },
-      "t2_minus_t1_rmse_c": 0.003184053719753499
+      "t2_minus_t1_rmse_c": 0.00543040614386614
     },
     "jun_sep": {
       "analysis_id": "A5",
-      "calibration_unique_dates": 126,
-      "calibration_years_represented": 29,
+      "calibration_unique_dates": 135,
+      "calibration_years_represented": 31,
       "monthly_climatology": {
-        "bias_observed_minus_predicted_c": -0.004365939741982666,
-        "mae_c": 1.1502699488366597,
-        "r_squared": 0.3582804845140001,
-        "rmse_c": 1.5121646091524723
+        "bias_observed_minus_predicted_c": -0.004435504597190329,
+        "mae_c": 1.1661885509335697,
+        "r_squared": 0.34133661826410977,
+        "rmse_c": 1.516811454784027
       },
       "t1": {
-        "bias_observed_minus_predicted_c": 0.001670127841194555,
-        "mae_c": 0.760415282439727,
-        "r_squared": 0.7403232465425496,
-        "rmse_c": 0.9619289216054133
+        "bias_observed_minus_predicted_c": 0.0015071669897633463,
+        "mae_c": 0.773301643925526,
+        "r_squared": 0.7290550299459087,
+        "rmse_c": 0.9728376868789627
       },
       "t2": {
-        "bias_observed_minus_predicted_c": 0.0030064596670021627,
-        "mae_c": 0.7524518841064691,
-        "r_squared": 0.74237531411281,
-        "rmse_c": 0.9581206131566778
+        "bias_observed_minus_predicted_c": 0.0036086366617892615,
+        "mae_c": 0.7640361780726124,
+        "r_squared": 0.7306962379398619,
+        "rmse_c": 0.9698868032119524
       },
-      "t2_minus_t1_rmse_c": -0.0038083084487354757
+      "t2_minus_t1_rmse_c": -0.00295088366701024
     },
     "sep15_oct31": {
       "analysis_id": "A3",
-      "calibration_unique_dates": 41,
-      "calibration_years_represented": 29,
+      "calibration_unique_dates": 43,
+      "calibration_years_represented": 31,
       "monthly_climatology": {
-        "bias_observed_minus_predicted_c": -0.09539573498557587,
-        "mae_c": 1.109837906504065,
-        "r_squared": 0.2780798085875178,
-        "rmse_c": 1.3321472885460375
+        "bias_observed_minus_predicted_c": -0.09839069142285575,
+        "mae_c": 1.0836437376389554,
+        "r_squared": 0.29031505332015806,
+        "rmse_c": 1.3057604270435383
       },
       "t1": {
-        "bias_observed_minus_predicted_c": 0.01209492815338122,
-        "mae_c": 0.5336196939707707,
-        "r_squared": 0.8041255941895697,
-        "rmse_c": 0.6938993757403142
+        "bias_observed_minus_predicted_c": -0.006358842998377742,
+        "mae_c": 0.5295423424649794,
+        "r_squared": 0.8045575913541765,
+        "rmse_c": 0.6852359017356442
       },
       "t2": {
-        "bias_observed_minus_predicted_c": -0.011180515725157972,
-        "mae_c": 0.5419982966044583,
-        "r_squared": 0.7997991083696229,
-        "rmse_c": 0.7015209649418971
+        "bias_observed_minus_predicted_c": -0.03890014280321254,
+        "mae_c": 0.5418569877677638,
+        "r_squared": 0.7980930699452351,
+        "rmse_c": 0.696476261432549
       },
-      "t2_minus_t1_rmse_c": 0.007621589201582846
+      "t2_minus_t1_rmse_c": 0.011240359696904845
     }
   },
   "interpretation": "Passing this gate validates construction and provenance only. It does not convert modeled proxies into observed temperatures, validate regulatory 7DADMax, or authorize causal claims.",
   "salmon_association_tests_run": false,
   "t1_extrapolation_audit": {
     "by_feature": {
-      "air_mid_c": 43,
+      "air_mid_c": 45,
       "air_mid_trailing_30d_c": 18,
-      "air_mid_trailing_3d_c": 83,
-      "air_mid_trailing_7d_c": 85,
-      "air_range_c": 88,
-      "log1p_flow_cfs": 31,
-      "log1p_flow_trailing_7d": 49
+      "air_mid_trailing_3d_c": 88,
+      "air_mid_trailing_7d_c": 91,
+      "air_range_c": 91,
+      "log1p_flow_cfs": 28,
+      "log1p_flow_trailing_7d": 50
     },
     "by_hypothesis_window": {
+      "aug15_oct31": {
+        "calendar_days": 2418,
+        "extrapolation_days": 57,
+        "extrapolation_pct": 2.357320099255583
+      },
       "aug15_sep30": {
-        "calendar_days": 1363,
+        "calendar_days": 1457,
         "extrapolation_days": 46,
-        "extrapolation_pct": 3.374908290535583
+        "extrapolation_pct": 3.157172271791352
       },
       "jun_sep": {
-        "calendar_days": 3538,
+        "calendar_days": 3782,
         "extrapolation_days": 91,
-        "extrapolation_pct": 2.572074618428491
+        "extrapolation_pct": 2.4061343204653625
+      },
+      "sep15_nov30": {
+        "calendar_days": 2387,
+        "extrapolation_days": 41,
+        "extrapolation_pct": 1.7176372015081693
       },
       "sep15_oct31": {
-        "calendar_days": 1363,
+        "calendar_days": 1457,
         "extrapolation_days": 19,
-        "extrapolation_pct": 1.3939838591342626
+        "extrapolation_pct": 1.3040494166094716
       }
     },
     "by_month": {
-      "01-Jan": 70,
-      "02-Feb": 23,
-      "03-Mar": 4,
+      "01-Jan": 71,
+      "02-Feb": 28,
+      "03-Mar": 3,
       "04-Apr": 7,
       "05-May": 7,
       "06-Jun": 6,
@@ -128,11 +156,13 @@
       "08-Aug": 46,
       "09-Sep": 18,
       "10-Oct": 11,
-      "11-Nov": 20,
-      "12-Dec": 62
+      "11-Nov": 22,
+      "12-Dec": 64
     },
     "by_year": {
-      "1997": 8,
+      "1995": 5,
+      "1996": 7,
+      "1997": 7,
       "1998": 12,
       "1999": 2,
       "2000": 3,
@@ -157,7 +187,7 @@
       "2019": 9,
       "2020": 4,
       "2021": 20,
-      "2022": 16,
+      "2022": 14,
       "2023": 4,
       "2024": 9,
       "2025": 3
@@ -193,9 +223,9 @@
         "2024": 1,
         "2025": 1
       },
-      "calendar_days": 4437,
+      "calendar_days": 4743,
       "extrapolation_days": 102,
-      "extrapolation_pct": 2.2988505747126435,
+      "extrapolation_pct": 2.150537634408602,
       "screening_severity": {
         "5_to_20pct_beyond_calibration_range": 8,
         "over_20pct_beyond_calibration_range": 1,
@@ -207,19 +237,168 @@
       "max_distance_fraction_of_calibration_span": 0.263473,
       "outside_range_features": "air_mid_c;air_mid_trailing_3d_c;air_mid_trailing_7d_c;air_range_c",
       "screening_severity": "over_20pct_beyond_calibration_range",
-      "t1_modeled_daily_water_temp_proxy_c": 19.889,
-      "t2_modeled_daily_water_temp_proxy_c": 19.887
+      "t1_modeled_daily_water_temp_proxy_c": 19.779,
+      "t2_modeled_daily_water_temp_proxy_c": 19.788
     },
     "model_id": "T1",
     "observed_grab_overlap_days": 0,
+    "phase7_analysis_role": "sensitivity_thermal_model",
     "screening_severity": {
-      "5_to_20pct_beyond_calibration_range": 96,
+      "5_to_20pct_beyond_calibration_range": 103,
       "over_20pct_beyond_calibration_range": 1,
-      "within_5pct_beyond_calibration_range": 198
+      "within_5pct_beyond_calibration_range": 200
     },
     "severity_definition": "maximum distance beyond a calibration min/max divided by that feature's calibration span; screening categories are descriptive only",
-    "total_extrapolation_days": 295,
-    "total_extrapolation_pct": 2.7851208459214503,
-    "total_output_days": 10592
+    "total_extrapolation_days": 304,
+    "total_extrapolation_pct": 2.6848008478318466,
+    "total_output_days": 11323
+  },
+  "t2_extrapolation_audit": {
+    "by_feature": {
+      "air_mid_c": 45,
+      "air_mid_trailing_30d_c": 18,
+      "air_mid_trailing_3d_c": 88,
+      "air_mid_trailing_7d_c": 91,
+      "air_range_c": 91
+    },
+    "by_hypothesis_window": {
+      "aug15_oct31": {
+        "calendar_days": 2418,
+        "extrapolation_days": 16,
+        "extrapolation_pct": 0.6617038875103392
+      },
+      "aug15_sep30": {
+        "calendar_days": 1457,
+        "extrapolation_days": 11,
+        "extrapolation_pct": 0.7549759780370625
+      },
+      "jun_sep": {
+        "calendar_days": 3782,
+        "extrapolation_days": 49,
+        "extrapolation_pct": 1.2956107879428873
+      },
+      "sep15_nov30": {
+        "calendar_days": 2387,
+        "extrapolation_days": 28,
+        "extrapolation_pct": 1.1730205278592376
+      },
+      "sep15_oct31": {
+        "calendar_days": 1457,
+        "extrapolation_days": 7,
+        "extrapolation_pct": 0.4804392587508579
+      }
+    },
+    "by_month": {
+      "01-Jan": 67,
+      "02-Feb": 27,
+      "03-Mar": 3,
+      "04-Apr": 7,
+      "05-May": 7,
+      "06-Jun": 6,
+      "07-Jul": 20,
+      "08-Aug": 21,
+      "09-Sep": 2,
+      "10-Oct": 5,
+      "11-Nov": 21,
+      "12-Dec": 62
+    },
+    "by_year": {
+      "1995": 3,
+      "1996": 7,
+      "1997": 4,
+      "1998": 12,
+      "1999": 2,
+      "2000": 3,
+      "2001": 6,
+      "2002": 6,
+      "2003": 2,
+      "2004": 10,
+      "2005": 3,
+      "2006": 7,
+      "2007": 13,
+      "2008": 14,
+      "2009": 16,
+      "2010": 8,
+      "2011": 7,
+      "2012": 6,
+      "2013": 11,
+      "2014": 7,
+      "2015": 12,
+      "2016": 6,
+      "2017": 11,
+      "2018": 11,
+      "2019": 9,
+      "2020": 3,
+      "2021": 20,
+      "2022": 14,
+      "2023": 4,
+      "2024": 9,
+      "2025": 2
+    },
+    "june_through_october": {
+      "by_feature": {
+        "air_mid_c": 10,
+        "air_mid_trailing_30d_c": 17,
+        "air_mid_trailing_3d_c": 8,
+        "air_mid_trailing_7d_c": 12,
+        "air_range_c": 14
+      },
+      "by_year": {
+        "2002": 2,
+        "2004": 1,
+        "2005": 1,
+        "2006": 3,
+        "2007": 2,
+        "2009": 6,
+        "2013": 1,
+        "2015": 9,
+        "2016": 1,
+        "2017": 1,
+        "2018": 7,
+        "2019": 1,
+        "2020": 1,
+        "2021": 8,
+        "2022": 5,
+        "2023": 3,
+        "2024": 1,
+        "2025": 1
+      },
+      "calendar_days": 4743,
+      "extrapolation_days": 54,
+      "extrapolation_pct": 1.1385199240986716,
+      "screening_severity": {
+        "5_to_20pct_beyond_calibration_range": 8,
+        "over_20pct_beyond_calibration_range": 1,
+        "within_5pct_beyond_calibration_range": 45
+      }
+    },
+    "maximum_distance_day": {
+      "date": "2021-06-28",
+      "max_distance_fraction_of_calibration_span": 0.263473,
+      "outside_range_features": "air_mid_c;air_mid_trailing_3d_c;air_mid_trailing_7d_c;air_range_c",
+      "screening_severity": "over_20pct_beyond_calibration_range",
+      "t1_modeled_daily_water_temp_proxy_c": 19.779,
+      "t2_modeled_daily_water_temp_proxy_c": 19.788
+    },
+    "model_id": "T2",
+    "observed_grab_overlap_days": 0,
+    "phase7_analysis_role": "primary_thermal_model",
+    "screening_severity": {
+      "5_to_20pct_beyond_calibration_range": 100,
+      "over_20pct_beyond_calibration_range": 1,
+      "within_5pct_beyond_calibration_range": 147
+    },
+    "severity_definition": "maximum distance beyond a calibration min/max divided by that feature's calibration span; screening categories are descriptive only",
+    "total_extrapolation_days": 248,
+    "total_extrapolation_pct": 2.1902322705996644,
+    "total_output_days": 11323
+  },
+  "thermal_variable_designation": {
+    "other_nonmean_thermal_metrics": "exploratory_only",
+    "primary_model_id": "T2",
+    "primary_variable": "t2_window_mean_proxy_c",
+    "sensitivity_model_id": "T1",
+    "sensitivity_variable": "t1_window_mean_proxy_c",
+    "threshold_count_metrics": "exploratory_only"
   }
 }
