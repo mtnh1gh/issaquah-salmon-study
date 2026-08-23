@@ -65,34 +65,5 @@ joined, cohort-aligned analysis dataset
 EDA → Modeling → Validation → Uncertainty → Scenarios
 ```
 
-## Phase 7 frozen hypothesis analysis
-
-Phase 7 uses one deterministic program, `src/run_phase7_hypothesis_tests.py`,
-rather than notebook experiments. The program validates the frozen protocol and
-inputs, runs A1/A3/A5, A6/A7, every frozen sensitivity (including amendment
-D-022), and the species-specific A8 models in the prescribed order. It stages
-the entire result package and publishes the completion manifest last.
-
-```powershell
-python -m pip install -r requirements.txt
-python src/run_phase7_hypothesis_tests.py
-python src/validate_phase7.py
-```
-
-The exact protocol version and SHA-256 are enforced by the program. Results,
-diagnostics, input hashes, software versions, and deterministic seeds are under
-`outputs/phase7/`. Start with the machine-readable files before narrative
-interpretation:
-
-- `phase7_primary_results.csv` for A1/A3/A5;
-- `phase7_mechanism_results.csv` for A6/A7;
-- `phase7_sensitivity_results.csv` for alternate-window, T1, jack-inclusive,
-  extrapolation, Cook, and temporal-trend sensitivities; and
-- `phase7_execution_metadata.json` for protocol, program, input, seed, runtime,
-  and package-version provenance.
-
-The narrative is in `phase7_hypothesis_analysis_report.md`; the authoritative
-completion marker and artifact hashes are in `phase7_output_manifest.json`.
-`validate_phase7.py` is a standard-library-only, output-reading validator that
-does not import or rerun the analysis. It writes 28 structural, family,
-provenance, and separation checks to `phase7_independent_validation.json`.
+Detailed methods, frozen outputs, validation, and scientific-synthesis records
+are indexed in the [Phase 7 reproducibility guide](docs/phase7_reproducibility.md).
