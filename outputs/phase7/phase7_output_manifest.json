@@ -1,0 +1,72 @@
+{
+  "analysis_date": "2026-08-23",
+  "analysis_program": {
+    "path": "src/run_phase7_hypothesis_tests.py",
+    "sha256": "F62158A79BF98E55931430D113C87F43A883475C005915D3FC669B69F722680E"
+  },
+  "artifacts_sha256": {
+    "phase7_a8_diagnostics.png": "4B04800A42750898411516233055ADFCB6C3CD2626B16AF074FD4C34939A184B",
+    "phase7_a8_vif.csv": "C086111CA0617F990CADE85656EBA93F6B0D25E1049EB995D90C7C5CDC258553",
+    "phase7_hypothesis_analysis_report.md": "378F778B85F340E2FB01A0A550DC38BD5F85E82C39E477134AB32E953E83B0C3",
+    "phase7_influence_sensitivity.csv": "671C6C2C9327DDF58AD291285274B86E10632CCC8E97E5FFAEB9A3CC47DECA3B",
+    "phase7_input_validation.json": "EBC18779E0799472F113A54D9ED94595C5D1B2EDEAEFEE428B4E98675F05F31A",
+    "phase7_joined_analysis_rows.csv": "FED8E9C312EB088B2BDA902351741D45216F2113C468F752CF138322C488DE71",
+    "phase7_leave_one_year_out_rho.csv": "074F0837E9B36C12824094FA91F88B4B7AE8F38E42A06B01F73D197824A8A595",
+    "phase7_leave_one_year_out_summary.csv": "E8137C186FA50F51C82D142F2797FC0D050D0B2B956A0877BE7FCDEA2324A0B4",
+    "phase7_mechanism_associations.csv": "CA65E3A293535404C3D01DAFD5DD15A0844DD1F23B86BCD7963D64106E7AB78F",
+    "phase7_primary_associations.csv": "6E25A376D5AF1791401919216733E421EB52BC392F1DDE2608CF1DE8B1F8900B",
+    "phase7_regression_coefficients.csv": "FEDF19A8A1D2F61CE5FC16FF2018BAF665076F1648C630FE0AAF340C9BCE03FF",
+    "phase7_regression_diagnostics.csv": "D4C7C22B7078738467B773CA7232F62441F547D1126E94FCAA10F2F79002D521",
+    "phase7_regression_summaries.csv": "CBEC0D46EF0F076B8B3D47C19B5547082150E70535ECCF4EF98D148E390C6553",
+    "phase7_sensitivity_associations.csv": "F7B824B993DFA3D94D550619C4F1CCDE1FF16799449BBE8521DB525F47970C64",
+    "phase7_temporal_sensitivity.csv": "F9E90015C24B442A6819A3810759585B8A73E07488DC18317AC93B441B486347"
+  },
+  "execution_order": [
+    "input_validation",
+    "primary_A1_A3_A5",
+    "mechanism_A6_A7",
+    "frozen_sensitivities",
+    "secondary_A8"
+  ],
+  "inputs": {
+    "data/gold/issaquah_creek_master.csv": "52D111CBADBB91AB2423F96E05F73E800C78662507A099721EEDADB46A0BEF50",
+    "data/silver/issaquah_annual_environment.csv": "4A4389F04A104DDB44DA028B79DCEE614853E4DFCC6E89FD0D46D85D5559006C",
+    "docs/phase7_hypothesis_analysis_protocol.md": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+    "outputs/temperature_proxy/issaquah_life_stage_temperature_exposure_1995_2025.csv": "DB1F090BD984F818304989DF616B6A799F841E757AAE85D0B36D08F9B0692E1A",
+    "outputs/temperature_proxy/issaquah_temperature_proxy_preassociation_validation.json": "A116B847D9343B6B5874D26EB6CBC9C8BB1ED59A4D24B8D36A17A69F2B7438EE"
+  },
+  "parameters": {
+    "base_seed": 20260823,
+    "bootstrap_repetitions": 10000,
+    "family_alpha": 0.05,
+    "permutation_repetitions": 100000,
+    "temporal_residual_lag1_trigger": 0.3
+  },
+  "protocol": {
+    "amendments": [
+      "D-022"
+    ],
+    "path": "docs/phase7_hypothesis_analysis_protocol.md",
+    "sha256": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+    "version": "1.1"
+  },
+  "row_counts": {
+    "a8_models": 2,
+    "leave_one_year_out_results": 87,
+    "mechanism_results": 2,
+    "primary_results": 3,
+    "sensitivity_results": 14,
+    "temporal_sensitivity_results": 3
+  },
+  "salmon_association_tests_run": true,
+  "software": {
+    "matplotlib": "3.9.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "python": "3.11.9",
+    "scipy": "1.13.1",
+    "statsmodels": "0.14.2"
+  },
+  "status": "COMPLETE",
+  "validation_checks_passed": 39
+}

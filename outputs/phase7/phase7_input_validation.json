@@ -1,0 +1,212 @@
+{
+  "analysis_date": "2026-08-23",
+  "checks": [
+    {
+      "check_id": "protocol_sha256",
+      "detail": "observed=33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2; expected=33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+      "status": "PASS"
+    },
+    {
+      "check_id": "gate_protocol_identity",
+      "detail": "gate must identify protocol v1.1, exact SHA-256, and amendment D-022",
+      "status": "PASS"
+    },
+    {
+      "check_id": "preassociation_gate",
+      "detail": "construction gate must pass and retain salmon_association_tests_run=false",
+      "status": "PASS"
+    },
+    {
+      "check_id": "response_rows_unique",
+      "detail": "no duplicate species-return_year response keys",
+      "status": "PASS"
+    },
+    {
+      "check_id": "response_species_year_coverage",
+      "detail": "29 unique 1997-2025 rows are required for each species",
+      "status": "PASS"
+    },
+    {
+      "check_id": "adult_plus_jacks_identity",
+      "detail": "adult_plus_jacks must equal total_adults + total_jacks",
+      "status": "PASS"
+    },
+    {
+      "check_id": "exposure_shape",
+      "detail": "155 rows and analysis IDs A1-A5 are required",
+      "status": "PASS"
+    },
+    {
+      "check_id": "exposure_rows_unique",
+      "detail": "one row per analysis_id-exposure_year",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a1_rows_species_window",
+      "detail": "31 total/29 eligible rows; Chinook; aug15_sep30",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a1_eligible_return_years",
+      "detail": "eligible primary return years must be exactly 1997-2025",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a2_rows_species_window",
+      "detail": "31 total/29 eligible rows; Chinook; aug15_oct31",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a2_eligible_return_years",
+      "detail": "eligible primary return years must be exactly 1997-2025",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a3_rows_species_window",
+      "detail": "31 total/29 eligible rows; Coho; sep15_oct31",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a3_eligible_return_years",
+      "detail": "eligible primary return years must be exactly 1997-2025",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a4_rows_species_window",
+      "detail": "31 total/29 eligible rows; Coho; sep15_nov30",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a4_eligible_return_years",
+      "detail": "eligible primary return years must be exactly 1997-2025",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a5_rows_species_window",
+      "detail": "31 total/29 eligible rows; Coho; jun_sep",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a5_eligible_return_years",
+      "detail": "eligible primary return years must be exactly 1997-2025",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a5_lag_identity",
+      "detail": "A5 must map exposure years 1995-2023 to return years 1997-2025",
+      "status": "PASS"
+    },
+    {
+      "check_id": "thermal_designation",
+      "detail": "T2 mean primary, T1 mean sensitivity, and nonmean metrics exploratory only",
+      "status": "PASS"
+    },
+    {
+      "check_id": "t1_t2_value_identities",
+      "detail": "primary and sensitivity aliases must exactly reproduce T2 and T1 means",
+      "status": "PASS"
+    },
+    {
+      "check_id": "t2_minus_t1_identity",
+      "detail": "stored T2-minus-T1 value must match component means to output precision",
+      "status": "PASS"
+    },
+    {
+      "check_id": "thermal_window_completeness",
+      "detail": "both models must cover every expected window day",
+      "status": "PASS"
+    },
+    {
+      "check_id": "extrapolation_flags",
+      "detail": "T1: 64 flagged windows, 254 flagged window-days; T2: 57 flagged windows, 111 flagged window-days",
+      "status": "PASS"
+    },
+    {
+      "check_id": "daily_proxy_and_audit_coverage",
+      "detail": "gate must attest 11,323 daily rows/model and complete T1=304/T2=248 audits",
+      "status": "PASS"
+    },
+    {
+      "check_id": "gate_thermal_designation",
+      "detail": "pre-association gate must independently designate T2 as primary",
+      "status": "PASS"
+    },
+    {
+      "check_id": "d022_output_contract",
+      "detail": "D-022 lag-1, detrended rho, magnitude, and circular-shift fields exposed",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a1_response_join",
+      "detail": "exact species and primary-return-year one-to-one join; 29 rows",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a1_complete_cases",
+      "detail": "complete cases=29; required=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a2_response_join",
+      "detail": "exact species and primary-return-year one-to-one join; 29 rows",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a2_complete_cases",
+      "detail": "complete cases=29; required=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a3_response_join",
+      "detail": "exact species and primary-return-year one-to-one join; 29 rows",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a3_complete_cases",
+      "detail": "complete cases=29; required=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a4_response_join",
+      "detail": "exact species and primary-return-year one-to-one join; 29 rows",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a4_complete_cases",
+      "detail": "complete cases=29; required=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a5_response_join",
+      "detail": "exact species and primary-return-year one-to-one join; 29 rows",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a5_complete_cases",
+      "detail": "complete cases=29; required=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a6_complete_cases",
+      "detail": "unique 1997-2025 rows=29; complete cases=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "a7_complete_cases",
+      "detail": "1995-2025 A5 exposure rows=31; complete cases=31",
+      "status": "PASS"
+    }
+  ],
+  "checks_failed": 0,
+  "checks_passed": 39,
+  "input_sha256": {
+    "data/gold/issaquah_creek_master.csv": "52D111CBADBB91AB2423F96E05F73E800C78662507A099721EEDADB46A0BEF50",
+    "data/silver/issaquah_annual_environment.csv": "4A4389F04A104DDB44DA028B79DCEE614853E4DFCC6E89FD0D46D85D5559006C",
+    "docs/phase7_hypothesis_analysis_protocol.md": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+    "outputs/temperature_proxy/issaquah_life_stage_temperature_exposure_1995_2025.csv": "DB1F090BD984F818304989DF616B6A799F841E757AAE85D0B36D08F9B0692E1A",
+    "outputs/temperature_proxy/issaquah_temperature_proxy_preassociation_validation.json": "A116B847D9343B6B5874D26EB6CBC9C8BB1ED59A4D24B8D36A17A69F2B7438EE"
+  },
+  "protocol_sha256": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+  "protocol_version": "1.1",
+  "status": "PASS"
+}

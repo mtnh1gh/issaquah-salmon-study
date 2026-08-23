@@ -1,0 +1,4 @@
+analysis_id,species,n_full,rho_primary_full,rho_leave_one_year_out_min,rho_leave_one_year_out_max,sign_change_count
+A1,Chinook,29,-0.4004926108,-0.5030103996,-0.3470169677,0
+A3,Coho,29,-0.04384776484,-0.1319282892,0.04926782583,2
+A5,Coho,29,-0.2019704433,-0.3114395183,-0.1209633279,0

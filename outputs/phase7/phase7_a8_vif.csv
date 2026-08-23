@@ -1,0 +1,5 @@
+model_id,analysis_id,species,term,variance_inflation_factor
+A8_chinook_temperature_plus_flow,A8,Chinook,z_t2_window_mean_c,1.005864085
+A8_chinook_temperature_plus_flow,A8,Chinook,z_log_matched_flow_cfs,1.005864085
+A8_coho_temperature_plus_flow,A8,Coho,z_t2_window_mean_c,1.003334652
+A8_coho_temperature_plus_flow,A8,Coho,z_log_matched_flow_cfs,1.003334652

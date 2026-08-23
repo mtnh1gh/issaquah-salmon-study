@@ -19,7 +19,7 @@ scikit-learn==1.5.1
 xgboost==2.1.1
 
 # Visualization
-matplotlib==3.9.1
+matplotlib==3.9.2
 seaborn==0.13.2
 plotly==5.22.0               # Interactive charts (optional)
 

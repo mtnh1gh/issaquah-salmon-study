@@ -64,3 +64,22 @@ joined, cohort-aligned analysis dataset
       ↓
 EDA → Modeling → Validation → Uncertainty → Scenarios
 ```
+
+## Phase 7 frozen hypothesis analysis
+
+Phase 7 uses one deterministic program, `src/run_phase7_hypothesis_tests.py`,
+rather than notebook experiments. The program validates the frozen protocol and
+inputs, runs A1/A3/A5, A6/A7, every frozen sensitivity (including amendment
+D-022), and the species-specific A8 models in the prescribed order. It stages
+the entire result package and publishes the completion manifest last.
+
+```powershell
+python -m pip install -r requirements.txt
+python src/run_phase7_hypothesis_tests.py
+```
+
+The exact protocol version and SHA-256 are enforced by the program. Results,
+diagnostics, input hashes, software versions, and deterministic seeds are under
+`outputs/phase7/`; start with
+`outputs/phase7/phase7_hypothesis_analysis_report.md` and
+`outputs/phase7/phase7_output_manifest.json`.
