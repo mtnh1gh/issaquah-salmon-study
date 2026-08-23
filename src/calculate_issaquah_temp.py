@@ -1964,7 +1964,11 @@ def main() -> int:
         "frozen_phase7_protocol": {
             "path": relative_path(phase7_protocol_path),
             "sha256": sha256_bytes(phase7_protocol_path.read_bytes()),
-            "status": "frozen_2026-08-23_before_phase7_life_stage_tests",
+            "version": "1.1",
+            "amendments": ["D-022"],
+            "status": (
+                "frozen_2026-08-23_amended_before_phase7_life_stage_tests"
+            ),
         },
         "thermal_variable_designation": {
             "primary_model_id": PRIMARY_THERMAL_MODEL_ID,

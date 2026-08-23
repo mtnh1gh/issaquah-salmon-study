@@ -1,8 +1,8 @@
 # Analysis protocol
 
-Version: 1.2
+Version: 1.3
 
-Locked: 2026-07-26; amended 2026-07-29 (D-020) and 2026-08-23 (D-021)
+Locked: 2026-07-26; amended 2026-07-29 (D-020) and 2026-08-23 (D-021, D-022)
 
 Scope: Issaquah Creek Chinook and Coho adult returns, 1997–2025
 
@@ -14,6 +14,12 @@ mean is primary, T1 window mean is sensitivity, and threshold/nonmean modeled
 temperature metrics are exploratory only. These definitions supersede the
 earlier generic June-September grab-index predictor for Phase 7 only; they do
 not retroactively alter Phase 3-6 outputs.
+
+D-022 preserves the Phase 7 unrestricted-permutation primary tests and adds a
+separate temporal-trend sensitivity for A1/A3/A5: lag-1 rank diagnostics,
+partial Spearman association after linear calendar-year rank residualization,
+and a pre-triggered circular-shift diagnostic when residual lag-1 dependence is
+at least 0.30 in absolute value.
 
 ## Study questions
 

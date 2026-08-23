@@ -1,8 +1,8 @@
 # Phase 7 hypothesis-analysis protocol
 
-Version: 1.0
+Version: 1.1
 
-Status: **FROZEN 2026-08-23, before Phase 7 life-stage association tests**
+Status: **FROZEN 2026-08-23; amended by D-022 before Phase 7 life-stage association tests**
 
 Scope: Issaquah Creek Chinook and Coho adult returns, 1997-2025
 
@@ -159,6 +159,8 @@ and descriptive; it cannot overturn conclusions from A1 or A3.
 
 ### Rank tests
 
+- D-022 does not replace or modify the frozen primary test below. The primary
+  A1/A3/A5 result remains the unrestricted year-permutation result.
 - Use midranks for ties and the ordinary Pearson correlation of the two rank
   vectors (Spearman rho).
 - Use a two-sided Monte Carlo permutation test with 100,000 outcome
@@ -203,6 +205,65 @@ raw p-value, adjusted p-value where applicable, and expected/observed direction.
 - Do not run origin-specific outcomes until the deferred comparability audit is
   frozen in a protocol amendment.
 
+### Temporal-dependence sensitivity (D-022)
+
+This required sensitivity applies only to A1, A3, and A5, using the same 29
+eligible rows, T2 `primary_thermal_value_c`, `total_adults`, and return-year
+alignment as the frozen primary tests. It asks whether an association remains
+after removing broad shared linear change over calendar time. It does not
+replace the unrestricted permutation, enter the Holm family, or redefine the
+primary result.
+
+For each analysis, sort rows by `primary_return_year` and perform these exact
+steps:
+
+1. Convert the 29 temperature values and 29 untransformed adult counts
+   separately to midranks, called `rank_temp` and `rank_return`.
+2. Report lag-1 rank autocorrelation for each original series as
+   `corr(rank_[2..n], rank_[1..n-1])`. This is the Spearman lag-1
+   autocorrelation in chronological order.
+3. Center time as `year_centered = primary_return_year - mean(primary_return_year)`.
+4. Fit two OLS trend equations with intercepts:
+   `rank_temp ~ 1 + year_centered` and
+   `rank_return ~ 1 + year_centered`.
+5. Save their residuals as `temp_rank_residual` and
+   `return_rank_residual`. The temporal-trend sensitivity coefficient is
+   `rho_detrended = corr(temp_rank_residual, return_rank_residual)`. This is a
+   partial Spearman correlation controlling a linear calendar-year trend.
+6. Report lag-1 Pearson autocorrelation of each residual series using the same
+   adjacent-year formula.
+7. Report whether `rho_detrended` retains or reverses the sign of the primary
+   Spearman rho and report magnitude change as
+   `100 * (abs(rho_detrended) - abs(rho_primary)) / abs(rho_primary)`.
+   If `rho_primary == 0`, magnitude change is undefined and must be blank.
+
+No unrestricted-permutation p-value is attached to `rho_detrended`, because
+permuting individual residual years would recreate the exchangeability concern
+this sensitivity is intended to diagnose.
+
+If either detrended residual series has absolute lag-1 autocorrelation at least
+0.30, add a circular-shift diagnostic:
+
+- hold `temp_rank_residual` fixed;
+- circularly shift the complete ordered `return_rank_residual` vector by every
+  offset from 0 through `n - 1`, preserving its internal order;
+- calculate the residual correlation at every shift; and
+- report the two-sided exact shift p-value as
+  `count(abs(rho_shift) >= abs(rho_detrended)) / n`, including shift zero.
+
+With `n = 29`, this diagnostic has only 29 possible shifts and therefore coarse
+resolution. It is labeled `circular_shift_temporal_sensitivity`, not a new
+confirmatory test. If neither residual lag-1 value reaches 0.30, record
+`circular_shift_status = not_triggered_below_abs_lag1_0_30` rather than silently
+omitting the check.
+
+The Phase 7 report must show, for each of A1/A3/A5, the two raw lag-1 values,
+the two detrended-residual lag-1 values, primary rho, `rho_detrended`, direction
+retained/reversed, magnitude change, and circular-shift status/result. Describe
+this section strictly as **temporal-trend sensitivity**. Do not interpret it as
+a fitted time-series model or proof that all cohort or multi-year dependence has
+been removed.
+
 ## 6. Reporting and decision language
 
 A primary relationship may be described as "supported by this observational
@@ -231,7 +292,10 @@ Before running Phase 7 association code, assert all of the following:
 7. `salmon_association_tests_run` remains `false` in the temperature preparation
    gate; and
 8. this frozen protocol is committed or its exact SHA-256 is recorded with the
-   Phase 7 outputs.
+   Phase 7 outputs; and
+9. the Phase 7 analysis implementation exposes the D-022 lag-1, detrended-rho,
+   magnitude-change, and circular-shift status fields before primary results are
+   generated.
 
 The temperature-proxy build performs input construction and validation only. It
 must not import the salmon master table or execute any association test.

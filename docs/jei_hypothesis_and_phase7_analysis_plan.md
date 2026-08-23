@@ -7,8 +7,9 @@
 
 **Execution freeze:** Exact Phase 7 predictor, outcome, lag, window, and test
 definitions are frozen in `docs/phase7_hypothesis_analysis_protocol.md` as of
-2026-08-23. Where this planning document lists broader candidate metrics, the
-frozen protocol governs the analysis.
+2026-08-23 and amended by D-022 before Phase 7 testing. Where this planning
+document lists broader candidate metrics, the frozen protocol governs the
+analysis.
 
 ---
 
@@ -285,6 +286,8 @@ For each pre-specified hypothesis:
 
 For high-priority relationships, test sensitivity to:
 
+- broad shared calendar-time trend and lag-1 dependence using the frozen D-022
+  temporal-trend sensitivity;
 - one-year window shifts;
 - alternate biologically plausible exposure windows;
 - exclusion of the highest-influence observation;

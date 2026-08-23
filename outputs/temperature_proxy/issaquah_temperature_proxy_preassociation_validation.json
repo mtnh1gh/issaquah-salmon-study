@@ -27,9 +27,13 @@
     }
   },
   "frozen_phase7_protocol": {
+    "amendments": [
+      "D-022"
+    ],
     "path": "docs/phase7_hypothesis_analysis_protocol.md",
-    "sha256": "3E35DE39A57618B6AAFCF8827FCB574E4F70F5646445C38649E55808A232BE0B",
-    "status": "frozen_2026-08-23_before_phase7_life_stage_tests"
+    "sha256": "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2",
+    "status": "frozen_2026-08-23_amended_before_phase7_life_stage_tests",
+    "version": "1.1"
   },
   "gate_status": "PASS_FOR_PHASE7_PROXY_INPUT_CONSTRUCTION",
   "hypothesis_window_validation": {
