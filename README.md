@@ -76,6 +76,7 @@ the entire result package and publishes the completion manifest last.
 ```powershell
 python -m pip install -r requirements.txt
 python src/run_phase7_hypothesis_tests.py
+python src/validate_phase7.py
 ```
 
 The exact protocol version and SHA-256 are enforced by the program. Results,
@@ -92,3 +93,6 @@ interpretation:
 
 The narrative is in `phase7_hypothesis_analysis_report.md`; the authoritative
 completion marker and artifact hashes are in `phase7_output_manifest.json`.
+`validate_phase7.py` is a standard-library-only, output-reading validator that
+does not import or rerun the analysis. It writes 28 structural, family,
+provenance, and separation checks to `phase7_independent_validation.json`.

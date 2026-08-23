@@ -8,8 +8,8 @@
   },
   "analysis_program": {
     "path": "src/run_phase7_hypothesis_tests.py",
-    "sha256": "3A8FA2A8289C5C3697E0413838550AC671783A9A09376B3B0139AB747DAC8E4A",
-    "version": "1.1.0"
+    "sha256": "AEC50BF135F2D3E5CC312F223FC45288D3E034061F6D9587E61BF24A6DC77338",
+    "version": "1.2.0"
   },
   "input_file_sha256": {
     "data/gold/issaquah_creek_master.csv": "52D111CBADBB91AB2423F96E05F73E800C78662507A099721EEDADB46A0BEF50",
@@ -57,7 +57,7 @@
     "sensitivity_seed_policy": "A1-A5 sensitivity reruns reuse the corresponding analysis-ID seeds"
   },
   "run_timestamp_policy": "frozen_first_execution_timestamp_retained_for_deterministic_reruns",
-  "run_timestamp_utc": "2026-08-23T17:19:18Z",
+  "run_timestamp_utc": "2026-08-23T17:25:56Z",
   "software_versions": {
     "matplotlib": "3.9.2",
     "numpy": "1.26.4",

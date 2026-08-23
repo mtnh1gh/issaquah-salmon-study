@@ -35,8 +35,8 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 ANALYSIS_DATE = "2026-08-23"
-RUN_TIMESTAMP_UTC = "2026-08-23T17:19:18Z"
-SCRIPT_VERSION = "1.1.0"
+RUN_TIMESTAMP_UTC = "2026-08-23T17:25:56Z"
+SCRIPT_VERSION = "1.2.0"
 PROTOCOL_VERSION = "1.1"
 EXPECTED_PROTOCOL_SHA256 = (
     "33BFCCD299DA7064462B9F66F1944638E6949FFB5406C78DC9EE6E97E8D15DE2"
@@ -859,6 +859,8 @@ def run_association(
         "outcome": outcome_label,
         "n": len(complete),
         "expected_direction": expected_direction,
+        "inference_sidedness": "two_sided",
+        "expected_direction_role": "prespecified_reporting_only_not_pvalue_tail",
         "observed_direction": direction,
         "direction_matches_expected": direction == expected_direction,
         "spearman_rho": rho,
@@ -1441,10 +1443,16 @@ def primary_results_frame(rows: list[dict[str, object]]) -> pd.DataFrame:
     records = [
         {
             "analysis_id": row["analysis_id"],
+            "analysis_role": "primary_confirmatory_family",
             "species": row["species"],
             "analysis_label": row["analysis_label"],
+            "predictor_model_id": "T2",
+            "thermal_metric_role": "primary_window_mean",
+            "row_exclusion_status": "none_all_29_frozen_rows_retained",
             "n": row["n"],
             "expected_sign": row["expected_direction"],
+            "inference_sidedness": row["inference_sidedness"],
+            "expected_direction_role": row["expected_direction_role"],
             "observed_spearman_rho": row["spearman_rho"],
             "raw_permutation_p": row["permutation_p_raw"],
             "holm_adjusted_p": row["permutation_p_holm"],
@@ -1476,9 +1484,12 @@ def mechanism_results_frame(rows: list[dict[str, object]]) -> pd.DataFrame:
         records.append(
             {
                 "analysis_id": row["analysis_id"],
+                "analysis_role": "mechanism_confirmatory_family",
                 "analysis_label": row["analysis_label"],
                 "n": row["n"],
                 "expected_sign": row["expected_direction"],
+                "inference_sidedness": row["inference_sidedness"],
+                "expected_direction_role": row["expected_direction_role"],
                 "observed_spearman_rho": row["spearman_rho"],
                 "raw_permutation_p": row["permutation_p_raw"],
                 "holm_adjusted_p": row["permutation_p_holm"],
@@ -1515,12 +1526,15 @@ def sensitivity_results_frame(
         records.append(
             {
                 "analysis_id": row["analysis_id"],
+                "analysis_role": "sensitivity_only",
                 "species": row["species"],
                 "sensitivity_type": sensitivity_type[row["sensitivity_id"]],
                 "sensitivity_id": row["sensitivity_id"],
                 "sensitivity_metric": "spearman_rho",
                 "n": row["n"],
                 "expected_sign": row["expected_direction"],
+                "inference_sidedness": row["inference_sidedness"],
+                "expected_direction_role": row["expected_direction_role"],
                 "primary_spearman_rho": math.nan,
                 "sensitivity_rho": row["spearman_rho"],
                 "raw_permutation_p": row["permutation_p_raw"],
@@ -1552,12 +1566,15 @@ def sensitivity_results_frame(
         records.append(
             {
                 "analysis_id": row["analysis_id"],
+                "analysis_role": "sensitivity_only",
                 "species": row["species"],
                 "sensitivity_type": "temporal_sensitivity",
                 "sensitivity_id": "temporal_trend_d022",
                 "sensitivity_metric": "partial_spearman_controlling_linear_year",
                 "n": row["n"],
                 "expected_sign": expected,
+                "inference_sidedness": "not_applicable_no_unrestricted_pvalue",
+                "expected_direction_role": "prespecified_reporting_only_not_pvalue_tail",
                 "primary_spearman_rho": row["rho_primary"],
                 "sensitivity_rho": row["rho_detrended"],
                 # D-022 explicitly prohibits an unrestricted p-value here.

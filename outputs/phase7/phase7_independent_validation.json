@@ -1,0 +1,158 @@
+{
+  "checks": [
+    {
+      "check_id": "required_outputs_exist",
+      "detail": "all 11 required outputs exist",
+      "status": "PASS"
+    },
+    {
+      "check_id": "required_outputs_readable",
+      "detail": "all required CSV/JSON outputs parsed",
+      "status": "PASS"
+    },
+    {
+      "check_id": "analysis_manifest_integrity",
+      "detail": "verified 19 artifact hashes",
+      "status": "PASS"
+    },
+    {
+      "check_id": "primary_schema",
+      "detail": "all required fields present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mechanism_schema",
+      "detail": "all required fields present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "sensitivity_schema",
+      "detail": "all required fields present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "exactly_three_primary_thermal_tests",
+      "detail": "rows=3; ids=['A1', 'A3', 'A5']",
+      "status": "PASS"
+    },
+    {
+      "check_id": "exactly_two_mechanism_tests",
+      "detail": "rows=2; ids=['A6', 'A7']",
+      "status": "PASS"
+    },
+    {
+      "check_id": "result_ids_unique",
+      "detail": "primary and mechanism IDs are unique",
+      "status": "PASS"
+    },
+    {
+      "check_id": "holm_primary_family_reconciles",
+      "detail": "reported IDs=['A1', 'A3', 'A5']; recalculated_from_reported_raw_p={'A1': 0.09539904600000002, 'A5': 0.5801341986, 'A3': 0.8214217858}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "holm_mechanism_family_reconciles",
+      "detail": "reported IDs=['A6', 'A7']; recalculated_from_reported_raw_p={'A7': 0.0394196058, 'A6': 0.4767252327}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "holm_applied_to_correct_families",
+      "detail": "A1/A3/A5 use primary family; A6/A7 use separate mechanism family",
+      "status": "PASS"
+    },
+    {
+      "check_id": "no_exploratory_metric_in_primary_family",
+      "detail": "primary role is T2 window mean; joined nonmean/threshold metrics are exploratory_only",
+      "status": "PASS"
+    },
+    {
+      "check_id": "no_t1_value_as_primary_predictor",
+      "detail": "primary predictor/model/value identities are T2; T1 appears only in sensitivity fields",
+      "status": "PASS"
+    },
+    {
+      "check_id": "primary_n_matches_frozen_expectations",
+      "detail": "result/detail/join counts={'A1': 29, 'A3': 29, 'A5': 29}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mechanism_n_matches_frozen_expectations",
+      "detail": "expected={'A6': 29, 'A7': 31}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "joined_response_rows_unique_and_complete",
+      "detail": "rows=145; by_analysis={'A1': 29, 'A2': 29, 'A3': 29, 'A4': 29, 'A5': 29}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "no_post_hoc_primary_row_deletion",
+      "detail": "{'A1': {'n': 29, 'flagged_rows_retained': 8, 'flagged_days_retained': 11}, 'A3': {'n': 29, 'flagged_rows_retained': 6, 'flagged_days_retained': 7}, 'A5': {'n': 29, 'flagged_rows_retained': 14, 'flagged_days_retained': 47}}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "expected_direction_separate_from_inference_tail",
+      "detail": "expected sign is reporting-only; every confirmatory permutation field declares two_sided",
+      "status": "PASS"
+    },
+    {
+      "check_id": "sensitivity_rows_have_separate_role",
+      "detail": "counts={'alternate_window': 2, 'T1': 3, 'jack_inclusive': 3, 'extrapolation_exclusion': 3, 'cook_exclusion': 3, 'temporal_sensitivity': 3}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "association_sensitivities_are_descriptive_unadjusted",
+      "detail": "rows=14",
+      "status": "PASS"
+    },
+    {
+      "check_id": "extrapolation_deletion_confined_to_sensitivity",
+      "detail": "sensitivity n={'A1': 21, 'A3': 23, 'A5': 15}",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cook_deletion_confined_to_sensitivity",
+      "detail": "three one-row Cook exclusions; primary rows retain n=29",
+      "status": "PASS"
+    },
+    {
+      "check_id": "public_primary_results_match_detailed_primary_results",
+      "detail": "all effect/inference fields and support status reconcile by analysis ID",
+      "status": "PASS"
+    },
+    {
+      "check_id": "sensitivity_cannot_overwrite_formal_primary_status",
+      "detail": "formal status is reconstructed from primary Holm/direction plus frozen T1 and Cook sign checks",
+      "status": "PASS"
+    },
+    {
+      "check_id": "temporal_amendment_is_sensitivity_only",
+      "detail": "D-022 has three sensitivity-only rows, no unrestricted p-value, and no primary-family membership",
+      "status": "PASS"
+    },
+    {
+      "check_id": "execution_metadata_contract",
+      "detail": "protocol/program SHA and version, five input hashes, explicit seeds, and package versions present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "manifest_metadata_identity",
+      "detail": "completion status, run timestamp, program identity, and sensitivity row count reconcile",
+      "status": "PASS"
+    }
+  ],
+  "checks_failed": 0,
+  "checks_passed": 28,
+  "checks_total": 28,
+  "scope": "Output-only structural and consistency validation; association statistics are not recalculated from source data. The validation report is intentionally outside the analysis manifest so the validator remains independent.",
+  "status": "PASS",
+  "validated_analysis_run_timestamp_utc": "2026-08-23T17:25:56Z",
+  "validated_output_manifest_sha256": "877774D2EDE70502DA44BB47CB3352A13FCE9B4D47303CCABBB09277EAFD3843",
+  "validator": {
+    "imports_analysis_program": false,
+    "path": "src/validate_phase7.py",
+    "runtime_dependency": "python_standard_library_only",
+    "sha256": "AE23E8C86D6F5560B835BFB3F7A148269D3057E2D6EEDAA52ECF4014CDA95645",
+    "version": "1.0.0"
+  }
+}
