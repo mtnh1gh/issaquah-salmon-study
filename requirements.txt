@@ -31,6 +31,19 @@ folium==0.17.0
 jupyterlab==4.2.4
 ipykernel==6.29.5
 
+# NOTE ON ENVIRONMENTS
+# The pins above describe the environment that produced the FROZEN Phase 7
+# analysis (Python 3.11.9, matplotlib 3.9.2 - see
+# outputs/phase7/phase7_execution_metadata.json). The report figures and
+# document builds were produced later under Python 3.13.7 with matplotlib
+# 3.11.1, which is what the figure and table citations name. Report tooling
+# reads frozen outputs only and recomputes no statistic, so the two
+# environments do not need to match.
+
+# Report generation (src/build_report_figures.py, src/build_report_docx.py)
+python-docx==1.2.0           # Word output for Google Docs upload
+beautifulsoup4==4.15.0       # parses the report HTML, the single content source
+
 # Utilities
 python-dotenv==1.0.1
 tqdm==4.66.4

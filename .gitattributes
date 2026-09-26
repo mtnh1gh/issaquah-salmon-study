@@ -1,0 +1,10 @@
+# Keep every file byte-identical between the working copy and any clone.
+#
+# Rationale: the Phase 7 freeze record (docs/phase7_results_freeze.json) stores a
+# SHA-256 for each frozen artifact. Git's default end-of-line conversion on
+# Windows (core.autocrlf=true) rewrites LF to CRLF on checkout, which changes the
+# bytes and therefore the hash, so a fresh clone failed its own integrity check
+# even though the data were identical. Disabling text conversion repo-wide keeps
+# the hashes verifiable for anyone who downloads the repository.
+
+* -text
